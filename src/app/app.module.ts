@@ -13,6 +13,7 @@ import {HttpClientModule } from '@angular/common/http';
 import { ExperienciaComponent } from './components/experiencia/experiencia.component';
 import { EducacionComponent } from './components/educacion/educacion.component';
 import { LoginComponent } from './components/login/login.component';
+ 
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { LoginComponent } from './components/login/login.component';
     PerfilfotoComponent,
     ExperienciaComponent,
     EducacionComponent,
-    LoginComponent
+    LoginComponent 
     
 
     

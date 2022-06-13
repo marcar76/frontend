@@ -4,9 +4,8 @@ import { AppComponent } from './app.component';
 import {FormularioComponent} from './components/formulario/formulario.component'
 
 const routes: Routes = [
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: 'contacto', component: FormularioComponent},
-  {path: 'home', component: AppComponent},
+  {path: '', redirectTo: '/', pathMatch: 'full'},
+  
 ];
 
 @NgModule({
