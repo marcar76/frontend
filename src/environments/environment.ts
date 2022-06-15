@@ -3,9 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: true,
-  //apiUrlBackend: 'http://localhost:8080/',
-  apiUrlBackend: 'https://desolate-eyrie-69755.herokuapp.com/',
+  production: false,
+  apiUrlBackend: 'http://localhost:8080/',
+  //apiUrlBackend: 'https://desolate-eyrie-69755.herokuapp.com/'
 };
 
 /*
