@@ -13,7 +13,7 @@ import {HttpClientModule } from '@angular/common/http';
 import { ExperienciaComponent } from './components/experiencia/experiencia.component';
 import { EducacionComponent } from './components/educacion/educacion.component';
 import { LoginComponent } from './components/login/login.component';
- import { ButtonEditComponent } from './components/button-edit-persona/button-edit-persona.component';
+import { ButtonEditComponent } from './components/button-edit-persona/button-edit-persona.component';
 
 @NgModule({
   declarations: [

@@ -1,25 +1,71 @@
 <button type="button"  style="background-color:transparent; border-color:transparent;" data-bs-toggle="modal" data-bs-target="#editModal" >   
-    <img src="../../../assets/images/pen.jpg" height="35"/> 
+    <img src="https://drive.google.com/uc?export=view&id=1_Nq57MSqiGI3OWkRIUdxbUQG-cvpDQIp" height="35"/> 
 </button>
 <button type="submit"  style="background-color:transparent; border-color:transparent;" data-bs-toggle="modal" data-bs-target="#borrarModal"> 
-    <img src="../../../assets/images/trash.jpg" height="35"/> 
-</button>
+    <img src="https://drive.google.com/uc?export=view&id=1xTDp_N5N7ewDwHPgzz_6EvBFfj-Mqhod" height="35"/> 
+</button> 
 
-<!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-    Launch demo modal
-  </button> -->
+ 
+
+  <!-- Modal Editar
   
-  <!-- Modal Editar-->
-  <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   this.nombre=nombre;
+    this.apellido= apellido;
+
+    this.domicilio=domicilio;
+    this.fechaNacimiento= fechaNacimiento;
+    this.telefono= telefono;
+    this.correo= correo;
+    this.sobre_mi= sobre_mi;
+    this.url_foto=url_foto;
+  
+   
+  -->
+  <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Editar datos de Persona</h5>
+          <h5 class="modal-title" id="editModalLabel">Editar datos de Persona</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          ...
+          <div class="mb-3">
+            <label for="nombrePersona" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="editControInput1" placeholder="nombre">
+            <label for="apellidoPersona" class="form-label">Apellido</label>
+            <input type="text" class="form-control" id="editControInput1" placeholder="apellido">
+          </div>
+          <div class="mb-3">
+            <label for="fechaNacimientoPersona" class="form-label">Fecha Nacimiento</label>
+            <input type="date" class="form-control" id="editControInput1" >
+        
+          </div>
+          <div class="mb-3">
+            <label for="correoElectronicoPersona" class="form-label">Correo electronico</label>
+            <input type="email" class="form-control" id="editControInput1" placeholder="name@example.com">
+          </div>
+          <div class="mb-3">
+            <label for="domicilioPersona" class="form-label">Domicilio</label>
+            <input type="text" class="form-control" id="editControInput1" >
+          </div>
+          <div class="mb-3">
+            <label for="telefonoPersona" class="form-label">Telefono</label>
+            <input type="text" class="form-control" id="editControInput1" >
+          </div>
+          
+          <div class="mb-3">
+            <label for="urlFotoPersona" class="form-label">URL Foto</label>
+            <input type="text" class="form-control" id="editControInput1" placeholder="https://sitio.com/fotoid">
+          </div>
+          <div class="mb-3">
+            <label for="acercaDeMiPersona" class="form-label">Acerca de mi...</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          </div>
+
+
+
+
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -38,7 +84,9 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          ...
+          <div class="mb-3">
+            <label class="form-label">Desea borrar los datos?</label>             
+          </div>           
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
