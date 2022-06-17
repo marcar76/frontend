@@ -15,7 +15,6 @@ constructor(private http: HttpClient) { }
   public getPersona():Observable<persona> {
     console.log("URL: " + this.URL);
       return this.http.get<persona>(this.URL + 'find/persona/1');
-
   }
 
   public updatePersona(persona: persona):Observable<persona>{
@@ -23,36 +22,7 @@ constructor(private http: HttpClient) { }
   }
 }
 
-
-  // @PostMapping("/new/persona")
-  //   public void agregarPersona(@RequestBody Persona pers) {
-  //       persoServ.crearPersona(pers);
-  //   }
-    
-  //   @GetMapping("/list/personas")
-  //   @ResponseBody
-  //   public List<Persona> verPersonas() {
-  //       return persoServ.verPersonas();
-  //   }
-    
-
-  //   @GetMapping("/find/persona/{id}")
-  //   public void buscarPersona(@PathVariable Long id) {
-  //       persoServ.buscarPersona(id);
-  //   }
-
-
-  //   @DeleteMapping("/delete/persona/{id}")
-  //   public void borrarPersona(@PathVariable Long id) {
-  //       persoServ.borrarPersona(id);
-  //   }
-    
-  //   @PutMapping ("/save/persona")
-  //   public void editarPersona(@RequestBody Persona pers){
-  //       persoServ.editarPersona(pers);
-  //   }
-    
-
+  
 
 
 

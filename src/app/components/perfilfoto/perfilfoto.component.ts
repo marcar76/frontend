@@ -12,6 +12,7 @@ export class PerfilfotoComponent implements OnInit {
   public date: Date = new Date();
   persona: persona= new persona(1,'','','',this.date,'','','','');
   public editPersona?: persona;
+  
 
   constructor(private persoService: PersonaService) { }
 
@@ -20,13 +21,11 @@ export class PerfilfotoComponent implements OnInit {
      
   }
 
-
+   
 public getPersona():void{
   
   this.persoService.getPersona().subscribe( response  => {this.persona=response});
-    
       
-    
 }
 
 }

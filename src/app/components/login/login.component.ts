@@ -10,6 +10,11 @@ export class LoginComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.loginok();
   }
+
+public loginok():boolean{
+  return false;
+}
 
 }
