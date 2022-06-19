@@ -6,21 +6,6 @@
 </button> 
 
  
-
-  <!-- Modal Editar
-  
-   this.nombre=nombre;
-    this.apellido= apellido;
-
-    this.domicilio=domicilio;
-    this.fechaNacimiento= fechaNacimiento;
-    this.telefono= telefono;
-    this.correo= correo;
-    this.sobre_mi= sobre_mi;
-    this.url_foto=url_foto;
-  
-   
-  -->
   <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -31,56 +16,65 @@
         <div class="modal-body">
           <div class="mb-3">
             <label for="nombrePersona" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="editControInput1" placeholder="nombre">
+            <input type="text" class="form-control" id="nombrePasar"  > <!--  placeholder={{nombrePersona}}>    -->
             <label for="apellidoPersona" class="form-label">Apellido</label>
-            <input type="text" class="form-control" id="editControInput1" placeholder="apellido">
+            <input type="text" class="form-control" id="apellidoPasar" placeholder={{apellidoPersona}}>
           </div>
           <div class="mb-3">
             <label for="fechaNacimientoPersona" class="form-label">Fecha Nacimiento</label>
-            <input type="date" class="form-control" id="editControInput1" >
+            <input type="text" class="form-control" id="fechaPasar"  > <!-- placeholder={{fechaNacimientoPersona}}> -->
         
           </div>
           <div class="mb-3">
             <label for="correoElectronicoPersona" class="form-label">Correo electronico</label>
-            <input type="email" class="form-control" id="editControInput1" placeholder="name@example.com">
+            <input type="email" class="form-control" id="correoPasar" placeholder={{correoPersona}}>
           </div>
           <div class="mb-3">
             <label for="domicilioPersona" class="form-label">Domicilio</label>
-            <input type="text" class="form-control" id="editControInput1" >
+            <input type="text" class="form-control" id="domicilioPasar" placeholder={{domicilioPersona}}>
           </div>
           <div class="mb-3">
             <label for="telefonoPersona" class="form-label">Telefono</label>
-            <input type="text" class="form-control" id="editControInput1" >
+            <input type="text" class="form-control" id="telefonoPasar" placeholder={{telefonoPersona}}>
           </div>
           
           <div class="mb-3">
             <label for="urlFotoPersona" class="form-label">URL Foto</label>
-            <input type="text" class="form-control" id="editControInput1" placeholder="https://sitio.com/fotoid">
+            <input type="text" class="form-control" id="urlFotoPasar" placeholder={{urlFotoPersona}}>
           </div>
           <div class="mb-3">
             <label for="acercaDeMiPersona" class="form-label">Acerca de mi...</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <textarea class="form-control" id="acercaDeMiPasar" rows="3" placeholder={{acercaDeMiPersona}}></textarea>
           </div>
 
 
+ <!--   [nombrePersona]="persona.nombre!"                      
+          [apellidoPersona]="persona.apellido!" 
+          [domicilioPersona]="persona.domicilio!"
+          [telefonoPersona]="persona.telefono!" 
+          [correoPersona]="persona.correo!"
+          [fechaNacimientoPersona]="persona.fechaNacimiento!"
+          [acercaDeMiPersona]="persona.sobre_mi!"
+          [urlFotoPersona]="persona.url_foto!" -->
 
-
-
+  
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" (click)="edit()" class="btn btn-primary">Guardar cambios</button>
+          <button type="button" (click)="edit()"   
+       
+          class="btn btn-primary">Guardar cambios</button>
         </div>
       </div>
     </div>
   </div>
-
+  
   <!-- Modal Borrar-->
-  <div class="modal fade" id="borrarModal" tabindex="-1" aria-labelledby="borrarModalLabel" aria-hidden="true">
+    <div class="modal fade" id="borrarModal" tabindex="-1" aria-labelledby="borrarModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Borrar datos de Persona</h5>
+          <h5 class="modal-title" >Borrar datos de Persona</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -94,4 +88,4 @@
         </div>
       </div>
     </div>
-  </div>
+  </div>  

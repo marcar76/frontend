@@ -9,12 +9,15 @@
         <div class="card">
             <div class="card-body">
                 <img src="https://drive.google.com/uc?export=view&id=1ZgyqVYIQRg3SNQaB2_DSucTFaq09HoX9" class="card-img-top rounded-circle  fmx-auto d-block img-fluid" alt="foto perfil">
-              <h5 class="card-title">{{persona.nombre}} {{persona.apellido}}</h5>
-              <p class="card-text" ></p> 
-               
-              <app-button-edit-persona></app-button-edit-persona>
-            
-              
+                <h5 class="card-title">{{persona.nombre}} {{persona.apellido}} {{persona.fechaNacimiento}}</h5>
+                <p class="card-text" ></p> 
+           
+                <app-button-edit-persona  [nombrePersona]="persona.nombre!"                 
+                    [apellidoPersona]="persona.apellido!"  [domicilioPersona]="persona.domicilio!"
+                    [telefonoPersona]="persona.telefono!"  [correoPersona]="persona.correo!"
+                    [fechaNacimientoPersona]="persona.fechaNacimiento!"     [acercaDeMiPersona]="persona.sobre_mi!"
+                    [urlFotoPersona]="persona.url_foto!" ></app-button-edit-persona>
+           
             </div>
           </div>     
 </div>

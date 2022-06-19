@@ -10,22 +10,24 @@ import { PersonaService } from 'src/app/service/persona.service';
 })
 export class PerfilfotoComponent implements OnInit {
   public date: Date = new Date();
-  persona: persona= new persona(1,'','','',this.date,'','','','');
-  public editPersona?: persona;
+  persona!: persona /*  = new persona(1,'','','',this.date,'','','','');  */
+  /* public editPersona?: persona; */
   
 
-  constructor(private persoService: PersonaService) { }
+  constructor(private persoService: PersonaService )  { }
 
   ngOnInit(): void {
     this.getPersona();
-     
+    
   }
 
    
-public getPersona():void{
-  
-  this.persoService.getPersona().subscribe( response  => {this.persona=response});
-      
+public getPersona():void{  
+  this.persoService.getPersona().subscribe( response  => {this.persona=response});        
 }
 
+public updatePersona(p: persona):void{  
+  this.persoService.updatePersona(p).subscribe( response  => {response=this.persona});      
+} 
+ 
 }

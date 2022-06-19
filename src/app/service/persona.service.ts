@@ -20,6 +20,12 @@ constructor(private http: HttpClient) { }
   public updatePersona(persona: persona):Observable<persona>{
     return this.http.put<persona>(this.URL + 'save/persona',persona);
   }
+  
+  public borrarPersona(id: number ):Observable<any>{
+    return this.http.delete<any>(this.URL + 'delete/persona/1');
+  }
+
+
 }
 
   
