@@ -9,14 +9,15 @@
         <div class="card">
             <div class="card-body">
                 <img src={{persona.url_foto}} class="card-img-top rounded-circle  fmx-auto d-block img-fluid" alt="foto perfil">
-                <h5 class="card-title">{{persona.nombre}} {{persona.apellido}} {{persona.fechaNacimiento}}</h5>
+                <h5 class="card-title">{{persona.nombre}} {{persona.apellido}}  {{persona.correo}}</h5>
                 <p class="card-text" ></p> 
            
                 <app-button-edit-persona  [nombrePersona]="persona.nombre!"                 
                     [apellidoPersona]="persona.apellido!"  [domicilioPersona]="persona.domicilio!"
                     [telefonoPersona]="persona.telefono!"  [correoPersona]="persona.correo!"
                     [fechaNacimientoPersona]="persona.fechaNacimiento!"     [acercaDeMiPersona]="persona.sobre_mi!"
-                    [urlFotoPersona]="persona.url_foto!" ></app-button-edit-persona>
+                    [urlFotoPersona]="persona.url_foto!" *ngIf=loginok>
+                </app-button-edit-persona>
            
             </div>
           </div>     

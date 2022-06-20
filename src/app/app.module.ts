@@ -14,6 +14,7 @@ import { ExperienciaComponent } from './components/experiencia/experiencia.compo
 import { EducacionComponent } from './components/educacion/educacion.component';
 import { LoginComponent } from './components/login/login.component';
 import { ButtonEditComponent } from './components/button-edit-persona/button-edit-persona.component';
+import { ButtonEditSkillsComponent } from './components/button-edit-skills/button-edit-skills.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { ButtonEditComponent } from './components/button-edit-persona/button-edi
     ExperienciaComponent,
     EducacionComponent,
     LoginComponent, 
-    ButtonEditComponent
+    ButtonEditComponent, ButtonEditSkillsComponent
 
     
   ],
@@ -36,7 +37,7 @@ import { ButtonEditComponent } from './components/button-edit-persona/button-edi
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [LoginComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

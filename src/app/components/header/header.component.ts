@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-header',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor() { }
+  loginok!: boolean;
+  constructor(private login: LoginComponent) { }
 
   ngOnInit(): void {
+    this.loginok= this.getLogin();
+  }
+
+  public getLogin(){
+    return this.login.loginok();
   }
 
 }

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { persona } from 'src/app/model/persona.model';
 import { PersonaService } from 'src/app/service/persona.service';
- 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-button-edit-persona',
@@ -20,7 +20,7 @@ export class ButtonEditComponent implements OnInit {
 
  
 
-  constructor(private persoService: PersonaService) { 
+  constructor(private persoService: PersonaService, private router: Router) { 
     
   }
 
@@ -30,42 +30,54 @@ export class ButtonEditComponent implements OnInit {
   (<HTMLInputElement>document.getElementById("nombrePasar")).value = this.nombrePersona;  
   (<HTMLInputElement>document.getElementById("apellidoPasar")).value = this.apellidoPersona;
   (<HTMLInputElement>document.getElementById("domicilioPasar")).value = this.domicilioPersona;
- /*(<HTMLInputElement>document.getElementById("fechaPasar")).value = this.fechaNacimientoPersona.getDate;  */
-  
   (<HTMLInputElement>document.getElementById("telefonoPasar")).value = this.telefonoPersona;
   (<HTMLInputElement>document.getElementById("correoPasar")).value = this.correoPersona;
   (<HTMLInputElement>document.getElementById("acercaDeMiPasar")).value = this.acercaDeMiPersona;
   (<HTMLInputElement>document.getElementById("urlFotoPasar")).value = this.urlFotoPersona;
-  
-  /* console.log("Año: " + this.fechaNacimientoPersona.getFullYear.toString);
-  console.log("Mes:" + this.fechaNacimientoPersona.getMonth);
-  console.log("Dia:" + this.fechaNacimientoPersona.getDay);
-    
-  
-  const anio = this.fechaNacimientoPersona.getFullYear.toString;
-  (<HTMLInputElement>document.getElementById("fechaPasar")).value = this.fechaNacimientoPersona.getDay.toString;  */
+   
+/* Read this.fechaNacimientoPersona and convert to Date*/
+
+let splitted = this.fechaNacimientoPersona.toString().split(","); 
+let fecha:Date = new Date (splitted[0]+"-"+splitted[1]+"-"+splitted[2]);
+console.log("`Año: " + splitted[0]);
+      console.log("Mes: " + splitted[1]);
+      console.log("Dia: " + splitted[2]);
+  (<HTMLInputElement>document.getElementById("fechaPasar")).valueAsDate = fecha;   
+ 
+ 
   }
   
     edit():void{
-     /* const nombre = document.getElementById('nombrePasar') as HTMLInputElement;
+    /* Read modified DATE adn split "-" */
+      let readDate = (<HTMLInputElement>document.getElementById("fechaPasar")).value.toString();
+      let splitted = readDate.toString().split("-");  
+     const date = new Date(splitted[0] + "-" + splitted[1] + "-" + splitted[2]);    
 
-    console.log("nombre: " + nombre.value); */
-    const date = new Date('12-5-1973');
+      /* console.log("`Año: " + splitted[0]);
+      console.log("Mes: " + splitted[1]);
+      console.log("Dia: " + splitted[2]); */
+ 
     const p: persona = new persona(1,
       (<HTMLInputElement>document.getElementById("nombrePasar")).value,
       (<HTMLInputElement>document.getElementById("apellidoPasar")).value,
-      (<HTMLInputElement>document.getElementById("domicilioPasar")).value,date,
-      
-      
+      (<HTMLInputElement>document.getElementById("domicilioPasar")).value,
+      date ,
       (<HTMLInputElement>document.getElementById("telefonoPasar")).value,
       (<HTMLInputElement>document.getElementById("correoPasar")).value,
       (<HTMLInputElement>document.getElementById("acercaDeMiPasar")).value,
       (<HTMLInputElement>document.getElementById("urlFotoPasar")).value
      
       ); 
+  
+
 
    this.persoService.updatePersona(p).subscribe(
-    data => {alert(data)
+    data => {alert("Datos actualizados.");
+
+     
+      
+    
+    this.router.navigate(['/']);
   },
   err => {
     alert(err.error.mensaje);

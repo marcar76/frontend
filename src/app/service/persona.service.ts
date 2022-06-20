@@ -13,7 +13,7 @@ URL: string = environment.apiUrlBackend;
 constructor(private http: HttpClient) { }
 
   public getPersona():Observable<persona> {
-    console.log("URL: " + this.URL);
+     
       return this.http.get<persona>(this.URL + 'find/persona/1');
   }
 
