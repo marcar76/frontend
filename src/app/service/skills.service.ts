@@ -13,9 +13,9 @@ export class skillsService {
   
   constructor(private http: HttpClient) { }
 
-  public getSkill():Observable<skills> {
+  public getSkill():Observable<skills[]> {
     
-      return this.http.get<skills>(this.URL + 'list/conocimiento');
+      return this.http.get<skills[]>(this.URL + 'list/conocimiento');
   }
 
   public updateSkill(id: number, skill: skills):Observable<skills>{

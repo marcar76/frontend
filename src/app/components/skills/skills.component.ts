@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { skills } from 'src/app/model/skills.model';
 import { skillsService } from 'src/app/service/skills.service';
 import { LoginComponent } from '../login/login.component';
-
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-skills',
@@ -10,31 +11,44 @@ import { LoginComponent } from '../login/login.component';
   styleUrls: ['./skills.component.css']
 })
 export class SkillsComponent implements OnInit {
-skills!: skills;
   
+  public skills: skills[] = [];
   loginok!: boolean;
 
   constructor(private skillService: skillsService, private login: LoginComponent )  { }
 
   ngOnInit(): void {
-this.getSkills;
+    
+   this.getSkills();
     this.loginok= this.getLogin();
   }
 
   public getSkills():void{  
-    this.skillService.getSkill().subscribe( response  => {this.skills=response});       
+     this.skillService.getSkill().subscribe( { 
+      next: (response: skills[] ) => {
+        this.skills = response;
+      },
+      error: (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    })      
    
   }
   
-  public updateSkill(id: number, skill: skills):void{  
+  /* public updateSkill(id: number, skill: skills):void{  
     this.skillService.updateSkill(id, skill).subscribe( response  => {response=this.skills});      
   } 
+ */
+  public deleteSkill(id:number):void {
+    this.skillService.borrarSkills(id).subscribe(data =>{this.getSkills();} );
+  }
+
    
   public getLogin(){
     return this.login.loginok();
   }
 
-
+public addskill(){}
 
 
  /*  public getSkill():Observable<skills> {

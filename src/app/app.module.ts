@@ -15,6 +15,7 @@ import { EducacionComponent } from './components/educacion/educacion.component';
 import { LoginComponent } from './components/login/login.component';
 import { ButtonEditComponent } from './components/button-edit-persona/button-edit-persona.component';
 import { ButtonEditSkillsComponent } from './components/button-edit-skills/button-edit-skills.component';
+import{ObjToArrayPipe} from './objToArray.pipe';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ButtonEditSkillsComponent } from './components/button-edit-skills/butto
     ExperienciaComponent,
     EducacionComponent,
     LoginComponent, 
-    ButtonEditComponent, ButtonEditSkillsComponent
+    ButtonEditComponent, ButtonEditSkillsComponent,
+    ObjToArrayPipe
 
     
   ],

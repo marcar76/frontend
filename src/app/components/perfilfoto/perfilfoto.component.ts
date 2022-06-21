@@ -27,9 +27,7 @@ export class PerfilfotoComponent implements OnInit {
 public getPersona():void{  
   this.persoService.getPersona().subscribe( response  => {this.persona=response});       
   
-  /* console.log("Año: " + this.persona.fechaNacimiento?.getFullYear.toString);
-  console.log("Mes:" + this.persona.fechaNacimiento?.getMonth);
-  console.log("Dia:" + this.persona.fechaNacimiento?.getDay); */
+  
 }
 
 public updatePersona(p: persona):void{  

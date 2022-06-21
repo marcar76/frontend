@@ -1,25 +1,74 @@
  
 <div class="container" >
-<h2 class="h1-responsive font-weight-bold text-center my-4">Conocimientos</h2>
-<div class="row">
-    <div class="col-sm-3">
-      <div class="card">
-        <div class="card-body">
-            <img src="../../../assets/images/ps.png " class="card-img-top" alt="...">
-          <h5 class="card-title">Powershell</h5>
-          <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
-          <div class="progress">
-            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">75%</div>
-          </div>
-          
-          <!-- <a href="#" class="btn btn-primary">Go  </a> -->
-          <app-button-edit-skills  [idConocimiento]="skills.id!"                 
-          [nombreConocimiento]="skills.conocimiento!"  [porcentajeConocimiento]="skills.porcentaje!" [urlConocimiento]="skills.url_foto!" 
-          *ngIf=loginok>
-      </app-button-edit-skills>
+<h2 class="h1-responsive font-weight-bold text-center my-4">Conocimientos
+<!-- ........ -->
+<button type="button"  style="background-color:transparent; border-color:transparent;" data-bs-toggle="modal" data-bs-target="#modalAddSkill" *ngIf=loginok >   
+  <img src="https://drive.google.com/uc?export=view&id=1mA4JNTuOXpcmgWjGnizPsgpvoYeCX3ZR" height="35" title="Agregar Conocimiento" /> 
+</button>
+</h2>
+
+<div class="modal fade" id="modalAddSkill" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="nombreSkill" class="form-label">Nombre</label>
+          <input type="text" class="form-control" id="nameSkill"  >          
         </div>
+        
+        <div class="mb-3">
+          <label for="porcentajeSkill" class="form-label">Porcentaje</label>
+          <input type="text" class="form-control" id="percentSkill" > 
+        </div>
+        
+        <div class="mb-3">
+          <label for="urlFotoSkill" class="form-label">URL Foto</label>
+          <input type="text" class="form-control" id="urlFhotoSkill" > 
+        </div>        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" (click)="addskill()"   
+     
+        class="btn btn-primary">Guardar cambios</button>
       </div>
     </div>
-   
   </div>
 </div>
+ 
+  
+
+
+
+<!-- ......... -->
+<div class="row">
+
+
+
+    <div class="col-sm-3" *ngFor="let item of skills">
+      <div class="card">
+        <div class="card-body">
+            <img src={{item.urlfoto}} class="card-img-top" alt={{item.conocimiento}}>
+          <h5 class="card-title">{{item.conocimiento}}</h5>
+          <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" ng-style="{'width' :  item.porcentaje '%'' }" >{{item.porcentaje}}%</div>
+          </div>          
+          <app-button-edit-skills  [idConocimiento]="item.id!"                 
+              [nombreConocimiento]="item.conocimiento!"  [porcentajeConocimiento]="item.porcentaje!" [urlConocimiento]="item.urlfoto!" 
+              *ngIf=loginok>
+          </app-button-edit-skills>
+        </div>
+      </div>
+    </div>    
+ 
+
+
+
+
+  </div>
+</div>   <!-- Close container -->
