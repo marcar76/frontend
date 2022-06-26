@@ -1,65 +1,48 @@
-<button type="button"  style="background-color:transparent; border-color:transparent;" data-bs-toggle="modal" data-bs-target="#editModal" >   
-    <img src="https://drive.google.com/uc?export=view&id=1_Nq57MSqiGI3OWkRIUdxbUQG-cvpDQIp" height="35"/> 
-</button>
-<button type="submit"  style="background-color:transparent; border-color:transparent;" data-bs-toggle="modal" data-bs-target="#borrarModal"> 
+<!-- <button type="button"  style="background-color:transparent; border-color:transparent;" data-bs-toggle="modal" data-bs-target="#editSkillModal" >   
+     <img src="https://drive.google.com/uc?export=view&id=1_Nq57MSqiGI3OWkRIUdxbUQG-cvpDQIp" height="35"/>   
+    
+  </button>
+<button type="submit"  style="background-color:transparent; border-color:transparent;" data-bs-toggle="modal" data-bs-target="#borrarSkillModal"> 
     <img src="https://drive.google.com/uc?export=view&id=1xTDp_N5N7ewDwHPgzz_6EvBFfj-Mqhod" height="35"/> 
 </button> 
-
- 
-  <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="editModalLabel">Editar datos de Persona</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+ -->
+ <!-- 
+<div class="modal fade" id="editSkillModal" tabindex="-1" aria-labelledby="editSkillModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editSkillModal">Editar Conocimiento</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="nombreSkill" class="form-label">Nombre</label>
+          <input type="text"  class="form-control" id="nameSkill"  value={{nombreConocimiento}}>          
         </div>
-        <div class="modal-body">
-          <div class="mb-3">
-            <label for="nombrePersona" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="nombrePasar"  >
-            <label for="apellidoPersona" class="form-label">Apellido</label>
-            <input type="text" class="form-control" id="apellidoPasar"  >
-          </div>
-          <div class="mb-3">
-            <label for="fechaNacimientoPersona" class="form-label">Fecha Nacimiento (mm/dd/yyyy)</label>
-            <input type="date" class="form-control" id="fechaPasar"  > 
-          </div> 
-
-          <div class="mb-3">
-            <label for="correoElectronicoPersona" class="form-label">Correo electronico</label>
-            <input type="email" class="form-control" id="correoPasar"  >
-          </div>
-          <div class="mb-3">
-            <label for="domicilioPersona" class="form-label">Domicilio</label>
-            <input type="text" class="form-control" id="domicilioPasar" >
-          </div>
-          <div class="mb-3">
-            <label for="telefonoPersona" class="form-label">Telefono</label>
-            <input type="text" class="form-control" id="telefonoPasar"  >
-          </div>
-          
-          <div class="mb-3">
-            <label for="urlFotoPersona" class="form-label">URL Foto</label>
-            <input type="text" class="form-control" id="urlFotoPasar"  >
-          </div>
-          <div class="mb-3">
-            <label for="acercaDeMiPersona" class="form-label">Acerca de mi...</label>
-            <textarea class="form-control" id="acercaDeMiPasar" rows="3"  ></textarea>
-          </div>
- 
+        
+        <div class="mb-3">
+          <label for="porcentajeSkill" class="form-label">Porcentaje</label>
+          <input type="text" class="form-control" id="percentSkill" value={{porcentajeConocimiento}}> 
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" (click)="edit()"   
-       
-          class="btn btn-primary">Guardar cambios</button>
-        </div>
+        
+        <div class="mb-3">
+          <label for="urlFotoSkill" class="form-label">URL Foto</label>
+          <input type="text" class="form-control" id="urlFhotoSkill" value={{urlConocimiento}}> 
+        </div>        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" (click)="edit()"   
+     
+        class="btn btn-primary">Guardar cambios</button>
       </div>
     </div>
   </div>
+</div>
+ 
   
-  <!-- Modal Borrar-->
-    <div class="modal fade" id="borrarModal" tabindex="-1" aria-labelledby="borrarModalLabel" aria-hidden="true">
+  
+    <div class="modal fade" id="borrarSkillModal" tabindex="-1" aria-labelledby="borrarSkillModal" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -78,4 +61,4 @@
       </div>
     </div>
   </div>  
-  
+    -->

@@ -16,6 +16,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ButtonEditComponent } from './components/button-edit-persona/button-edit-persona.component';
 import { ButtonEditSkillsComponent } from './components/button-edit-skills/button-edit-skills.component';
 import{ObjToArrayPipe} from './objToArray.pipe';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import{ObjToArrayPipe} from './objToArray.pipe';
     EducacionComponent,
     LoginComponent, 
     ButtonEditComponent, ButtonEditSkillsComponent,
-    ObjToArrayPipe
+    ObjToArrayPipe,
+     
 
     
   ],

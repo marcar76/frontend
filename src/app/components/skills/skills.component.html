@@ -1,17 +1,17 @@
  
 <div class="container" >
 <h2 class="h1-responsive font-weight-bold text-center my-4">Conocimientos
-<!-- ........ -->
+ 
 <button type="button"  style="background-color:transparent; border-color:transparent;" data-bs-toggle="modal" data-bs-target="#modalAddSkill" *ngIf=loginok >   
   <img src="https://drive.google.com/uc?export=view&id=1mA4JNTuOXpcmgWjGnizPsgpvoYeCX3ZR" height="35" title="Agregar Conocimiento" /> 
 </button>
 </h2>
 
-<div class="modal fade" id="modalAddSkill" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalAddSkill" tabindex="-1" aria-labelledby="modalAddSkill" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="editModalLabel"></h5>
+        <h5 class="modal-title" id="modalAddSkill"></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -45,30 +45,84 @@
 
 
 <!-- ......... -->
-<div class="row">
-
-
-
-    <div class="col-sm-3" *ngFor="let item of skills">
-      <div class="card">
-        <div class="card-body">
-            <img src={{item.urlfoto}} class="card-img-top" alt={{item.conocimiento}}>
-          <h5 class="card-title">{{item.conocimiento}}</h5>
-          <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
-          <div class="progress">
-            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" ng-style="{'width' :  item.porcentaje '%'' }" >{{item.porcentaje}}%</div>
-          </div>          
-          <app-button-edit-skills  [idConocimiento]="item.id!"                 
-              [nombreConocimiento]="item.conocimiento!"  [porcentajeConocimiento]="item.porcentaje!" [urlConocimiento]="item.urlfoto!" 
-              *ngIf=loginok>
-          </app-button-edit-skills>
-        </div>
-      </div>
-    </div>    
+  <div class="row">      
+      <div class="col-sm-3 my-2" *ngFor="let skill of skillsList  "  > 
+        <div class="card" id={{skill.id}} >
+          
+          <div class="card-body">
  
+            <img src={{skill.urlfoto}} class="card-img-top" alt={{skill.conocimiento}}>
+            <h5 class="card-title">{{skill.conocimiento}}  </h5>
+            <!-- <p class="card-text">...</p> -->
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" [style.width]="skill.porcentaje +'%'" >{{skill.porcentaje}}%</div>
+            </div>          
 
+            
+            <button type="button" *ngIf=loginok style="background-color:transparent; border-color:transparent;" (click)="tempSkill = skill" data-bs-toggle="modal" data-bs-target="#editSkillModal" >   
+              <img src="https://drive.google.com/uc?export=view&id=1_Nq57MSqiGI3OWkRIUdxbUQG-cvpDQIp" height="35"/>   
+             
+           </button>
+         <button type="submit"  *ngIf=loginok style="background-color:transparent; border-color:transparent;" (click)="tempSkill = skill" data-bs-toggle="modal" data-bs-target="#borrarSkillModal"> 
+             <img src="https://drive.google.com/uc?export=view&id=1xTDp_N5N7ewDwHPgzz_6EvBFfj-Mqhod" height="35"/> 
+         </button> 
 
+         <div class="modal fade" id="editSkillModal" tabindex="-1" aria-labelledby="editarSkillModal" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="editSkillModal">Editar Conocimiento </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div class="mb-3">
+                  <label for="nombreSkill" class="form-label">Nombre</label>
+                  <input type="text" class="form-control" id="nameSkill" value={{tempSkill.conocimiento}}>          
+                </div>
+      
+                <div class="mb-3">
+                  <label for="porcentajeSkill" class="form-label">Porcentaje</label>
+                  <input type="text" class="form-control" id="percentSkill" value={{tempSkill.porcentaje}}> 
+                </div>
+      
+                <div class="mb-3">
+                  <label for="urlFotoSkill" class="form-label">URL Foto</label>
+                  <input type="text" class="form-control" id="urlFhotoSkill" value={{tempSkill.urlfoto}}> 
+                </div>        
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" (click)="edit(tempSkill.id)"   class="btn btn-primary">Guardar cambios</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
+        <div class="modal fade" id="borrarSkillModal" tabindex="-1" aria-labelledby="borrarSkillModal" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" >Borrar Conocimiento  </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div class="mb-3">
+                  <label class="form-label">Desea borrar el conocimiento?</label>             
+                </div>           
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button"   (click)="delete(tempSkill.id)" class="btn btn-danger">Borrar</button>
+              </div>
+            </div>
+          </div>
+        </div>  
+ 
+          </div>
+        </div>    
+
+      </div> 
 
   </div>
 </div>   <!-- Close container -->
+ 

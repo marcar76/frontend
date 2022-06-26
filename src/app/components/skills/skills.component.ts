@@ -4,6 +4,9 @@ import { skills } from 'src/app/model/skills.model';
 import { skillsService } from 'src/app/service/skills.service';
 import { LoginComponent } from '../login/login.component';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+ 
 
 @Component({
   selector: 'app-skills',
@@ -12,27 +15,30 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class SkillsComponent implements OnInit {
   
-  public skills: skills[] = [];
+  public skillsList: skills[] = [];
   loginok!: boolean;
-
-  constructor(private skillService: skillsService, private login: LoginComponent )  { }
+   
+  tempSkill! : skills;
+  constructor(private skillService: skillsService, private login: LoginComponent,private activatedRoute: ActivatedRoute,
+    private router: Router )  { }
 
   ngOnInit(): void {
+    this.tempSkill = new skills(0,"",0,"");
     
-   this.getSkills();
-    this.loginok= this.getLogin();
+    this.getSkills();
+    this.loginok= this.getLogin();  
   }
 
   public getSkills():void{  
      this.skillService.getSkill().subscribe( { 
       next: (response: skills[] ) => {
-        this.skills = response;
+        this.skillsList = response;
+         
       },
       error: (error: HttpErrorResponse) => {
-        alert(error.message);
+        alert("Horror" + error.message);
       }
     })      
-   
   }
   
   /* public updateSkill(id: number, skill: skills):void{  
@@ -50,23 +56,14 @@ export class SkillsComponent implements OnInit {
 
 public addskill(){}
 
-
- /*  public getSkill():Observable<skills> {
-    
-    return this.http.get<skills>(this.URL + 'list/conocimiento');
+edit(id1: number | undefined):void{
+  console.log("Edit: " + id1);
 }
 
-public updateSkill(id: number, skill: skills):Observable<skills>{
-  return this.http.put<skills>(this.URL + 'save/conocimiento/' + id,skill);
+delete(id: number| undefined){
+  
+  console.log("Delete: " + id);
 }
 
-public borrarSkills(id: number ):Observable<any>{
-  return this.http.delete<any>(this.URL + 'delete/conocimiento/' + id);
-}
-public createSkill(skill: skills):Observable<skills>{
-  return this.http.post<skills>(this.URL + 'new/conocimiento',skill);
-}
-
- */
 
 }

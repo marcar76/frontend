@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrlBackend: 'http://localhost:8080/',
+  //apiUrlBackend: 'http://127.0.0.1:8080/',
+  apiUrlBackend: 'http://10.42.0.45:8080/',
   //apiUrlBackend: 'https://desolate-eyrie-69755.herokuapp.com/'
 };
 

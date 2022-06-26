@@ -25,7 +25,11 @@ export class PerfilfotoComponent implements OnInit {
 
    
 public getPersona():void{  
-  this.persoService.getPersona().subscribe( response  => {this.persona=response});       
+  this.persoService.getPersona().subscribe( response  => {this.persona=response}
+    
+    ,
+      
+    );       
   
   
 }

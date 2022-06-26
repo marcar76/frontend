@@ -3,6 +3,7 @@ import { persona } from 'src/app/model/persona.model';
 import { PersonaService } from 'src/app/service/persona.service';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-button-edit-persona',
   templateUrl: './button-edit-persona.component.html',
@@ -20,7 +21,7 @@ export class ButtonEditComponent implements OnInit {
 
  
 
-  constructor(private persoService: PersonaService, private router: Router) { 
+  constructor(private persoService: PersonaService, private router: Router ) { 
     
   }
 
@@ -39,9 +40,9 @@ export class ButtonEditComponent implements OnInit {
 
 let splitted = this.fechaNacimientoPersona.toString().split(","); 
 let fecha:Date = new Date (splitted[0]+"-"+splitted[1]+"-"+splitted[2]);
-console.log("`Año: " + splitted[0]);
+/* console.log("`Año: " + splitted[0]);
       console.log("Mes: " + splitted[1]);
-      console.log("Dia: " + splitted[2]);
+      console.log("Dia: " + splitted[2]); */
   (<HTMLInputElement>document.getElementById("fechaPasar")).valueAsDate = fecha;   
  
  
