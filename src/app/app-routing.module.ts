@@ -8,7 +8,7 @@ import { SkillsComponent } from './components/skills/skills.component';
 const routes: Routes = [
    {path: '', redirectTo: '/', pathMatch: 'full'},  
   /* {path: '' , component: HeaderComponent}, */
-  {path: 'skills', component: SkillsComponent}
+ 
   
 ];
 

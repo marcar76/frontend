@@ -49,7 +49,7 @@ let fecha:Date = new Date (splitted[0]+"-"+splitted[1]+"-"+splitted[2]);
   }
   
     edit():void{
-    /* Read modified DATE adn split "-" */
+    /* Read modified DATE and split "-" */
       let readDate = (<HTMLInputElement>document.getElementById("fechaPasar")).value.toString();
       let splitted = readDate.toString().split("-");  
      const date = new Date(splitted[0] + "-" + splitted[1] + "-" + splitted[2]);    

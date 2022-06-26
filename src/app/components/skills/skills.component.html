@@ -1,53 +1,54 @@
  
 <div class="container" >
-<h2 class="h1-responsive font-weight-bold text-center my-4">Conocimientos
- 
-<button type="button"  style="background-color:transparent; border-color:transparent;" data-bs-toggle="modal" data-bs-target="#modalAddSkill" *ngIf=loginok >   
+  <h2 class="h1-responsive font-weight-bold text-center my-4">Conocimientos</h2>
+    <app-button-add-skills  *ngIf=loginok>  </app-button-add-skills> 
+
+
+ <!-- 
+<button type="button"  style="background-color:transparent; border-color:transparent;"   (click)="addConocimiento()" data-bs-toggle="modal" data-bs-target="#modalAddSkill" *ngIf=loginok >   
   <img src="https://drive.google.com/uc?export=view&id=1mA4JNTuOXpcmgWjGnizPsgpvoYeCX3ZR" height="35" title="Agregar Conocimiento" /> 
 </button>
-</h2>
+
 
 <div class="modal fade" id="modalAddSkill" tabindex="-1" aria-labelledby="modalAddSkill" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="modalAddSkill"></h5>
+        <h5 class="modal-title" id="modalAddSkill"> Agregar conocimiento</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="mb-3">
           <label for="nombreSkill" class="form-label">Nombre</label>
-          <input type="text" class="form-control" id="nameSkill"  >          
+          <input type="text" class="form-control" id="addNameSkill"  >          
         </div>
         
         <div class="mb-3">
           <label for="porcentajeSkill" class="form-label">Porcentaje</label>
-          <input type="text" class="form-control" id="percentSkill" > 
+          <input type="text" class="form-control" id="AddPercentSkill" > 
         </div>
         
         <div class="mb-3">
           <label for="urlFotoSkill" class="form-label">URL Foto</label>
-          <input type="text" class="form-control" id="urlFhotoSkill" > 
+          <input type="text" class="form-control" id="addUrlPhotoSkill" > 
         </div>        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" (click)="addskill()"   
-     
-        class="btn btn-primary">Guardar cambios</button>
+        <button type="button" (click)="addSkill()"  class="btn btn-primary">Guardar cambios</button>
       </div>
     </div>
   </div>
 </div>
  
   
-
+ -->
 
 
 <!-- ......... -->
-  <div class="row">      
+<div class="row">      
       <div class="col-sm-3 my-2" *ngFor="let skill of skillsList  "  > 
-        <div class="card" id={{skill.id}} >
+        <div class="card"   >
           
           <div class="card-body">
  
@@ -92,7 +93,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" (click)="edit(tempSkill.id)"   class="btn btn-primary">Guardar cambios</button>
+                <button type="button" (click)="edit(tempSkill.id ?? 0)"   class="btn btn-primary">Guardar cambios</button>
               </div>
             </div>
           </div>
@@ -107,7 +108,7 @@
               </div>
               <div class="modal-body">
                 <div class="mb-3">
-                  <label class="form-label">Desea borrar el conocimiento?</label>             
+                  <label class="form-label">Desea borrar el conocimiento {{tempSkill.conocimiento}}?</label>             
                 </div>           
               </div>
               <div class="modal-footer">
@@ -124,5 +125,5 @@
       </div> 
 
   </div>
-</div>   <!-- Close container -->
+ 
  

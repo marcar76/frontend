@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { ObjectUnsubscribedError, Observable } from 'rxjs';
 import { skills } from 'src/app/model/skills.model';
 import { skillsService } from 'src/app/service/skills.service';
 import { LoginComponent } from '../login/login.component';
@@ -17,7 +17,7 @@ export class SkillsComponent implements OnInit {
   
   public skillsList: skills[] = [];
   loginok!: boolean;
-   
+  skill!: skills; 
   tempSkill! : skills;
   constructor(private skillService: skillsService, private login: LoginComponent,private activatedRoute: ActivatedRoute,
     private router: Router )  { }
@@ -41,28 +41,40 @@ export class SkillsComponent implements OnInit {
     })      
   }
   
-  /* public updateSkill(id: number, skill: skills):void{  
-    this.skillService.updateSkill(id, skill).subscribe( response  => {response=this.skills});      
-  } 
- */
-  public deleteSkill(id:number):void {
-    this.skillService.borrarSkills(id).subscribe(data =>{this.getSkills();} );
-  }
+  public updateSkill( skill: skills):void{  
+    this.skillService.updateSkill(skill).subscribe( response  => {response=this.skill;alert("Conocimiento actualizado.");});      
+  }   
 
-   
-  public getLogin(){
-    return this.login.loginok();
-  }
+ 
 
-public addskill(){}
+public deleteSkill(id?:number   )  {
+      this.skillService.borrarSkills(id).subscribe(data =>{  alert("Conocimiento eliminado.");
+    },
+    err => {
+      alert(err.error.mensaje);
+    }
+   );  
 
-edit(id1: number | undefined):void{
-  console.log("Edit: " + id1);
 }
 
-delete(id: number| undefined){
-  
-  console.log("Delete: " + id);
+   
+public getLogin(){
+    return this.login.loginok();
+}
+ 
+edit(id: number ):void{
+  console.log("Edit: " + id);
+
+  const por: number = parseInt((<HTMLInputElement>document.getElementById("percentSkill")).value); 
+  const objeto:skills = new skills (id,(<HTMLInputElement>document.getElementById("nameSkill")).value,por,(<HTMLInputElement>document.getElementById("urlFhotoSkill")).value);
+  console.log("Edit Skill: " +  objeto.conocimiento) ;
+
+  this.updateSkill(objeto);
+}
+
+delete(id?: number){  
+  this.deleteSkill(id  );
+
 }
 
 

@@ -14,7 +14,7 @@ import { ExperienciaComponent } from './components/experiencia/experiencia.compo
 import { EducacionComponent } from './components/educacion/educacion.component';
 import { LoginComponent } from './components/login/login.component';
 import { ButtonEditComponent } from './components/button-edit-persona/button-edit-persona.component';
-import { ButtonEditSkillsComponent } from './components/button-edit-skills/button-edit-skills.component';
+import { ButtonEditSkillsComponent } from './components/button-add-skills/button-add-skills.component';
 import{ObjToArrayPipe} from './objToArray.pipe';
 import { FormsModule } from '@angular/forms';
 

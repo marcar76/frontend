@@ -1,7 +1,54 @@
-<!-- <button type="button"  style="background-color:transparent; border-color:transparent;" data-bs-toggle="modal" data-bs-target="#editSkillModal" >   
-     <img src="https://drive.google.com/uc?export=view&id=1_Nq57MSqiGI3OWkRIUdxbUQG-cvpDQIp" height="35"/>   
-    
+ <button type="button"  style="background-color:transparent; border-color:transparent;" data-bs-toggle="modal" data-bs-target="#addSkill" >   
+     <img src="https://drive.google.com/uc?export=view&id=1mA4JNTuOXpcmgWjGnizPsgpvoYeCX3ZR" height="35"/>  Agregar Conocimiento     
   </button>
+
+  <div class="modal fade" id="addSkill" tabindex="-1" aria-labelledby="addSkill" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addSkill"> Agregar conocimiento</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="nombreSkill" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="addNameSkill"  >          
+          </div>
+          
+          <div class="mb-3">
+            <label for="porcentajeSkill" class="form-label">Porcentaje</label>
+            <input type="text" class="form-control" id="addPercentSkill" > 
+          </div>
+          
+          <div class="mb-3">
+            <label for="urlFotoSkill" class="form-label">URL Foto</label>
+            <input type="text" class="form-control" id="addUrlPhotoSkill" > 
+          </div>        
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button"  (click)="addSkill()"  class="btn btn-primary">Guardar cambios</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!--
 <button type="submit"  style="background-color:transparent; border-color:transparent;" data-bs-toggle="modal" data-bs-target="#borrarSkillModal"> 
     <img src="https://drive.google.com/uc?export=view&id=1xTDp_N5N7ewDwHPgzz_6EvBFfj-Mqhod" height="35"/> 
 </button> 
