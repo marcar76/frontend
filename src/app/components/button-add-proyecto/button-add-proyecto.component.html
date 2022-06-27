@@ -1,0 +1,40 @@
+<button type="button"  style="background-color:transparent; border-color:transparent;" data-bs-toggle="modal" data-bs-target="#addProyecto" >   
+    <img src="https://drive.google.com/uc?export=view&id=1mA4JNTuOXpcmgWjGnizPsgpvoYeCX3ZR" height="35"/>  Agregar Proyecto
+ </button>
+
+ <div class="modal fade" id="addProyecto" tabindex="-1" aria-labelledby="addProyecto" aria-hidden="true">
+   <div class="modal-dialog">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title" id="addProyecto"> Agregar proyecto</h5>
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+       </div>
+       <div class="modal-body">
+         <div class="mb-3">
+           <label for="1addNameProyecto" class="form-label">Nombre</label>
+           <input type="text" class="form-control" id="addNameProyecto"  >          
+         </div>
+         
+         <div class="mb-3">
+           <label for="1addDescripcionProyecto" class="form-label">Descripcion</label>
+           <input type="text" class="form-control" id="addDescripcionProyecto" > 
+         </div>
+         <div class="mb-3">
+            <label for="1addUrlFotoProyecto" class="form-label">Link URL Webpage</label>
+            <input type="text" class="form-control" id="addLinkProyecto" > 
+          </div>  
+
+         <div class="mb-3">
+           <label for="1addUrlPhotoProyecto" class="form-label">URL Foto</label>
+           <input type="text" class="form-control" id="addUrlFotoProyecto" > 
+         </div>        
+       </div>
+       <div class="modal-footer">
+         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+         <button type="button"  (click)="addProyecto()"  class="btn btn-primary">Guardar cambios</button>
+       </div>
+     </div>
+   </div>
+ </div>
+
+

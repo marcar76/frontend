@@ -11,29 +11,15 @@ import { LoginComponent } from '../login/login.component';
   templateUrl: './button-add-skills.component.html',
   styleUrls: ['./button-add-skills.component.css']
 })
-export class ButtonEditSkillsComponent implements OnInit {
-/* 
-  @Input() idConocimiento!:number;
-  @Input() nombreConocimiento!:string;
-  @Input() porcentajeConocimiento!:number;
-  @Input() urlConocimiento!:string;
- */
-
+export class ButtonEditSkillsComponent   {
+ 
 
   constructor( private skillService: skillsService, private login: LoginComponent,private activatedRoute: ActivatedRoute,
     private router: Router) { }
+
   public objeto!: skills;
   
-  ngOnInit(): void {
-     
-  }
-
-  public addConocimiento(){
    
-   
-  }
-  
-  
   public addSkill( ){
     /* console.log("Enter addskill");
     console.log("nombre: "+(<HTMLInputElement>document.getElementById("addNameSkill")).value);

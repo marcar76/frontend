@@ -1,4 +1,4 @@
-<!-- Proyectos -->
+<!-- Proyectos 
 <div class="container" >
 <h2 class="h1-responsive font-weight-bold text-center my-4">Proyectos</h2>
 <div class="row">
@@ -8,18 +8,103 @@
             <img src="../../../assets/images/ps.png " class="card-img-top" alt="...">
           <h5 class="card-title">Titulo</h5>
           <p class="card-text">Descripcion bla bla bla.</p>
-          <a href="#" class="btn btn-primary">Go  </a>
+          <a onclick=" window.open('https://www.intel.com','_blank')" href="#" class="btn btn-primary">Go  </a>
           <button type="button" style="background-color:transparent; border-color:transparent;"> 
             <img src="https://drive.google.com/uc?export=view&id=1_Nq57MSqiGI3OWkRIUdxbUQG-cvpDQIp" height="35"/> </button>
             <button type="submit" style="background-color:transparent; border-color:transparent;"> 
                 <img src="https://drive.google.com/uc?export=view&id=1xTDp_N5N7ewDwHPgzz_6EvBFfj-Mqhod" height="35"/> </button>
         </div>
       </div>
-    </div>
-     
-     
-      
-  </div>
+    </div> 
+  </div> 
+</div>-->
 
+<div class="container" >
+  <h2 class="h1-responsive font-weight-bold text-center my-4">Proyectos</h2>
+    <app-button-add-proyecto  *ngIf=loginok>  </app-button-add-proyecto> 
+
+
+<!-- ......... -->
+<div class="row">      
+  <div class="col-sm-3 my-2" *ngFor="let proyecto of proyectos  "  > 
+    <div class="card"   >
+      
+      <div class="card-body">
+
+        <img src={{proyecto.urlfotoProyecto}} class="card-img-top" alt={{proyecto.nombreProyecto}}>
+        <h5 class="card-title">{{proyecto.nombreProyecto}}  </h5>
+         
+        <p class="card-text">{{proyecto.descripcionProyecto}} </p>
+        <a onclick=" window.open(proyecto.link,'_blank')" href="#" class="btn btn-primary">Ir  </a>
+        
+        <button type="button" *ngIf=loginok style="background-color:transparent; border-color:transparent;" (click)="tempProyecto = proyecto" data-bs-toggle="modal" data-bs-target="#editProyectoModal" >   
+          <img src="https://drive.google.com/uc?export=view&id=1_Nq57MSqiGI3OWkRIUdxbUQG-cvpDQIp" height="35"/>   
+         
+       </button>
+     <button type="submit"  *ngIf=loginok style="background-color:transparent; border-color:transparent;" (click)="tempProyecto = proyecto" data-bs-toggle="modal" data-bs-target="#borrarProyectoModal"> 
+         <img src="https://drive.google.com/uc?export=view&id=1xTDp_N5N7ewDwHPgzz_6EvBFfj-Mqhod" height="35"/> 
+     </button> 
+
+     <div class="modal fade" id="editProyectoModal" tabindex="-1" aria-labelledby="editarProyectoModal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editProyectoModal">Editar Conocimiento </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="nombreProyecto" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="nameProyecto" value={{tempProyecto.nombreProyecto}}>          
+            </div>
+  
+            <div class="mb-3">
+              <label for="descripcion1Proyecto" class="form-label">Descripcion</label>
+              <input type="text" class="form-control" id="descripcionProyecto" value={{tempProyecto.descripcionProyecto}}> 
+            </div>
+
+            <div class="mb-3">
+              <label for="urlFotoSkill" class="form-label">Link URL</label>
+              <input type="text" class="form-control" id="linkProyecto" value={{tempProyecto.link}> 
+            </div>  
+            <div class="mb-3">
+              <label for="urlFotoProyecto" class="form-label">Link URL</label>
+              <input type="text" class="form-control" id="urlFotoProyecto" value={{tempProyecto.urlfotoProyecto}}> 
+            </div>        
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" (click)="edit(tempProyecto.id ?? 0)"   class="btn btn-primary">Guardar cambios</button>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="borrarProyectoModal" tabindex="-1" aria-labelledby="borrarProyectoModal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" >Borrar Proyecto  </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label class="form-label">Desea borrar el proyecto {{tempProyecto.nombreProyecto}}?</label>             
+            </div>           
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button"   (click)="delete(tempProyecto.id)" class="btn btn-danger">Borrar</button>
+          </div>
+        </div>
+      </div>
+    </div>  
+
+      </div>
+    </div>    
+
+  </div> 
 
 </div>
+

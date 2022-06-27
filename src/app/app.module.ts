@@ -17,6 +17,7 @@ import { ButtonEditComponent } from './components/button-edit-persona/button-edi
 import { ButtonEditSkillsComponent } from './components/button-add-skills/button-add-skills.component';
 import{ObjToArrayPipe} from './objToArray.pipe';
 import { FormsModule } from '@angular/forms';
+import { ButtonAddProyectoComponent } from './components/button-add-proyecto/button-add-proyecto.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { FormsModule } from '@angular/forms';
     LoginComponent, 
     ButtonEditComponent, ButtonEditSkillsComponent,
     ObjToArrayPipe,
+    ButtonAddProyectoComponent,
      
 
     

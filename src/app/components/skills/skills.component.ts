@@ -19,6 +19,7 @@ export class SkillsComponent implements OnInit {
   loginok!: boolean;
   skill!: skills; 
   tempSkill! : skills;
+  
   constructor(private skillService: skillsService, private login: LoginComponent,private activatedRoute: ActivatedRoute,
     private router: Router )  { }
 

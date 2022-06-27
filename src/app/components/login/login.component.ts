@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
 
 public loginok():boolean{
   return true;
+  //return false;
 }
 
 }
