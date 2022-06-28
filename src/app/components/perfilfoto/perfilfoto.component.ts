@@ -12,7 +12,7 @@ import { LoginComponent } from '../login/login.component';
 export class PerfilfotoComponent implements OnInit {
   public date: Date = new Date();
   persona!: persona /*  = new persona(1,'','','',this.date,'','','','');  */
-  /* public editPersona?: persona; */
+   
   
   loginok!: boolean;
 
@@ -25,10 +25,7 @@ export class PerfilfotoComponent implements OnInit {
 
    
 public getPersona():void{  
-  this.persoService.getPersona().subscribe( response  => {this.persona=response}
-    
-    ,
-      
+  this.persoService.getPersona().subscribe( response  => {this.persona=response}      
     );       
   
   

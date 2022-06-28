@@ -22,7 +22,7 @@ export class skillsService {
     return this.http.put<skills>(this.URL + 'save/conocimiento/',skill);
   }
   
-  public borrarSkills(id?: number ):Observable<any>{
+  public borrarSkill(id?: number ):Observable<any>{
     return this.http.delete<any>(this.URL + 'delete/conocimiento/' + id);
   }
   public createSkill(skill: skills):Observable<skills>{

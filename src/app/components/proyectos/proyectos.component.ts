@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class ProyectosComponent implements OnInit {
 
-  public proyectos: proyecto[] = [];
+  proyectoList: proyecto[]= [] ;
   loginok!: boolean;
   proyecto!: proyecto; 
   tempProyecto! : proyecto;
@@ -26,17 +26,18 @@ export class ProyectosComponent implements OnInit {
     this.tempProyecto = new proyecto(0,"","","","");
     
     this.getProyecto();
+    console.log("Proyectos: " +this.proyectoList);
     this.loginok= this.getLogin(); 
   }
 
   public getProyecto():void{  
-    this.proyectoService.getProyecto().subscribe( { 
+    this.proyectoService.getProyectos().subscribe( { 
      next: (response: proyecto[] ) => {
-       this.proyectos = response; console.log(this.proyectos[0].nombreProyecto)
+       this.proyectoList = response; console.log(this.proyectoList);
         
      },
      error: (error: HttpErrorResponse) => {
-       alert("Horror" + error.message);
+       alert("Error" + error.message);
      }
    })      
  }
@@ -51,7 +52,7 @@ public deleteProyecto(id?:number   )  {
      this.proyectoService.borrarProyecto(id).subscribe(data =>{  alert("Proyecto eliminado.");
    },
    err => {
-     alert(err.error.mensaje);
+     alert("Error: " + err.error.mensaje);
    }
   );  
 

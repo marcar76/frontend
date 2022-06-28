@@ -1,1 +1,86 @@
-<h5>educacion works!</h5>
+<div class="container" >
+    <h2 class="h1-responsive font-weight-bold text-center my-4">Educacion</h2>
+      <!-- <app-button-add-skills  *ngIf=loginok>  </app-button-add-skills>  -->
+   
+  <!-- ......... -->
+  <div class="row">      
+        <div class="col-sm-3 my-2" *ngFor="let educacion of educacionList  "  > 
+          <div class="card"   >
+            
+            <div class="card-body">
+   
+              <!-- <img src={{educacion.urlfoto}} class="card-img-top" alt={{educacion.conocimiento}}> -->
+              <h5 class="card-title">{{educacion.nombreeducacion}}  </h5>
+             
+              <!-- <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" [style.width]="skill.porcentaje +'%'" >{{skill.porcentaje}}%</div>
+              </div>    -->       
+  
+              
+              <button type="button" *ngIf=loginok style="background-color:transparent; border-color:transparent;" (click)="tempEducacion = educacion" data-bs-toggle="modal" data-bs-target="#editEducacionModal" >   
+                <img src="https://drive.google.com/uc?export=view&id=1_Nq57MSqiGI3OWkRIUdxbUQG-cvpDQIp" height="35"/>                
+              </button>
+              <button type="submit"  *ngIf=loginok style="background-color:transparent; border-color:transparent;" (click)="tempEducacion = educacion" data-bs-toggle="modal" data-bs-target="#borrarEducacionModal"> 
+                <img src="https://drive.google.com/uc?export=view&id=1xTDp_N5N7ewDwHPgzz_6EvBFfj-Mqhod" height="35"/> 
+              </button> 
+  
+           <div class="modal fade" id="editEducacionModal" tabindex="-1" aria-labelledby="editarEducacionModal" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="editEducacionModal">Editar Educacion </h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="mb-3">
+                    <label for="nombreEducacion" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nameEducacion" value={{tempEducacion.nombreeducacion}}>          
+                  </div>
+        
+                <!--   <div class="mb-3">
+                    <label for="porcentajeSkill" class="form-label">Porcentaje</label>
+                    <input type="text" class="form-control" id="percentSkill" value={{tempEducacion.porcentaje}}> 
+                  </div> -->
+        <!-- 
+                  <div class="mb-3">
+                    <label for="urlFotoEducacion" class="form-label">URL Foto</label>
+                    <input type="text" class="form-control" id="urlFhotoSkill" value={{tempEducacion.urlfoto}}> 
+                  </div>    -->     
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  <button type="button" (click)="edit(tempEducacion.id ?? 0)"   class="btn btn-primary">Guardar cambios</button>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+  
+          <div class="modal fade" id="borrarEducacionModal" tabindex="-1" aria-labelledby="borrarEducacionModal" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" >Borrar Educacion  </h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="mb-3">
+                    <label class="form-label">Desea borrar el conocimiento {{tempEducacion.nombreeducacion}}?</label>             
+                  </div>           
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  <button type="button"   (click)="delete(tempEducacion.id)" class="btn btn-danger">Borrar</button>
+                </div>
+              </div>
+            </div>
+          </div>  
+   
+            </div>
+          </div>    
+  
+        </div> 
+  
+    </div>
+   
+   

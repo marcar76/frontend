@@ -27,13 +27,15 @@ export class SkillsComponent implements OnInit {
     this.tempSkill = new skills(0,"",0,"");
     
     this.getSkills();
-    this.loginok= this.getLogin();  
+    
+    this.loginok= this.getLogin(); 
+    
   }
 
   public getSkills():void{  
      this.skillService.getSkill().subscribe( { 
       next: (response: skills[] ) => {
-        this.skillsList = response;
+        this.skillsList = response;  
          
       },
       error: (error: HttpErrorResponse) => {
@@ -49,7 +51,7 @@ export class SkillsComponent implements OnInit {
  
 
 public deleteSkill(id?:number   )  {
-      this.skillService.borrarSkills(id).subscribe(data =>{  alert("Conocimiento eliminado.");
+      this.skillService.borrarSkill(id).subscribe(data =>{  alert("Conocimiento eliminado.");
     },
     err => {
       alert(err.error.mensaje);

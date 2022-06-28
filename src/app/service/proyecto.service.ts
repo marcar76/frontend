@@ -13,7 +13,7 @@ export class proyectoService {
   
   constructor(private http: HttpClient) { }
 
-  public getProyecto():Observable<proyecto[]> {
+  public getProyectos():Observable<proyecto[]> {
     
       return this.http.get<proyecto[]>(this.URL + 'list/proyecto');
   }
