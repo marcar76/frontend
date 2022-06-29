@@ -1,26 +1,7 @@
-<!-- Proyectos 
-<div class="container" >
-<h2 class="h1-responsive font-weight-bold text-center my-4">Proyectos</h2>
-<div class="row">
-    <div class="col-sm-3">
-      <div class="card">
-        <div class="card-body">
-            <img src="../../../assets/images/ps.png " class="card-img-top" alt="...">
-          <h5 class="card-title">Titulo</h5>
-          <p class="card-text">Descripcion bla bla bla.</p>
-          <a onclick=" window.open('https://www.intel.com','_blank')" href="#" class="btn btn-primary">Go  </a>
-          <button type="button" style="background-color:transparent; border-color:transparent;"> 
-            <img src="https://drive.google.com/uc?export=view&id=1_Nq57MSqiGI3OWkRIUdxbUQG-cvpDQIp" height="35"/> </button>
-            <button type="submit" style="background-color:transparent; border-color:transparent;"> 
-                <img src="https://drive.google.com/uc?export=view&id=1xTDp_N5N7ewDwHPgzz_6EvBFfj-Mqhod" height="35"/> </button>
-        </div>
-      </div>
-    </div> 
-  </div> 
-</div>-->
+ 
 <div class="container" >
   <h2 class="h1-responsive font-weight-bold text-center my-4">Proyectos</h2>
-    <!-- <app-button-add-skills  *ngIf=loginok>  </app-button-add-skills>  -->
+   <app-button-add-proyecto  *ngIf=loginok>  </app-button-add-proyecto>  
  
 <!-- ......... -->
 <div class="row">      
@@ -29,26 +10,25 @@
           
           <div class="card-body">
  
-            <!-- <img src={{educacion.urlfoto}} class="card-img-top" alt={{educacion.conocimiento}}> -->
+            <img src={{proyecto.urlfoto}} class="card-img-top" alt={{proyecto.nombreproyecto}}> 
             <h5 class="card-title">{{proyecto.nombreproyecto}}  </h5>
            
-            <!-- <div class="progress">
-              <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" [style.width]="skill.porcentaje +'%'" >{{skill.porcentaje}}%</div>
-            </div>    -->       
+            <p class="card-text">{{proyecto.descripcion}} </p>
+            <a href={{proyecto.link}} target="_blank" class="btn btn-primary">Ir</a>    
 
             
-            <button type="button" *ngIf=loginok style="background-color:transparent; border-color:transparent;" (click)="tempProyecto = proyecto" data-bs-toggle="modal" data-bs-target="#editProyectoModal" >   
+            <button type="button" *ngIf=loginok style="background-color:transparent; border-color:transparent;" (click)="tempProyecto = proyecto" data-bs-toggle="modal" data-bs-target="#editarProyectoModal" >   
               <img src="https://drive.google.com/uc?export=view&id=1_Nq57MSqiGI3OWkRIUdxbUQG-cvpDQIp" height="35"/>                
             </button>
             <button type="submit"  *ngIf=loginok style="background-color:transparent; border-color:transparent;" (click)="tempProyecto = proyecto" data-bs-toggle="modal" data-bs-target="#borrarProyectoModal"> 
               <img src="https://drive.google.com/uc?export=view&id=1xTDp_N5N7ewDwHPgzz_6EvBFfj-Mqhod" height="35"/> 
             </button> 
 
-         <div class="modal fade" id="editProyectoModal" tabindex="-1" aria-labelledby="editarProyectoModal" aria-hidden="true">
+         <div class="modal fade" id="editarProyectoModal" tabindex="-1" aria-labelledby="editarProyectoModal" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="editEProyectoModal">Editar Educacion </h5>
+                <h5 class="modal-title" id="editarProyectoModal">Editar Educacion </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
@@ -61,8 +41,16 @@
                   <label for="descripcionProyecto" class="form-label">Porcentaje</label>
                   <input type="text" class="form-control" id="descripcionProyecto" value={{tempProyecto.descripcion}}> 
                 </div> 
-      
-                
+                <div class="mb-3">
+                  <label for="linkProyecto" class="form-label">Link Proyecto</label>
+                  <input type="text" class="form-control" id="linkProyecto" value={{tempProyecto.link}}> 
+                </div>   
+                <div class="mb-3">
+                  <label for="urlFotoProyecto" class="form-label">URL Foto</label>
+                  <input type="text" class="form-control" id="urlFotoProyecto" value={{tempProyecto.urlfoto}}> 
+                </div> 
+
+
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -73,16 +61,16 @@
           </div>
         </div>
 
-        <div class="modal fade" id="borrarEducacionModal" tabindex="-1" aria-labelledby="borrarEducacionModal" aria-hidden="true">
+        <div class="modal fade" id="borrarProyectoModal" tabindex="-1" aria-labelledby="borrarProyectoModal" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" >Borrar Educacion  </h5>
+                <h5 class="modal-title" >Borrar Proyecto  </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
                 <div class="mb-3">
-                  <label class="form-label">Desea borrar el conocimiento {{tempProyecto.nombreproyecto}}?</label>             
+                  <label class="form-label">Desea borrar el Proyecto {{tempProyecto.nombreproyecto}}?</label>             
                 </div>           
               </div>
               <div class="modal-footer" >

@@ -1,19 +1,20 @@
 <div class="container" >
     <h2 class="h1-responsive font-weight-bold text-center my-4">Educacion</h2>
-      <!-- <app-button-add-educacion  *ngIf=loginok>  </app-button-add-educacion>  -->
+       <app-button-add-educacion  *ngIf=loginok>  </app-button-add-educacion>  
    
   <!-- ......... -->
   <div class="row">      
-        <div class="col-sm-3 my-2" *ngFor="let educacion of educacionList   "  > 
+        <div class="col-sm-3 my-2" *ngFor="let educacion of educacionList"  > 
           
           <div class="card"   style="width: 18rem;">
             
             <div class="card-body">
    
               <img src={{educacion.url}} class="card-img-top" alt="..."> 
-              <h5 class="card-title">{{educacion.nombreeducacion}}  {{educacion.fechainicio}}</h5>
+              <h5 class="card-title">{{educacion.nombreeducacion}} </h5>
              
-              <p class="card-text">{{educacion.descripcion}} Fecha: {{educacion.fechafin}}</p>
+              <p class="card-text">{{educacion.descripcion}} 
+                 {{educacion.fechainicio}} {{educacion.fechafin}}</p>
               <a href={{educacion.url}} class="btn btn-primary">Ir</a>
               
               <button type="button" *ngIf=loginok style="background-color:transparent; border-color:transparent;" (click)="tempEducacion = educacion" data-bs-toggle="modal" data-bs-target="#editEducacionModal" >   
@@ -35,8 +36,19 @@
                     <label for="nombreEducacion" class="form-label">Nombre</label>
                     <input type="text" class="form-control" id="nameEducacion" value={{tempEducacion.nombreeducacion}}  >          
                   </div>
-        
-                            
+                  <div class="mb-3">
+                    <label for="descripcionEducacion" class="form-label">Descripcion </label>
+                    <input type="text" class="form-control" id="descripcionEducacion" value={{tempEducacion.descripcion}}  >          
+                  </div>
+                  <div class="mb-3">
+                    <label for="fechaInicioEducacion" class="form-label">Fecha Inicio</label>
+                    <input type="date" class="form-control" id="fechaInicioEducacion" value={{tempEducacion.fechainicio}}  >          
+                  </div>    
+                  <div class="mb-3">
+                    <label for="fechaFinEducacion" class="form-label">Fecha Fin</label>
+                    <input type="date" class="form-control" id="fechaFinEducacion" value={{tempEducacion.fechafin}}  >          
+                  </div>    
+
                   <div class="mb-3">
                     <label for="urlFotoEducacion" class="form-label">URL Foto</label>
                     <input type="text" class="form-control" id="urlFotoEducacion" value={{tempEducacion.url}}> 

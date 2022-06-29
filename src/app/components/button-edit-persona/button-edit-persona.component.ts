@@ -40,9 +40,7 @@ export class ButtonEditComponent implements OnInit {
 
 let splitted = this.fechaNacimientoPersona.toString().split(","); 
 let fecha:Date = new Date (splitted[0]+"-"+splitted[1]+"-"+splitted[2]);
-/* console.log("`Año: " + splitted[0]);
-      console.log("Mes: " + splitted[1]);
-      console.log("Dia: " + splitted[2]); */
+ 
   (<HTMLInputElement>document.getElementById("fechaPasar")).valueAsDate = fecha;   
  
  
@@ -73,12 +71,7 @@ let fecha:Date = new Date (splitted[0]+"-"+splitted[1]+"-"+splitted[2]);
 
 
    this.persoService.updatePersona(p).subscribe(
-    data => {alert("Datos actualizados.");
-
-     
-      
-    
-    this.router.navigate(['/']);
+    data => {alert("Datos actualizados.");     
   },
   err => {
     alert(err.error.mensaje);

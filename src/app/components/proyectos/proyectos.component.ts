@@ -14,8 +14,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class ProyectosComponent implements OnInit {
 
-  /* proyectoList: proyecto[]= [] ; */
-  proyectoList!: any[];
+  proyectoList: proyecto[]= [] ; 
+  /* proyectoList!: any[]; */
   loginok!: boolean;
   proyecto!: proyecto; 
   tempProyecto! : proyecto;
@@ -80,7 +80,8 @@ edit(id: number ):void{
  this.updateProyecto(objeto);
 }
 
-delete(id?: number){  
+delete(id?: number){ 
+  console.log("Delete proyecto id:" + id) ;
  this.deleteProyecto(id  );
 
 }

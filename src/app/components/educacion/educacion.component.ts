@@ -19,6 +19,7 @@ export class EducacionComponent implements OnInit {
   educacion!: educacion; 
   tempEducacion! : educacion;
   
+  
   constructor(private educacionService: educacionService, private login: LoginComponent,private activatedRoute: ActivatedRoute,
     private router: Router )  { }
 public date: Date = new Date();
@@ -31,6 +32,15 @@ public date: Date = new Date();
     this.loginok= this.getLogin(); 
     
   }
+
+fechaCambiar(fecha: Date){
+
+  let splitted = fecha.toString().split(","); 
+  let fechaReturn:Date = new Date (splitted[0]+"-"+splitted[1]+"-"+splitted[2]);
+   return fechaReturn;
+
+}
+
 
   public getEducacion():void{  
      this.educacionService.getEducacion().subscribe( { 
