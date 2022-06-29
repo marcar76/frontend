@@ -24,7 +24,7 @@ export class EducacionComponent implements OnInit {
 public date: Date = new Date();
   ngOnInit(): void {
     
-    this.tempEducacion = new educacion(0,"",this.date,this.date,"");
+    this.tempEducacion = new educacion(0,"",this.date,this.date,"","");
     
     this.getEducacion();
     
@@ -36,6 +36,7 @@ public date: Date = new Date();
      this.educacionService.getEducacion().subscribe( { 
       next: (response: educacion[] ) => {
         this.educacionList = response;  
+        console.log(this.educacionList);
          
       },
       error: (error: HttpErrorResponse) => {
@@ -54,7 +55,7 @@ public deleteEducacion(id?:number   )  {
       this.educacionService.borrarEducacion(id).subscribe(data =>{  alert("Educacion eliminado.");
     },
     err => {
-      alert(err.error.mensaje);
+      alert("Error edu: " + err.error.mensaje);
     }
    );  
 

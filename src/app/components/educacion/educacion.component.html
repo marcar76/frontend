@@ -1,21 +1,20 @@
 <div class="container" >
     <h2 class="h1-responsive font-weight-bold text-center my-4">Educacion</h2>
-      <!-- <app-button-add-skills  *ngIf=loginok>  </app-button-add-skills>  -->
+      <!-- <app-button-add-educacion  *ngIf=loginok>  </app-button-add-educacion>  -->
    
   <!-- ......... -->
   <div class="row">      
-        <div class="col-sm-3 my-2" *ngFor="let educacion of educacionList  "  > 
-          <div class="card"   >
+        <div class="col-sm-3 my-2" *ngFor="let educacion of educacionList   "  > 
+          
+          <div class="card"   style="width: 18rem;">
             
             <div class="card-body">
    
-              <!-- <img src={{educacion.urlfoto}} class="card-img-top" alt={{educacion.conocimiento}}> -->
-              <h5 class="card-title">{{educacion.nombreeducacion}}  </h5>
+              <img src={{educacion.url}} class="card-img-top" alt="..."> 
+              <h5 class="card-title">{{educacion.nombreeducacion}}  {{educacion.fechainicio}}</h5>
              
-              <!-- <div class="progress">
-                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" [style.width]="skill.porcentaje +'%'" >{{skill.porcentaje}}%</div>
-              </div>    -->       
-  
+              <p class="card-text">{{educacion.descripcion}} Fecha: {{educacion.fechafin}}</p>
+              <a href={{educacion.url}} class="btn btn-primary">Ir</a>
               
               <button type="button" *ngIf=loginok style="background-color:transparent; border-color:transparent;" (click)="tempEducacion = educacion" data-bs-toggle="modal" data-bs-target="#editEducacionModal" >   
                 <img src="https://drive.google.com/uc?export=view&id=1_Nq57MSqiGI3OWkRIUdxbUQG-cvpDQIp" height="35"/>                
@@ -34,18 +33,14 @@
                 <div class="modal-body">
                   <div class="mb-3">
                     <label for="nombreEducacion" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="nameEducacion" value={{tempEducacion.nombreeducacion}}>          
+                    <input type="text" class="form-control" id="nameEducacion" value={{tempEducacion.nombreeducacion}}  >          
                   </div>
         
-                <!--   <div class="mb-3">
-                    <label for="porcentajeSkill" class="form-label">Porcentaje</label>
-                    <input type="text" class="form-control" id="percentSkill" value={{tempEducacion.porcentaje}}> 
-                  </div> -->
-        <!-- 
+                            
                   <div class="mb-3">
                     <label for="urlFotoEducacion" class="form-label">URL Foto</label>
-                    <input type="text" class="form-control" id="urlFhotoSkill" value={{tempEducacion.urlfoto}}> 
-                  </div>    -->     
+                    <input type="text" class="form-control" id="urlFotoEducacion" value={{tempEducacion.url}}> 
+                  </div>       
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

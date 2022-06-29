@@ -25,7 +25,7 @@ export class ButtonAddProyectoComponent   {
         (<HTMLInputElement>document.getElementById("addLinkProyecto")).value,
         (<HTMLInputElement>document.getElementById("addUrlFotoProyecto")).value
         );
-      console.log("Add Proyecto: " +  objeto.nombreProyecto) ;
+      console.log("Add Proyecto: " +  objeto.nombreproyecto) ;
   
       this.newProyecto(objeto);
          
