@@ -22,8 +22,10 @@ export class EducacionComponent implements OnInit {
   
   constructor(private educacionService: educacionService, private login: LoginComponent,private activatedRoute: ActivatedRoute,
     private router: Router )  { }
-public date: Date = new Date();
-  ngOnInit(): void {
+
+    public date: Date = new Date();
+
+    ngOnInit(): void {
     
     this.tempEducacion = new educacion(0,"",this.date,this.date,"","");
     
@@ -37,8 +39,7 @@ fechaCambiar(fecha: Date){
 
   let splitted = fecha.toString().split(","); 
   let fechaReturn:Date = new Date (splitted[0]+"-"+splitted[1]+"-"+splitted[2]);
-   return fechaReturn;
-
+  return fechaReturn;
 }
 
 
@@ -46,7 +47,7 @@ fechaCambiar(fecha: Date){
      this.educacionService.getEducacion().subscribe( { 
       next: (response: educacion[] ) => {
         this.educacionList = response;  
-        console.log(this.educacionList);
+         
          
       },
       error: (error: HttpErrorResponse) => {

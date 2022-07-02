@@ -1,0 +1,30 @@
+
+<div class="container ">
+  <div class="col-md-12">
+
+<h3>Listados de mensajes</h3>
+
+
+<table class="table table-light text-center">
+  <thead>
+      <tr>
+           
+          <th scope="col">Nombre</th>
+          <th scope="col">Asunto</th>           
+          <th scope="col">Editar</th>
+          <th scope="col">Borrar</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let formulario of formularioList ">
+          <td>{{formulario.nombre}}</td>
+          <td>{{formulario.asunto}}</td>
+           
+          <td><button class="btn btn-outline-warning" routerLink="/actualizar/{{formulario.id}}">Editar</button></td>
+          <td><button class="btn btn-outline-danger" (click)="delete(formulario.id)">Borrar</button></td>
+      </tr>
+  </tbody>
+</table>
+</div>
+</div>
+ 
