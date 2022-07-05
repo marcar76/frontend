@@ -20,7 +20,7 @@ export class ExperiencialaboralService {
   }
 
   public updateExperienciaLaboral(  experienciaLaboral: experienciaLaboral):Observable<experienciaLaboral>{
-    return this.http.put<experienciaLaboral>(this.URL + 'save/educacion/',experienciaLaboral);
+    return this.http.put<experienciaLaboral>(this.URL + 'save/experienciaLaboral/',experienciaLaboral);
   }
   
   public borrarExperienciaLaboral(id?: number ):Observable<any>{
@@ -30,7 +30,4 @@ export class ExperiencialaboralService {
     return this.http.post<experienciaLaboral>(this.URL + 'new/experienciaLaboral',experienciaLaboral);
   }
   
-
-
-
 }
