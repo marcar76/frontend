@@ -45,25 +45,13 @@
           <div class="mb-3">
             <label for="acercaDeMiPersona" class="form-label">Acerca de mi...</label>
             <textarea class="form-control" id="acercaDeMiPasar" rows="3" placeholder={{acercaDeMiPersona}}></textarea>
-          </div>
-
-
- <!--   [nombrePersona]="persona.nombre!"                      
-          [apellidoPersona]="persona.apellido!" 
-          [domicilioPersona]="persona.domicilio!"
-          [telefonoPersona]="persona.telefono!" 
-          [correoPersona]="persona.correo!"
-          [fechaNacimientoPersona]="persona.fechaNacimiento!"
-          [acercaDeMiPersona]="persona.sobre_mi!"
-          [urlFotoPersona]="persona.url_foto!" -->
-
-  
+          </div> 
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" (click)="edit()"   
+          <button type="submit" (click)="edit()"    
        
-          class="btn btn-primary">Guardar cambios</button>
+          class="btn btn-primary" data-bs-dismiss="modal">Guardar cambios</button>
         </div>
       </div>
     </div>

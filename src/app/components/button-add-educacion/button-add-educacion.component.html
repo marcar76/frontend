@@ -6,7 +6,7 @@
    <div class="modal-dialog">
      <div class="modal-content">
        <div class="modal-header">
-         <h5 class="modal-title" id="addPEducacion"> Agregar Educacion</h5>
+         <h5 class="modal-title" id="addEducacion"> Agregar Educacion</h5>
          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
        </div>
        <div class="modal-body">
@@ -24,22 +24,22 @@
             <input type="text" class="form-control" id="addLinkEducacion" > 
           </div>  
           <div class="mb-3">
-            <label for="fechaInicioEducacion" class="form-label">Fecha Inicio</label>
-            <input type="date" class="form-control" id="fechaInicioEducacion"  >          
+            <label for="fechaInicioEducacion" class="form-label">Año Inicio (yyyy)</label>
+            <input type="text" class="form-control" id="fechaInicioEducacion"  >          
           </div>    
           <div class="mb-3">
-            <label for="fechaFinEducacion" class="form-label">Fecha Fin</label>
-            <input type="date" class="form-control" id="fechaFinEducacion" >          
+            <label for="fechaFinEducacion" class="form-label">Año Fin (yyyy)</label>
+            <input type="text" class="form-control" id="fechaFinEducacion" >          
           </div>    
 
          <div class="mb-3">
-           <label for="1addUrlPhotoEducacion" class="form-label">URL Foto</label>
+           <label for="addUrlPhotoEducacion" class="form-label">URL Foto</label>
            <input type="text" class="form-control" id="addUrlFotoEducacion" > 
          </div>        
        </div>
        <div class="modal-footer">
          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-         <button type="button"  (click)="addEducacion()"  class="btn btn-primary">Guardar cambios</button>
+         <button type="button"  (click)="addEducacion()"  class="btn btn-primary" data-bs-dismiss="modal">Guardar cambios</button>
        </div>
      </div>
    </div>

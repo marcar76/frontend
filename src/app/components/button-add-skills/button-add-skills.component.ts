@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {NgForm} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -13,32 +13,34 @@ import { LoginComponent } from '../login/login.component';
 })
 export class ButtonEditSkillsComponent   {
  
-
+  @Output() newSkillEvent = new EventEmitter<boolean>();
+  
   constructor( private skillService: skillsService, private login: LoginComponent,private activatedRoute: ActivatedRoute,
     private router: Router) { }
 
   public objeto!: skills;
-  
    
-  public addSkill( ){
-    /* console.log("Enter addskill");
-    console.log("nombre: "+(<HTMLInputElement>document.getElementById("addNameSkill")).value);
-    console.log("%: "+ (<HTMLInputElement>document.getElementById("addPercentSkill")).value);
-    console.log("url: "+(<HTMLInputElement>document.getElementById("addUrlPhotoSkill")).value); */
-
+  public addSkill( ){ 
 
     const por: number = parseInt((<HTMLInputElement>document.getElementById("addPercentSkill")).value); 
     const objeto:skills = new skills (0,(<HTMLInputElement>document.getElementById("addNameSkill")).value,por,(<HTMLInputElement>document.getElementById("addUrlPhotoSkill")).value);
-    console.log("Add Skill: " +  objeto.conocimiento) ;
+    
 
     this.newSkill(objeto);
+    //Clear form modal
+
+    (<HTMLInputElement>document.getElementById("addPercentSkill")).value="";
+    (<HTMLInputElement>document.getElementById("addNameSkill")).value="";
+    (<HTMLInputElement>document.getElementById("addUrlPhotoSkill")).value="";    
+    
+    this.newSkillEvent.emit(false);
        
   }
 
   public newSkill(skill: skills):void {
       this.skillService.createSkill(skill).subscribe(
         data => {
-          alert("Conocimiento Nuevo Guardado.");
+          /* alert("Conocimiento Nuevo Guardado."); */
            
         },
         err => {

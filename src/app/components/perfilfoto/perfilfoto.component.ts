@@ -12,7 +12,7 @@ import { LoginComponent } from '../login/login.component';
 export class PerfilfotoComponent implements OnInit {
   public date: Date = new Date();
   persona!: persona /*  = new persona(1,'','','',this.date,'','','','');  */
-   
+    
   
   loginok!: boolean;
 
@@ -21,20 +21,34 @@ export class PerfilfotoComponent implements OnInit {
   ngOnInit(): void {
     this.getPersona();
     this.loginok= this.getLogin();
+
+    console.log("ngOninit--");
   }
 
    
 public getPersona():void{  
-  this.persoService.getPersona().subscribe( response  => {this.persona=response}      
-    );       
-  
-  
+  this.persoService.getPersona().subscribe( response  => {this.persona=response} );       
+    console.log("GetPersona--");  
 }
 
 public updatePersona(p: persona):void{  
-  this.persoService.updatePersona(p).subscribe( response  => {response=this.persona});      
+  this.persoService.updatePersona(p).subscribe( response  => {response=this.persona;   });    
+  console.log("UpdatePersona--");
+  
 } 
- 
+wait(ms: number){
+  let start = new Date().getTime();
+  let end = start;
+  while(end < start + ms) {
+    end = new Date().getTime();
+ }
+}
+
+public reloadComponent(evento: boolean){
+  this.wait(500);
+  this.ngOnInit();  
+}
+
 public getLogin(){
   return this.login.loginok();
 }

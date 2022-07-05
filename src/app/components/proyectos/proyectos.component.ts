@@ -19,6 +19,8 @@ export class ProyectosComponent implements OnInit {
   loginok!: boolean;
   proyecto!: proyecto; 
   tempProyecto! : proyecto;
+  
+  
 
   constructor(private proyectoService: proyectoService, private login: LoginComponent,private activatedRoute: ActivatedRoute,
     private router: Router) { }
@@ -31,10 +33,13 @@ export class ProyectosComponent implements OnInit {
     this.loginok= this.getLogin(); 
   }
 
+  
+
+
   public getProyecto():void{  
     this.proyectoService.getProyectos().subscribe( { 
      next: (response: proyecto[] ) => {
-       this.proyectoList = response; console.log(this.proyectoList);
+       this.proyectoList = response;  
         
      },
      error: (error: HttpErrorResponse) => {
@@ -44,19 +49,18 @@ export class ProyectosComponent implements OnInit {
  }
  
  public updateProyecto( proyecto: proyecto):void{  
-   this.proyectoService.updateProyecto(proyecto).subscribe( response  => {response=this.proyecto;alert("Proyecto actualizado.");});      
+   this.proyectoService.updateProyecto(proyecto).subscribe( response  => {response=this.proyecto;   }); 
  }   
 
 
 
 public deleteProyecto(id?:number   )  {
-     this.proyectoService.borrarProyecto(id).subscribe(data =>{  alert("Proyecto eliminado.");
+     this.proyectoService.borrarProyecto(id).subscribe(data =>{   ;      
    },
    err => {
      alert("Error: " + err.error.mensaje);
    }
   );  
-
 }
 
   
@@ -73,17 +77,29 @@ edit(id: number ):void{
     (<HTMLInputElement>document.getElementById("linkProyecto")).value ,
     (<HTMLInputElement>document.getElementById("urlFotoProyecto")).value
     );
-
-
- /* console.log("Edit Proyecto: " +  objeto.nombreproyecto) ; */
+ 
 
  this.updateProyecto(objeto);
+ this.reloadComponent(true);
 }
 
 delete(id?: number){ 
   console.log("Delete proyecto id:" + id) ;
  this.deleteProyecto(id  );
+ this.reloadComponent(true);
+}
 
+wait(ms: number){
+  let start = new Date().getTime();
+  let end = start;
+  while(end < start + ms) {
+    end = new Date().getTime();
+ }
+}
+
+public reloadComponent(evento: boolean){
+  this.wait(1000);  
+  this.ngOnInit();  
 }
 
 }

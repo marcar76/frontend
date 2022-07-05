@@ -5,14 +5,14 @@ import { formulario } from 'src/app/model/formulario.model';
 import { formularioService } from 'src/app/service/formulario.service';
 
 @Component({
-  selector: 'app-formulario-edit',
-  templateUrl: './formulario-edit.component.html',
-  styleUrls: ['./formulario-edit.component.css']
+  selector: 'app-formulario-list',
+  templateUrl: './formulario-list.component.html',
+  styleUrls: ['./formulario-list.component.css']
 })
 export class FormularioEditComponent implements OnInit {
   loginok!: boolean;
   public formularioList: formulario[] = [];
-   
+   mostrar:boolean=false;
   formulario!: formulario; 
   tempFormulario! : formulario;
   constructor(  private login: LoginComponent, private formularioService:formularioService )  { }
@@ -38,17 +38,20 @@ public getFormulario():void{
 }
 
 public updateFormulario( formulario: formulario):void{  
- this.formularioService.updateFormulario(formulario).subscribe( response  => {response=this.formulario;alert("Formulario actualizado.");});      
+ this.formularioService.updateFormulario(formulario).subscribe( response  => {response=this.formulario;this.ngOnInit();});  
+     
 }   
 
 
 
 public deleteFormulario(id?:number   )  {
-   this.formularioService.borrarFormulario(id).subscribe(data =>{  alert("Formulario eliminado.");
+   this.formularioService.borrarFormulario(id).subscribe(data =>{   
+   this.ngOnInit();
  },
  err => {
    alert(err.error.mensaje);
  }
+ 
 );  
 
 }

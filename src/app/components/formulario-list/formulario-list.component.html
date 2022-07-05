@@ -20,8 +20,8 @@
           <td>{{formulario.nombre}}</td>
           <td>{{formulario.asunto}}</td>
            
-          <td><button class="btn btn-outline-warning" routerLink="/actualizar/{{formulario.id}}">Editar</button></td>
-          <td><button class="btn btn-outline-danger" (click)="delete(formulario.id)">Borrar</button></td>
+          <td><button class="btn btn-warning text-light" routerLink="/actualizar/{{formulario.id}}">Editar</button></td>
+          <td><button class="btn btn-danger text-light" (click)="delete(formulario.id)">Borrar</button></td>
       </tr>
   </tbody>
 </table>

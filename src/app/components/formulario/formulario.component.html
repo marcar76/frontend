@@ -40,14 +40,24 @@
                 
             </form>
             <div class="text-center text-md-left my-2">                
-                <button type="button"  (click)="addFormulario()"  class="btn btn-primary">Enviar</button>
+                <button type="submit"  (click)="addFormulario()"  class="btn btn-primary">Enviar</button>
             </div> 
+            <div class="alert alert-success alert-dismissible" *ngIf="FomularioEnviadoOk">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <strong>Success!</strong> El formulario se envio correctamente.
+            </div>
+            <div class="alert alert-warning alert-dismissible" *ngIf="FomularioEnviadoBad">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <strong>Warning!</strong> El formulario no se pudo enviar.
+            </div>
+
                 <div class="text-center text-md-left my-2">  
-                <button type="button"  *ngIf=loginok   (click)="addFormulario()"  class="btn btn-primary">Mostrar</button>
-            </div>     
-            <app-formulario-edit   >  </app-formulario-edit> 
-            
-                 
+                    <div *ngIf="loginok">
+                        <button type="button"  *ngIf="!mostrar"  (click)="mostrar = !mostrar"  class="btn btn-primary">Mostrar</button>
+                        <button type="button"  *ngIf="mostrar" (click)="mostrar = !mostrar"  class="btn btn-primary">Ocultar</button>
+                    </div>
+                </div>     
+                <app-formulario-list   *ngIf="mostrar">  </app-formulario-list>                
         </div>
     </div>
 </section>

@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+login:boolean=false;
   constructor() { }
 
   ngOnInit(): void {
@@ -15,8 +15,14 @@ export class LoginComponent implements OnInit {
   }
 
 public loginok():boolean{
+  //return this.login;
   return true;
-  //return false;
+}
+
+public setloginok(valor:boolean):boolean{
+  this.login=valor; 
+  
+  return this.login;
 }
 
 }

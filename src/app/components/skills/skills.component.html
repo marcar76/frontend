@@ -1,7 +1,7 @@
  
 <div class="container" >
   <h2 class="h1-responsive font-weight-bold text-center my-4">Conocimientos</h2>
-    <app-button-add-skills  *ngIf=loginok>  </app-button-add-skills> 
+    <app-button-add-skills  *ngIf=loginok (newSkillEvent)="reloadComponent($event)" >  </app-button-add-skills> 
  
 <!-- ......... -->
 <div class="row">      
@@ -50,7 +50,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" (click)="edit(tempSkill.id ?? 0)"   class="btn btn-primary">Guardar cambios</button>
+                <button type="submit" (click)="edit(tempSkill.id ?? 0)"   class="btn btn-primary" data-bs-dismiss="modal" >Guardar cambios</button>
               </div>
               
             </div>
@@ -71,7 +71,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button"   (click)="delete(tempSkill.id)" class="btn btn-danger">Borrar</button>
+                <button type="submit"   (click)="delete(tempSkill.id)" class="btn btn-danger" data-bs-dismiss="modal">Borrar</button>
               </div>
             </div>
           </div>

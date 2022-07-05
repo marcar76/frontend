@@ -1,19 +1,32 @@
+ 
+
 export class educacion {
 
     id?: number;
     nombreeducacion?: string;
-    fechainicio?: Date;
-    fechafin?: Date;
+    fechainicio?: string;
+    fechafin?: string;
     descripcion?:string;
     url?: string;
+    link?: string;
 
-constructor(id: number,   nombreeducacion: string,     fechaInicio: Date,   fechaFin: Date ,    descripcion:string, urlfoto: string){
+constructor(id: number,   
+    nombreeducacion: string,     
+    fechaInicio: string,   
+    fechaFin: string ,    
+    descripcion:string, 
+    urlfoto: string, 
+    linkpage: string     ){
+
+
     this.id= id;
     this.nombreeducacion=nombreeducacion;
     this.fechainicio=fechaInicio;
     this.fechafin= fechaFin;     
     this.descripcion= descripcion;
     this.url=urlfoto; 
+    this.link=linkpage; 
+
 }
  
 }

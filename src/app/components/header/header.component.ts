@@ -18,4 +18,10 @@ export class HeaderComponent implements OnInit {
     return this.login.loginok();
   }
 
+public setlogin(valor:boolean):boolean{
+return this.login.setloginok(valor);
+
+}
+
+
 }

@@ -21,7 +21,7 @@ import { ButtonAddProyectoComponent } from './components/button-add-proyecto/but
 
 import { ButtonAddEducacionComponent } from './components/button-add-educacion/button-add-educacion.component';
 import { DatearPipe } from './datear.pipe';
-import { FormularioEditComponent } from './components/formulario-edit/formulario-edit.component';
+import { FormularioEditComponent } from './components/formulario-list/formulario-list.component';
 
 @NgModule({
   declarations: [

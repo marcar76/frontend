@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { educacion } from 'src/app/model/educacion.model';
 import { educacionService } from 'src/app/service/educacion.service';
@@ -11,6 +11,7 @@ import { LoginComponent } from '../login/login.component';
 })
 export class ButtonAddEducacionComponent  {
 
+  @Output() newEducacionEvent = new EventEmitter<boolean>();
   constructor(private educacionServ: educacionService, private login: LoginComponent,private activatedRoute: ActivatedRoute,
     private router: Router) { }
 
@@ -19,25 +20,35 @@ export class ButtonAddEducacionComponent  {
    
     public addEducacion( ){
            
-     /*  const objeto:educacion = new educacion (0,
+      const objeto:educacion = new educacion (0,
         (<HTMLInputElement>document.getElementById("addNameEducacion")).value,
-        (<HTMLInputElement>document.getElementById("addDescripcionEducacion")).value,
-        */
-        /* FECHAS */
-/*
-        (<HTMLInputElement>document.getElementById("addUrlFotoEducacion")).value
+        (<HTMLInputElement>document.getElementById("fechaInicioEducacion")).value,
+        (<HTMLInputElement>document.getElementById("fechaFinEducacion")).value,       
+        (<HTMLInputElement>document.getElementById("addDescripcionEducacion")).value,       
+        (<HTMLInputElement>document.getElementById("addUrlFotoEducacion")).value,
+        (<HTMLInputElement>document.getElementById("addLinkEducacion")).value    
+        
+
         );  
-        console.log("Add educacion: " +  objeto.nombreeducacion) ;
+
+
+        
   
       this.newEducacion(objeto);
-       */   
+       
+      (<HTMLInputElement>document.getElementById("addNameEducacion")).value="";
+      (<HTMLInputElement>document.getElementById("addDescripcionEducacion")).value="";
+      (<HTMLInputElement>document.getElementById("addLinkEducacion")).value="";
+      (<HTMLInputElement>document.getElementById("fechaInicioEducacion")).value="";
+      (<HTMLInputElement>document.getElementById("fechaFinEducacion")).value="";
+      (<HTMLInputElement>document.getElementById("addUrlFotoEducacion")).value="";
+
+      this.newEducacionEvent.emit(false);
     }
   
     public newEducacion(educacion: educacion):void {
         this.educacionServ.createEducacion(educacion).subscribe(
-          data => {
-            alert("Educacion Nuevo Guardado.");
-             
+          data => { 
           },
           err => {
             alert(err.error.mensaje);

@@ -1,12 +1,12 @@
  
 <div class="container" >
   <h2 class="h1-responsive font-weight-bold text-center my-4">Proyectos</h2>
-   <app-button-add-proyecto  *ngIf=loginok>  </app-button-add-proyecto>  
+   <app-button-add-proyecto  *ngIf=loginok (newProyectoEvent)="reloadComponent($event)">  </app-button-add-proyecto>  
  
 <!-- ......... -->
 <div class="row">      
-      <div class="col-sm-3 my-2" *ngFor="let proyecto of proyectoList  "  > 
-        <div class="card"   >
+      <div class="col-sm-3 my-2" *ngFor="let proyecto of proyectoList"> 
+        <div class="card">
           
           <div class="card-body">
  
@@ -28,14 +28,15 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="editarProyectoModal">Editar Educacion </h5>
+                <h5 class="modal-title" id="editarProyectoModal">Editar Proyecto </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
                 <div class="mb-3">
                   <label for="nombreProyecto" class="form-label">Nombre</label>
-                  <input type="text" class="form-control" id="nameProyecto" value={{tempProyecto.nombreproyecto}}>          
+                  <input type="text" class="form-control" id="nameProyecto" value={{tempProyecto.nombreproyecto}} >          
                 </div>
+                 
       
                 <div class="mb-3">
                   <label for="descripcionProyecto" class="form-label">Porcentaje</label>
@@ -54,7 +55,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" (click)="edit(tempProyecto.id ?? 0)"   class="btn btn-primary">Guardar cambios</button>
+                <button type="submit" (click)="edit(tempProyecto.id ?? 0)"   class="btn btn-primary" data-bs-dismiss="modal">Guardar cambios</button>
               </div>
               
             </div>
@@ -75,7 +76,7 @@
               </div>
               <div class="modal-footer" >
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button"   (click)="delete(tempProyecto.id)" class="btn btn-danger">Borrar</button>
+                <button type="button"   (click)="delete(tempProyecto.id)" class="btn btn-danger" data-bs-dismiss="modal">Borrar</button>
               </div>
             </div>
           </div>

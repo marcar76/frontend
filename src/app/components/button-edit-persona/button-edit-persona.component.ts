@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { persona } from 'src/app/model/persona.model';
 import { PersonaService } from 'src/app/service/persona.service';
 import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -19,7 +20,7 @@ export class ButtonEditComponent implements OnInit {
 @Input() acercaDeMiPersona!:string;
 @Input() urlFotoPersona!:string;
 
- 
+ @Output() newPersonaUpdateEvent = new EventEmitter<boolean>();
 
   constructor(private persoService: PersonaService, private router: Router ) { 
     
@@ -71,14 +72,21 @@ let fecha:Date = new Date (splitted[0]+"-"+splitted[1]+"-"+splitted[2]);
 
 
    this.persoService.updatePersona(p).subscribe(
-    data => {alert("Datos actualizados.");     
+    data => {     
   },
   err => {
     alert(err.error.mensaje);
   }    
    
    );
+
+   this.newPersonaUpdateEvent.emit(false);
   }
+
+
+
+
+
    delete():void {
      alert('delete option');
     

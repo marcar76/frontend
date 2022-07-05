@@ -12,7 +12,9 @@ import{formularioService} from '../../service/formulario.service';
 export class FormularioComponent   {
   loginok!: boolean;
   formulario!: formulario;
-
+  mostrar:boolean=false;
+  FomularioEnviadoOk:boolean=false;
+  FomularioEnviadoBad:boolean=false;
   constructor(private formularioServ: formularioService, private login: LoginComponent,private activatedRoute: ActivatedRoute,
     private router: Router) { }
 
@@ -36,15 +38,22 @@ public getLogin(){
    
 
   this.newFormulario(objeto);
+
+  (<HTMLInputElement>document.getElementById("name")).value="";
+  (<HTMLInputElement>document.getElementById("email")).value="";
+  (<HTMLInputElement>document.getElementById("subject")).value="";
+  (<HTMLInputElement>document.getElementById("message")).value="";
+
 }
 public newFormulario(formulario: formulario):void {
   this.formularioServ.createFormulario(formulario).subscribe(
-    data => {
-      alert("Formulario Enviado.");
+    data => {this.FomularioEnviadoOk=true;
+       
        
     },
-    err => {
-      alert(err.error.mensaje);
+    err => {          
+     
+      this.FomularioEnviadoBad=true;
     }
    );  
 }

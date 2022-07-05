@@ -27,21 +27,14 @@ export class EducacionComponent implements OnInit {
 
     ngOnInit(): void {
     
-    this.tempEducacion = new educacion(0,"",this.date,this.date,"","");
+      this.tempEducacion = new educacion(0,"","","","","","");
     
-    this.getEducacion();
+      this.getEducacion();
     
-    this.loginok= this.getLogin(); 
+      this.loginok= this.getLogin(); 
     
   }
-
-fechaCambiar(fecha: Date){
-
-  let splitted = fecha.toString().split(","); 
-  let fechaReturn:Date = new Date (splitted[0]+"-"+splitted[1]+"-"+splitted[2]);
-  return fechaReturn;
-}
-
+ 
 
   public getEducacion():void{  
      this.educacionService.getEducacion().subscribe( { 
@@ -57,13 +50,13 @@ fechaCambiar(fecha: Date){
   }
   
   public updateEducacion( educacion: educacion):void{  
-    this.educacionService.updateEducacion(educacion).subscribe( response  => {response=this.educacion;alert("Educacion actualizado.");});      
+    this.educacionService.updateEducacion(educacion).subscribe( response  => {response=this.educacion; });      
   }   
 
  
 
 public deleteEducacion(id?:number   )  {
-      this.educacionService.borrarEducacion(id).subscribe(data =>{  alert("Educacion eliminado.");
+      this.educacionService.borrarEducacion(id).subscribe(data =>{   
     },
     err => {
       alert("Error edu: " + err.error.mensaje);
@@ -80,16 +73,40 @@ public getLogin(){
 edit(id: number ):void{
   console.log("Edit: " + id);
 
-  /* const por: number = parseInt((<HTMLInputElement>document.getElementById("percentSkill")).value); 
-  const objeto:educacion = new educacion (id,(<HTMLInputElement>document.getElementById("nameSkill")).value,por,(<HTMLInputElement>document.getElementById("urlFhotoSkill")).value);
-  console.log("Edit Skill: " +  objeto.conocimiento) ;
+    
+  const objeto:educacion = new educacion (id, 
+      (<HTMLInputElement>document.getElementById("nameEducacion")).value,
+      (<HTMLInputElement>document.getElementById("inicioEducacion")).value,
+      (<HTMLInputElement>document.getElementById("finEducacion")).value,       
+      (<HTMLInputElement>document.getElementById("descripcionEducacion")).value,       
+      (<HTMLInputElement>document.getElementById("urlFotoEducacion")).value,
+      (<HTMLInputElement>document.getElementById("linkPageEducacion")).value    
+    
+    );
+  
+  
+  console.log("Edit Educ: " +  objeto.descripcion) ;
 
-  this.updateSkill(objeto); */
+  this.updateEducacion(objeto);  
+  this.reloadComponent(true);
 }
 
 delete(id?: number){  
   this.deleteEducacion(id  );
+  this.reloadComponent(true);
+}
 
+wait(ms: number){
+  let start = new Date().getTime();
+  let end = start;
+  while(end < start + ms) {
+    end = new Date().getTime();
+ }
+}
+
+public reloadComponent(evento: boolean){
+  this.wait(1000);  
+  this.ngOnInit();  
 }
 
 

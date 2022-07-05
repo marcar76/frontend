@@ -1,21 +1,25 @@
 <div class="container" >
     <h2 class="h1-responsive font-weight-bold text-center my-4">Educacion</h2>
-       <app-button-add-educacion  *ngIf=loginok>  </app-button-add-educacion>  
+       <app-button-add-educacion  *ngIf=loginok (newEducacionEvent)="reloadComponent($event)">  </app-button-add-educacion>  
    
   <!-- ......... -->
   <div class="row">      
         <div class="col-sm-3 my-2" *ngFor="let educacion of educacionList"  > 
           
-          <div class="card"   style="width: 18rem;">
+          <div class="card"  >
             
             <div class="card-body">
    
-              <img src={{educacion.url}} class="card-img-top" alt="..."> 
+              <img src={{educacion.url}} class="card-img-top" alt="..."  > 
               <h5 class="card-title">{{educacion.nombreeducacion}} </h5>
              
-              <p class="card-text">{{educacion.descripcion}} 
-                 {{educacion.fechainicio}} {{educacion.fechafin}}</p>
-              <a href={{educacion.url}} class="btn btn-primary">Ir</a>
+              <p class="card-text"> {{educacion.descripcion}} </p>
+              <p class="card-text"> Año inicio: 
+              <p class="card-text">{{educacion.fechainicio}} </p>
+              <p class="card-text">hasta: </p>
+              <p class="card-text">{{educacion.fechafin}}</p>
+
+              <a href={{educacion.link}} class="btn btn-primary">Ir</a>
               
               <button type="button" *ngIf=loginok style="background-color:transparent; border-color:transparent;" (click)="tempEducacion = educacion" data-bs-toggle="modal" data-bs-target="#editEducacionModal" >   
                 <img src="https://drive.google.com/uc?export=view&id=1_Nq57MSqiGI3OWkRIUdxbUQG-cvpDQIp" height="35"/>                
@@ -24,7 +28,7 @@
                 <img src="https://drive.google.com/uc?export=view&id=1xTDp_N5N7ewDwHPgzz_6EvBFfj-Mqhod" height="35"/> 
               </button> 
   
-           <div class="modal fade" id="editEducacionModal" tabindex="-1" aria-labelledby="editarEducacionModal" aria-hidden="true">
+           <div class="modal fade" id="editEducacionModal" tabindex="-1" aria-labelledby="editEducacionModal" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
@@ -41,14 +45,17 @@
                     <input type="text" class="form-control" id="descripcionEducacion" value={{tempEducacion.descripcion}}  >          
                   </div>
                   <div class="mb-3">
-                    <label for="fechaInicioEducacion" class="form-label">Fecha Inicio</label>
-                    <input type="date" class="form-control" id="fechaInicioEducacion" value={{tempEducacion.fechainicio}}  >          
+                    <label for="inicioEducacion" class="form-label">Año Inicio (yyyy)</label>
+                    <input type="text" class="form-control" id="inicioEducacion" value={{tempEducacion.fechainicio}}  >          
                   </div>    
                   <div class="mb-3">
-                    <label for="fechaFinEducacion" class="form-label">Fecha Fin</label>
-                    <input type="date" class="form-control" id="fechaFinEducacion" value={{tempEducacion.fechafin}}  >          
+                    <label for="finEducacion" class="form-label">Año Fin (yyyy)</label>
+                    <input type="text" class="form-control" id="finEducacion" value={{tempEducacion.fechafin}}  >          
                   </div>    
-
+                  <div class="mb-3">
+                    <label for="linkPageEducacion" class="form-label">Link Web</label>
+                    <input type="text" class="form-control" id="linkPageEducacion" value={{tempEducacion.link}}> 
+                  </div>      
                   <div class="mb-3">
                     <label for="urlFotoEducacion" class="form-label">URL Foto</label>
                     <input type="text" class="form-control" id="urlFotoEducacion" value={{tempEducacion.url}}> 
@@ -56,7 +63,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                  <button type="button" (click)="edit(tempEducacion.id ?? 0)"   class="btn btn-primary">Guardar cambios</button>
+                  <button type="submit" (click)="edit(tempEducacion.id ?? 0)"   class="btn btn-primary" data-bs-dismiss="modal">Guardar cambios</button>
                 </div>
                 
               </div>
@@ -77,7 +84,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                  <button type="button"   (click)="delete(tempEducacion.id)" class="btn btn-danger">Borrar</button>
+                  <button type="button"   (click)="delete(tempEducacion.id)" class="btn btn-danger" data-bs-dismiss="modal">Borrar</button>
                 </div>
               </div>
             </div>
