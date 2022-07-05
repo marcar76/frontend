@@ -19,7 +19,7 @@ export class FormularioEditComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+    this.tempFormulario = new formulario(0,"","","","","");
     this.getFormulario();
   }
   
@@ -63,14 +63,20 @@ public getLogin(){
 
 edit(id: number ):void{
 console.log("Edit: " + id);
-/* 
-const por: number = parseInt((<HTMLInputElement>document.getElementById("percentSkill")).value); 
-const objeto:formulario = new formulario (id,(<HTMLInputElement>document.getElementById("nameSkill")).value,
-        por,(<HTMLInputElement>document.getElementById("urlFhotoSkill")).value);
+ 
+  
+const objeto:formulario = new formulario (id,
+  (<HTMLInputElement>document.getElementById("nameFormulario")).value,
+  (<HTMLInputElement>document.getElementById("correoFormulario")).value,
+  (<HTMLInputElement>document.getElementById("asuntoFormulario")).value,
+  (<HTMLInputElement>document.getElementById("mensajeFormulario")).value,
+  (<HTMLInputElement>document.getElementById("notasFormulario")).value
+);
+  
 console.log("Edit formulario: " +  objeto.nombre) ;
 
 this.updateFormulario(objeto);
-*/
+ 
 }
 
 delete(id?: number){  

@@ -20,8 +20,55 @@
           <td>{{formulario.nombre}}</td>
           <td>{{formulario.asunto}}</td>
            
-          <td><button class="btn btn-warning text-light" routerLink="/actualizar/{{formulario.id}}">Editar</button></td>
+          <td><button class="btn btn-warning text-light" (click)="tempFormulario = formulario" data-bs-toggle="modal" data-bs-target="#editFormularioModal">Editar</button></td>
           <td><button class="btn btn-danger text-light" (click)="delete(formulario.id)">Borrar</button></td>
+
+  <!--         <button type="button" *ngIf=loginok style="background-color:transparent; border-color:transparent;" (click)="tempFormulario = formulario" data-bs-toggle="modal" data-bs-target="#editFormularioModal" >   
+            <img src="https://drive.google.com/uc?export=view&id=1_Nq57MSqiGI3OWkRIUdxbUQG-cvpDQIp" height="35"/>                
+          </button>
+           -->
+
+       <div class="modal fade" id="editFormularioModal" tabindex="-1" aria-labelledby="editFormularioModal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="editFormularioModal">Editar Mensaje </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="nombreFormulario" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nameFormulario" value={{tempFormulario.nombre}}  >          
+              </div>
+              <div class="mb-3">
+                <label for="asuntoFormulario" class="form-label">Asunto </label>
+                <input type="text" class="form-control" id="asuntoFormulario" value={{tempFormulario.asunto}}  >          
+              </div>
+              <div class="mb-3">
+                <label for="mensajeFormulario" class="form-label">Mensaje </label>
+                <input type="text" class="form-control" id="mensajeFormulario" value={{tempFormulario.mensaje}}  >          
+              </div>
+              <div class="mb-3">
+                <label for="correoFormulario" class="form-label">Correo</label>
+                <input type="text" class="form-control" id="correoFormulario" value={{tempFormulario.correo}}  >          
+              </div>    
+              <div class="mb-3">
+                <label for="notasFormulario" class="form-label">Notas</label>
+                <input type="text" class="form-control" id="notasFormulario" value={{tempFormulario.notas}}  >          
+              </div>    
+                     
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button type="submit" (click)="edit(tempFormulario.id ?? 0)"   class="btn btn-primary" data-bs-dismiss="modal">Guardar cambios</button>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+
+       
+
       </tr>
   </tbody>
 </table>
