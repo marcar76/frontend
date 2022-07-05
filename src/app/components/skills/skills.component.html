@@ -10,7 +10,7 @@
           
           <div class="card-body">
  
-            <img src={{skill.urlfoto}} class="card-img-top" alt={{skill.conocimiento}}>
+            <img src={{skill.urlfoto}} class="card-img-top" alt={{skill.conocimiento}} *ngIf="skill.urlfoto">
             <h5 class="card-title">{{skill.conocimiento}}  </h5>
            
             <div class="progress">

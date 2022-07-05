@@ -10,7 +10,7 @@
           
           <div class="card-body">
  
-            <img src={{proyecto.urlfoto}} class="card-img-top" alt={{proyecto.nombreproyecto}}> 
+            <img src={{proyecto.urlfoto}} class="card-img-top" alt={{proyecto.nombreproyecto}} *ngIf="proyecto.urlfoto"  > 
             <h5 class="card-title">{{proyecto.nombreproyecto}}  </h5>
            
             <p class="card-text">{{proyecto.descripcion}} </p>

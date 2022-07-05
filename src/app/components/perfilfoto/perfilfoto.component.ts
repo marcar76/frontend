@@ -11,7 +11,7 @@ import { LoginComponent } from '../login/login.component';
 })
 export class PerfilfotoComponent implements OnInit {
   public date: Date = new Date();
-  persona!: persona /*  = new persona(1,'','','',this.date,'','','','');  */
+  persona!: persona  
     
   
   loginok!: boolean;
@@ -28,12 +28,12 @@ export class PerfilfotoComponent implements OnInit {
    
 public getPersona():void{  
   this.persoService.getPersona().subscribe( response  => {this.persona=response} );       
-    console.log("GetPersona--");  
+      
 }
 
 public updatePersona(p: persona):void{  
   this.persoService.updatePersona(p).subscribe( response  => {response=this.persona;   });    
-  console.log("UpdatePersona--");
+  
   
 } 
 wait(ms: number){
