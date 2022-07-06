@@ -3,6 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
 import { experienciaLaboral } from 'src/app/model/experiencialaboral.model';
 import { ExperiencialaboralService } from 'src/app/service/experiencialaboral.service';
+import {TipoempleoService} from 'src/app/service/tipoempleo.service';
+import {tipoempleo} from 'src/app/model/tipoempleo.model';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-button-add-experiencia',
@@ -14,12 +17,12 @@ export class ButtonAddExperienciaComponent   {
 
   @Output() newExperienciaEvent = new EventEmitter<boolean>();
 
-  constructor(private experienciaServ: ExperiencialaboralService, private login: LoginComponent,private activatedRoute: ActivatedRoute,
+  constructor(private tipoempleoServ: TipoempleoService,private experienciaServ: ExperiencialaboralService, private login: LoginComponent,private activatedRoute: ActivatedRoute,
     private router: Router) { }
 
     public objeto!: experienciaLaboral;
   
-   
+    public tipoEmpleoList: tipoempleo[]=[];
     public addExperiencia( ){
            
       const objeto:experienciaLaboral = new experienciaLaboral (0,
@@ -56,9 +59,37 @@ export class ButtonAddExperienciaComponent   {
          );  
     }
 
-addTipoEmpleo(){
-  
+/* T I P O   D E   E M P L E O */
+
+public getTipoEmpleo():void{  
+  this.tipoempleoServ.getEmpleo().subscribe( { 
+   next: (response: tipoempleo[] ) => {
+     this.tipoEmpleoList = response;          
+   },
+   error: (error: HttpErrorResponse) => {
+     alert("Error" + error.message);
+   }
+ })      
 }
+
+
+addTipoEmpleo(){
+  const objeto:tipoempleo = new tipoempleo (0,
+    (<HTMLInputElement>document.getElementById("addNameTipoEmpleo")).value );
+    this.newTipoEmpleo(objeto);
+    (<HTMLInputElement>document.getElementById("addNameTipoEmpleo")).value ="";
+}
+
+public newTipoEmpleo(tipoempleo: tipoempleo):void {
+  this.tipoempleoServ.createEmpleo(tipoempleo).subscribe( data => {         
+       
+    },
+    err => {
+      alert(err.error.mensaje);
+    }
+   );  
+}
+
 
 
 

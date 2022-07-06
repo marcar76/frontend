@@ -21,7 +21,10 @@ export class ExperienciaComponent implements OnInit {
   tempExperienciaLaboral! : experienciaLaboral;
 
   checkboxExperiencia!: string;
-  constructor(private experienciaLaboralService: ExperiencialaboralService, private login: LoginComponent,private activatedRoute: ActivatedRoute,
+
+public tipoEmpleoList: tipoempleo[]=[];
+
+  constructor(private tipoempleoServ: TipoempleoService, private experienciaLaboralService: ExperiencialaboralService, private login: LoginComponent,private activatedRoute: ActivatedRoute,
     private router: Router ) { }
 
   ngOnInit(): void {
@@ -112,5 +115,17 @@ public reloadComponent(evento: boolean){
  this.ngOnInit();  
 }
 
+/* T I P O   D E   E M P L E O */
+
+public getTipoEmpleo():void{  
+  this.tipoempleoServ.getEmpleo().subscribe( { 
+   next: (response: tipoempleo[] ) => {
+     this.tipoEmpleoList = response;          
+   },
+   error: (error: HttpErrorResponse) => {
+     alert("Error" + error.message);
+   }
+ })      
+}
 
 }
