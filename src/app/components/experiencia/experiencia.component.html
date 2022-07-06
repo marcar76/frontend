@@ -1,1 +1,109 @@
-<p>experiencia works!</p>
+<div class="container" >
+    <h2 class="h1-responsive font-weight-bold text-center my-4">Experiencia Laboral</h2>
+       <app-button-add-experiencia  *ngIf=loginok (newExperienciaEvent)="reloadComponent($event)">  </app-button-add-experiencia>  
+   
+  <!-- ......... -->
+  <div class="row">      
+        <div class="col-sm-3 my-2" *ngFor="let experiencia of experienciaLaboralList"  > 
+          
+          <div class="card"  >
+            
+            <div class="card-body">
+   
+            <!--   <img src={{experiencia.url}} class="card-img-top" alt="..."  *ngIf="experiencia.url">  -->
+              <h5 class="card-title">{{experiencia.nombreempresa}} </h5>
+             
+              <p class="card-text"> {{experiencia.descripcion}} </p>
+              <p class="card-text"> Año inicio: 
+              <p class="card-text">{{experiencia.fechainicio}} </p>
+              <p class="card-text">hasta: </p>
+              <p class="card-text">{{experiencia.fechafin}}</p>
+
+              <a href={{experiencia.link}} class="btn btn-primary" *ngIf="experiencia.link">Ir</a>
+              
+              <button type="button" *ngIf=loginok style="background-color:transparent; border-color:transparent;" (click)="tempExperienciaLaboral = experiencia" data-bs-toggle="modal" data-bs-target="#editExperienciaModal" >   
+                <img src="https://drive.google.com/uc?export=view&id=1_Nq57MSqiGI3OWkRIUdxbUQG-cvpDQIp" height="35"/>                
+              </button>
+              <button type="submit"  *ngIf=loginok style="background-color:transparent; border-color:transparent;" (click)="tempExperienciaLaboral = experiencia" data-bs-toggle="modal" data-bs-target="#borrarExperienciaModal"> 
+                <img src="https://drive.google.com/uc?export=view&id=1xTDp_N5N7ewDwHPgzz_6EvBFfj-Mqhod" height="35"/> 
+              </button> 
+  
+           <div class="modal fade" id="editExperienciaModal" tabindex="-1" aria-labelledby="editExperienciaModal" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="editExperienciaModal">Editar Experiencia Laboral </h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="mb-3">
+                    <label for="nombreEducacion" class="form-label">Empresa</label>
+                    <input type="text" class="form-control" id="nameExperiencia" value={{tempExperienciaLaboral.nombreempresa}}  >          
+                  </div>
+                  <div class="mb-3">
+                    <label for="descripcionEducacion" class="form-label">Descripcion </label>
+                    <input type="text" class="form-control" id="descripcionExperiencia" value={{tempExperienciaLaboral.descripcion}}  >          
+                  </div>
+                  <div class="mb-3">
+                    <label for="inicioEducacion" class="form-label">Año Inicio (yyyy)</label>
+                    <input type="text" class="form-control" id="inicioExperiencia" value={{tempExperienciaLaboral.fechainicio}}  >          
+                  </div>    
+                  <div class="mb-3">
+                    <label for="finEducacion" class="form-label">Año Fin (yyyy)</label>
+                    <input type="text" class="form-control" id="finExperiencia" value={{tempExperienciaLaboral.fechafin}}  >          
+                  </div>   
+                  <div class="mb-3">
+                    <label for="esActualExperiencia" class="form-label">Es Trabajo actual?</label>
+                    <input class="form-check-input" type="checkbox" id="myCheck"  name={{tempExperienciaLaboral.estrabajoactual}} >
+                    
+                  </div>   
+                  <div class="mb-3">
+                    <label for="tipoempleoExperiencia" class="form-label">Tipo de Empleo</label>
+                    <input type="text" class="form-control" id="tipoempleoExperiencia" value={{tempExperienciaLaboral.tipoempleo}}  >          
+                  </div>  
+                  <div class="mb-3">
+                    <label for="linkPageEducacion" class="form-label">Link Web</label>
+                    <input type="text" class="form-control" id="linkPageExperiencia" value={{tempExperienciaLaboral.link}}> 
+                  </div>      
+                  <div class="mb-3">
+                    <label for="urlFotoEducacion" class="form-label">URL Foto</label>
+                    <input type="text" class="form-control" id="urlExperiencia" value={{tempExperienciaLaboral.url}}> 
+                  </div>       
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  <button type="submit" (click)="edit(tempExperienciaLaboral.id ?? 0)"   class="btn btn-primary" data-bs-dismiss="modal">Guardar cambios</button>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+  
+          <div class="modal fade" id="borrarEducacionModal" tabindex="-1" aria-labelledby="borrarEducacionModal" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" >Borrar Educacion  </h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="mb-3">
+                    <label class="form-label">Desea borrar la experiencia en {{tempExperienciaLaboral.nombreempresa}}?</label>             
+                  </div>           
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  <button type="button"   (click)="delete(tempExperienciaLaboral.id)" class="btn btn-danger" data-bs-dismiss="modal">Borrar</button>
+                </div>
+              </div>
+            </div>
+          </div>  
+   
+            </div>
+          </div>    
+  
+        </div> 
+  
+    </div>
+   
+   

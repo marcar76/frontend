@@ -16,18 +16,18 @@ export class ExperiencialaboralService {
 
   public getExperienciaLaboral():Observable<experienciaLaboral[]> {
     
-      return this.http.get<experienciaLaboral[]>(this.URL + 'list/experienciaLaboral');
+      return this.http.get<experienciaLaboral[]>(this.URL + 'list/experiencialaboral');
   }
 
   public updateExperienciaLaboral(  experienciaLaboral: experienciaLaboral):Observable<experienciaLaboral>{
-    return this.http.put<experienciaLaboral>(this.URL + 'save/experienciaLaboral/',experienciaLaboral);
+    return this.http.put<experienciaLaboral>(this.URL + 'save/experiencialaboral/',experienciaLaboral);
   }
   
   public borrarExperienciaLaboral(id?: number ):Observable<any>{
-    return this.http.delete<any>(this.URL + 'delete/experienciaLaboral/' + id);
+    return this.http.delete<any>(this.URL + 'delete/experiencialaboral/' + id);
   }
   public createExperienciaLaboral(experienciaLaboral: experienciaLaboral):Observable<experienciaLaboral>{
-    return this.http.post<experienciaLaboral>(this.URL + 'new/experienciaLaboral',experienciaLaboral);
+    return this.http.post<experienciaLaboral>(this.URL + 'new/experiencialaboral',experienciaLaboral);
   }
   
 }

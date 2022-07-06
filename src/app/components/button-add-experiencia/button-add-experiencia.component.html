@@ -1,0 +1,96 @@
+<button type="button"  style="background-color:transparent; border-color:transparent;" data-bs-toggle="modal" data-bs-target="#addExperiencia" >   
+    <img src="https://drive.google.com/uc?export=view&id=1mA4JNTuOXpcmgWjGnizPsgpvoYeCX3ZR" height="35"/>  Agregar Experiencia Laboral
+ </button>
+
+
+ <div class="modal fade" id="addExperiencia" tabindex="-1" aria-labelledby="addExperiencia" aria-hidden="true">
+   <div class="modal-dialog">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title" id="addProyecto"> Agregar Experiencia</h5>
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+       </div>
+       <div class="modal-body">
+         <div class="mb-3">
+           <label for="addNameExperiencia" class="form-label">Empresa</label>
+           <input type="text" class="form-control" id="addNameExperiencia"  >          
+         </div>
+         
+         <div class="mb-3">
+           <label for="addDescripcionExperiencia" class="form-label">Descripcion</label>
+           <input type="text" class="form-control" id="addDescripcionExperiencia" > 
+         </div>
+
+         <div class="mb-3">
+            <label for="addfechaInicioExperiencia" class="form-label">Año Inicio (yyyy)</label>
+            <input type="text" class="form-control" id="addfechaInicioExperiencia"  >          
+          </div>    
+          <div class="mb-3">
+            <label for="addfechaFinExperiencia" class="form-label">Año Fin (yyyy)</label>
+            <input type="text" class="form-control" id="addfechaFinExperiencia" >          
+          </div>    
+          <div class="mb-3">
+            <label for="esActualExperiencia" class="form-label">Es Trabajo actual?</label>
+            <input class="form-check-input" type="checkbox" id="myCheck">            
+          </div>  
+          <div class="mb-3">
+            <label for="addtipoempleoExperiencia" class="form-label">Tipo de empleo</label>
+           <!--  <input type="text" class="form-control" id="addtipoempleoExperiencia" >  -->         
+          </div>  
+          <div class="dropdown">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+              Dropdown button
+            </button>
+            <ul class="dropdown-menu" id="addtipoempleoExperiencia">
+              <li><a class="dropdown-item" href="#">Link 1</a></li>
+              <li><a class="dropdown-item" href="#">Link 2</a></li>
+              <li><a class="dropdown-item" href="#">Link 3</a></li>
+            </ul>
+          </div>
+         
+
+         <div class="mb-3">
+           <label for="addUrlExperiencia" class="form-label">URL Foto</label>
+           <input type="text" class="form-control" id="addUrlExperiencia" > 
+         </div>   
+         
+         <div class="mb-3">
+            <label for="addLinkExperiencia" class="form-label">Link URL Webpage</label>
+            <input type="text" class="form-control" id="addLinkExperiencia" > 
+          </div>  
+
+       </div>
+       <div class="modal-footer">
+         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+         <button type="submit"  (click)="addExperiencia()"  class="btn btn-primary" data-bs-dismiss="modal">Guardar cambios</button>
+       </div>
+     </div>
+   </div>
+ </div>
+
+ <button type="button"  style="background-color:transparent; border-color:transparent;" data-bs-toggle="modal" data-bs-target="#addTipoEmpleo" >   
+    <img src="https://drive.google.com/uc?export=view&id=1mA4JNTuOXpcmgWjGnizPsgpvoYeCX3ZR" height="35"/>  Agregar Tipo de empleo.
+ </button>
+
+
+ <div class="modal fade" id="addTipoEmpleo" tabindex="-1" aria-labelledby="addTipoEmpleo" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addTipoEmpleo"> Agregar Tipo de empleo</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="addNameTipoEmpleo" class="form-label">Tipo de Empleo</label>
+            <input type="text" class="form-control" id="addNameTipoEmpleo" >          
+          </div>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="submit"  (click)="addTipoEmpleo()"  class="btn btn-primary" data-bs-dismiss="modal">Guardar cambios</button>
+        </div>
+      </div>
+    </div>
+  </div>

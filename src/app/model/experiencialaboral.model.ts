@@ -8,7 +8,9 @@ export class experienciaLaboral {
     fechainicio?: string;
     fechafin?: string;
     descripcion?:string;
+    url?: string;
     link?: string;
+    tipoempleo?:string;
 
 constructor(id: number,   
     nombreempresa: string,
@@ -16,7 +18,10 @@ constructor(id: number,
     fechaInicio: string,   
     fechaFin: string ,    
     descripcion:string,      
-    linkpage: string     )
+    url:string,
+    linkpage: string,
+    tipoempleo:string
+         )
     {
 
 
@@ -27,7 +32,9 @@ constructor(id: number,
     this.fechainicio=fechaInicio;
     this.fechafin= fechaFin;     
     this.descripcion= descripcion;    
+    this.url=url;
     this.link=linkpage; 
+    this.tipoempleo=tipoempleo;
 
 }
  
