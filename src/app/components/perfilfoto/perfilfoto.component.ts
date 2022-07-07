@@ -22,7 +22,6 @@ export class PerfilfotoComponent implements OnInit {
     this.getPersona();
     this.loginok= this.getLogin();
 
-    console.log("ngOninit--");
   }
 
    

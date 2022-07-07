@@ -1,4 +1,4 @@
-<div class="container" >
+<div class="container" id="experiencia-cards">
     <h2 class="h1-responsive font-weight-bold text-center my-4">Experiencia Laboral</h2>
        <app-button-add-experiencia  *ngIf=loginok (newExperienciaEvent)="reloadComponent($event)">  </app-button-add-experiencia>  
    
@@ -13,12 +13,12 @@
             <!--   <img src={{experiencia.url}} class="card-img-top" alt="..."  *ngIf="experiencia.url">  -->
               <h5 class="card-title">{{experiencia.nombreempresa}} </h5>
              
-              <p class="card-text"> {{experiencia.descripcion}} </p>
-              <p class="card-text"> Año inicio: 
-              <p class="card-text">{{experiencia.fechainicio}} </p>
-              <p class="card-text">hasta: </p>
-              <p class="card-text">{{experiencia.fechafin}}</p>
-
+              <h3><p class="card-text"> {{experiencia.descripcion}} </p></h3>
+              <h5><p class="card-text"> Desde - Hasta: </p> </h5>
+              
+              <p class="card-text" *ngIf="!experiencia.estrabajoactual">{{experiencia.fechainicio}} - {{experiencia.fechafin}}</p>
+              <p class="card-text" *ngIf="experiencia.estrabajoactual">{{experiencia.fechainicio}} - la actualidad</p>
+              <h5><p class="card-text"> {{experiencia.tipoempleo}} </p> </h5>
               <a href={{experiencia.link}} class="btn btn-primary" *ngIf="experiencia.link">Ir</a>
               
               <button type="button" *ngIf=loginok style="background-color:transparent; border-color:transparent;" (click)="tempExperienciaLaboral = experiencia" data-bs-toggle="modal" data-bs-target="#editExperienciaModal" >   
@@ -54,9 +54,8 @@
                   </div>   
                   <div class="mb-3">
                     <label for="esActualExperiencia" class="form-label">Es Trabajo actual?</label>
-                    <input class="form-check-input" type="checkbox" id="myCheck"  name={{tempExperienciaLaboral.estrabajoactual}} >
-                    
-                  </div>   
+                    <input class="form-check-input" type="checkbox" id="myCheck"  name={{tempExperienciaLaboral.estrabajoactual}} >                    
+                  </div>                     
                   <div class="mb-3">
                     <label for="tipoempleoExperiencia" class="form-label">Tipo de Empleo</label>
                     <input type="text" class="form-control" id="tipoempleoExperiencia" value={{tempExperienciaLaboral.tipoempleo}}  >          
