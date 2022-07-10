@@ -19,6 +19,7 @@ export class ExperienciaComponent implements OnInit {
   loginok!: boolean;
   experienciaLaboral!: experienciaLaboral; 
   tempExperienciaLaboral! : experienciaLaboral;
+  tempTipoEmpleo! : tipoempleo;
 
   checkboxExperiencia!: string;
 
@@ -28,7 +29,8 @@ public tipoEmpleoList: tipoempleo[]=[];
     private router: Router ) { }
 
   ngOnInit(): void {
-    this.tempExperienciaLaboral = new experienciaLaboral(0,"",true,"","","","","","");
+    this.tempTipoEmpleo=new tipoempleo(0,"");
+    this.tempExperienciaLaboral = new experienciaLaboral(0,"",true,"","","","","",this.tempTipoEmpleo);
     
     this.getExperienciaLaboral();
   

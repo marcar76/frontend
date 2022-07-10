@@ -1,4 +1,5 @@
 
+import {tipoempleo} from '../model/tipoempleo.model';
 
 export class experienciaLaboral {
 
@@ -10,7 +11,7 @@ export class experienciaLaboral {
     descripcion?:string;
     url?: string;
     link?: string;
-    tipoempleo?:string;
+    tipoempleo:tipoempleo;
 
 constructor(id: number,   
     nombreempresa: string,
@@ -20,7 +21,7 @@ constructor(id: number,
     descripcion:string,      
     url:string,
     linkpage: string,
-    tipoempleo:string
+    tipoempleo:tipoempleo
          )
     {
 

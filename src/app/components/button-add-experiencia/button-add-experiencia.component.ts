@@ -26,21 +26,23 @@ export class ButtonAddExperienciaComponent   {
     loginok!:boolean;
     public tipoEmpleoList: tipoempleo[]=[];
     public tipoemepleo!: tipoempleo | undefined;
-     
+    mostrartipoempleo!:string | undefined;
 
     ngOnInit(): void {
       this.tipoemepleo = new tipoempleo(0,""); 
-      this.tipoid=0;
+      
       this.getTipoEmpleo();
       
       this.loginok= this.getLogin(); 
     
     }
 
+   
 valor(id?: number, nombre?: string ){
   this.tipoid = id;
   this.tiponame=nombre;
-
+  this.mostrartipoempleo=nombre;
+console.log("id:" + id + "    Name: " +nombre);
 }
 
 
@@ -49,20 +51,27 @@ valor(id?: number, nombre?: string ){
   }
 
     public addExperiencia( ){
-           
+
+      const objetoEmpleo:tipoempleo = new tipoempleo (this.tipoid!, this.tiponame!);
+      console.log("Experiencia-TipoEmpleo:    " + this.tipoid + "  " + this.tiponame);
+
+      const checker=(<HTMLInputElement>document.getElementById("myCheck")).checked
+
       const objeto:experienciaLaboral = new experienciaLaboral (0,
         (<HTMLInputElement>document.getElementById("addNameExperiencia")).value,
-        true,
+        checker,
         (<HTMLInputElement>document.getElementById("addfechaInicioExperiencia")).value,
         (<HTMLInputElement>document.getElementById("addfechaFinExperiencia")).value,
         (<HTMLInputElement>document.getElementById("addDescripcionExperiencia")).value,
         (<HTMLInputElement>document.getElementById("addUrlExperiencia")).value,
         (<HTMLInputElement>document.getElementById("addLinkExperiencia")).value,
-        (<HTMLInputElement>document.getElementById("addtipoempleoExperiencia")).value
+        objetoEmpleo
         );
        
   
       this.newExperiencia(objeto);
+
+      
  
      /*   Clear Form modal */
      (<HTMLInputElement>document.getElementById("addNameExperiencia")).value="";

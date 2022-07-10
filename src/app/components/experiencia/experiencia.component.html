@@ -18,7 +18,7 @@
               
               <p class="card-text" *ngIf="!experiencia.estrabajoactual">{{experiencia.fechainicio}} - {{experiencia.fechafin}}</p>
               <p class="card-text" *ngIf="experiencia.estrabajoactual">{{experiencia.fechainicio}} - la actualidad</p>
-              <h5><p class="card-text"> {{experiencia.tipoempleo}} </p> </h5>
+             <!--  <h5><p class="card-text"> {{experiencia.tipoempleo.nombre_tipo}} </p> </h5> -->
               <a href={{experiencia.link}} class="btn btn-primary" *ngIf="experiencia.link">Ir</a>
               
               <button type="button" *ngIf=loginok style="background-color:transparent; border-color:transparent;" (click)="tempExperienciaLaboral = experiencia" data-bs-toggle="modal" data-bs-target="#editExperienciaModal" >   
@@ -58,7 +58,7 @@
                   </div>                     
                   <div class="mb-3">
                     <label for="tipoempleoExperiencia" class="form-label">Tipo de Empleo</label>
-                    <input type="text" class="form-control" id="tipoempleoExperiencia" value={{tempExperienciaLaboral.tipoempleo}}  >          
+                    <input type="text" class="form-control" id="tipoempleoExperiencia" value={{tempExperienciaLaboral.tipoempleo.nombre_tipo}}  >          
                   </div>  
                   <div class="mb-3">
                     <label for="linkPageEducacion" class="form-label">Link Web</label>
@@ -78,11 +78,11 @@
             </div>
           </div>
   
-          <div class="modal fade" id="borrarEducacionModal" tabindex="-1" aria-labelledby="borrarEducacionModal" aria-hidden="true">
+          <div class="modal fade" id="borrarExperienciaModal" tabindex="-1" aria-labelledby="borrarExperienciaModal" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" >Borrar Educacion  </h5>
+                  <h5 class="modal-title" >Borrar Experiencia  </h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
