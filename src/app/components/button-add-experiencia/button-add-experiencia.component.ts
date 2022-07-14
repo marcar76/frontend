@@ -27,9 +27,12 @@ export class ButtonAddExperienciaComponent   {
     public tipoEmpleoList: tipoempleo[]=[];
     public tipoemepleo!: tipoempleo | undefined;
     mostrartipoempleo!:string | undefined;
+    tempObjetoExperiencia!: experienciaLaboral;
 
     ngOnInit(): void {
-      this.tipoemepleo = new tipoempleo(0,""); 
+      this.tipoemepleo = new tipoempleo(0,"");
+      this.tempObjetoExperiencia = new experienciaLaboral (0, "",true, "",    "",     "","",    "",this.tipoemepleo);
+       
       
       this.getTipoEmpleo();
       
@@ -52,7 +55,7 @@ console.log("id:" + id + "    Name: " +nombre);
 
     public addExperiencia( ){
 
-      const objetoEmpleo:tipoempleo = new tipoempleo (this.tipoid!, this.tiponame!);
+      const objetoEmpleo:tipoempleo = new tipoempleo (this.tipoid!, this.tiponame! );
       console.log("Experiencia-TipoEmpleo:    " + this.tipoid + "  " + this.tiponame);
 
       const checker=(<HTMLInputElement>document.getElementById("myCheck")).checked
@@ -66,6 +69,7 @@ console.log("id:" + id + "    Name: " +nombre);
         (<HTMLInputElement>document.getElementById("addUrlExperiencia")).value,
         (<HTMLInputElement>document.getElementById("addLinkExperiencia")).value,
         objetoEmpleo
+
         );
        
   
@@ -111,10 +115,12 @@ public getTipoEmpleo():void{
 
 
 addTipoEmpleo(){
+
+  
   const objeto:tipoempleo = new tipoempleo (0,
     (<HTMLInputElement>document.getElementById("addNameTipoEmpleo")).value );
     this.newTipoEmpleo(objeto);
-
+    const objetoExperiencia:experienciaLaboral = new experienciaLaboral (0, "",true, "",    "",     "","",    "", objeto);
     /* Clear form */
     (<HTMLInputElement>document.getElementById("addNameTipoEmpleo")).value ="";
     

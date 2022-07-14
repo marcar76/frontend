@@ -1,5 +1,6 @@
+import { tipoempleo } from "./tipoempleo.model";
 
-import {tipoempleo} from '../model/tipoempleo.model';
+
 
 export class experienciaLaboral {
 
@@ -11,9 +12,10 @@ export class experienciaLaboral {
     descripcion?:string;
     url?: string;
     link?: string;
-    tipoempleo:tipoempleo;
-
-constructor(id: number,   
+    tipoempleo?: tipoempleo;
+    
+    /* id: number, this.id= id;*/
+constructor(   id: number,
     nombreempresa: string,
     estrabajoactual:boolean,   
     fechaInicio: string,   
@@ -21,13 +23,14 @@ constructor(id: number,
     descripcion:string,      
     url:string,
     linkpage: string,
-    tipoempleo:tipoempleo
+    tipoempleo: tipoempleo
+    
          )
     {
 
 
 
-    this.id= id;
+        this.id= id;
     this.nombreempresa=nombreempresa;
     this.estrabajoactual=estrabajoactual;
     this.fechainicio=fechaInicio;

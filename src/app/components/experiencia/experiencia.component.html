@@ -1,5 +1,8 @@
 <div class="container" id="experiencia-cards">
-    <h2 class="h1-responsive font-weight-bold text-center my-4">Experiencia Laboral</h2>
+  <hr class="bg-info border-2 border-top border-info">
+    <h2 class="col-sm-6 h1-responsive font-weight-bold text-center text-white my-4 bg-info">Experiencia Laboral</h2>
+    
+
        <app-button-add-experiencia  *ngIf=loginok (newExperienciaEvent)="reloadComponent($event)">  </app-button-add-experiencia>  
    
   <!-- ......... -->
@@ -18,14 +21,14 @@
               
               <p class="card-text" *ngIf="!experiencia.estrabajoactual">{{experiencia.fechainicio}} - {{experiencia.fechafin}}</p>
               <p class="card-text" *ngIf="experiencia.estrabajoactual">{{experiencia.fechainicio}} - la actualidad</p>
-             <!--  <h5><p class="card-text"> {{experiencia.tipoempleo.nombre_tipo}} </p> </h5> -->
+               <!-- <h5><p class="card-text"> {{experiencia}} </p> </h5>  -->
               <a href={{experiencia.link}} class="btn btn-primary" *ngIf="experiencia.link">Ir</a>
               
               <button type="button" *ngIf=loginok style="background-color:transparent; border-color:transparent;" (click)="tempExperienciaLaboral = experiencia" data-bs-toggle="modal" data-bs-target="#editExperienciaModal" >   
-                <img src="https://drive.google.com/uc?export=view&id=1_Nq57MSqiGI3OWkRIUdxbUQG-cvpDQIp" height="35"/>                
+                <img src="../../../assets/images/edit.png" height="35"/>                
               </button>
               <button type="submit"  *ngIf=loginok style="background-color:transparent; border-color:transparent;" (click)="tempExperienciaLaboral = experiencia" data-bs-toggle="modal" data-bs-target="#borrarExperienciaModal"> 
-                <img src="https://drive.google.com/uc?export=view&id=1xTDp_N5N7ewDwHPgzz_6EvBFfj-Mqhod" height="35"/> 
+                <img src="../../../assets/images/delete.png" height="35"/> 
               </button> 
   
            <div class="modal fade" id="editExperienciaModal" tabindex="-1" aria-labelledby="editExperienciaModal" aria-hidden="true">
@@ -56,10 +59,10 @@
                     <label for="esActualExperiencia" class="form-label">Es Trabajo actual?</label>
                     <input class="form-check-input" type="checkbox" id="myCheck"  name={{tempExperienciaLaboral.estrabajoactual}} >                    
                   </div>                     
-                  <div class="mb-3">
+                  <!-- <div class="mb-3">
                     <label for="tipoempleoExperiencia" class="form-label">Tipo de Empleo</label>
                     <input type="text" class="form-control" id="tipoempleoExperiencia" value={{tempExperienciaLaboral.tipoempleo.nombre_tipo}}  >          
-                  </div>  
+                  </div>   -->
                   <div class="mb-3">
                     <label for="linkPageEducacion" class="form-label">Link Web</label>
                     <input type="text" class="form-control" id="linkPageExperiencia" value={{tempExperienciaLaboral.link}}> 

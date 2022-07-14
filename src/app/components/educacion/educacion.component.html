@@ -1,5 +1,7 @@
 <div class="container" id="educacion-cards">
-    <h2 class="h1-responsive font-weight-bold text-center my-4">Educacion</h2>
+  <hr class="bg-info border-2 border-top border-info">
+  <h2 class="col-sm-6 h1-responsive font-weight-bold text-center text-white my-4 bg-info">Educacion</h2>
+
        <app-button-add-educacion  *ngIf=loginok (newEducacionEvent)="reloadComponent($event)">  </app-button-add-educacion>  
    
   <!-- ......... -->
@@ -22,10 +24,10 @@
               <a href={{educacion.link}} class="btn btn-primary">Ir</a>
               
               <button type="button" *ngIf=loginok style="background-color:transparent; border-color:transparent;" (click)="tempEducacion = educacion" data-bs-toggle="modal" data-bs-target="#editEducacionModal" >   
-                <img src="https://drive.google.com/uc?export=view&id=1_Nq57MSqiGI3OWkRIUdxbUQG-cvpDQIp" height="35"/>                
+                <img src="../../../assets/images/edit.png" height="35"/>               
               </button>
               <button type="submit"  *ngIf=loginok style="background-color:transparent; border-color:transparent;" (click)="tempEducacion = educacion" data-bs-toggle="modal" data-bs-target="#borrarEducacionModal"> 
-                <img src="https://drive.google.com/uc?export=view&id=1xTDp_N5N7ewDwHPgzz_6EvBFfj-Mqhod" height="35"/> 
+                <img src="../../../assets/images/delete.png" height="35"/> 
               </button> 
   
            <div class="modal fade" id="editEducacionModal" tabindex="-1" aria-labelledby="editEducacionModal" aria-hidden="true">
@@ -84,7 +86,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                  <button type="button"   (click)="delete(tempEducacion.id)" class="btn btn-danger" data-bs-dismiss="modal">Borrar</button>
+                  <button type="button"   (click)="delete(tempEducacion.id)" class="btn btn-danger" data-bs-dismiss="modal"  >Borrar</button>
                 </div>
               </div>
             </div>
