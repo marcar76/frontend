@@ -20,8 +20,11 @@ export class ExperienciaComponent implements OnInit {
   experienciaLaboral!: experienciaLaboral; 
   tempExperienciaLaboral! : experienciaLaboral;
   tempTipoEmpleo! : tipoempleo;
-
-  checkboxExperiencia!: string;
+  tipoid!:number | undefined; 
+  tiponame!:string | undefined;
+  mostrartipoempleo!:string | undefined;
+  checkervalue!:boolean; 
+  tipoNuevo!:string | undefined;
 
 public tipoEmpleoList: tipoempleo[]=[];
 
@@ -30,14 +33,21 @@ public tipoEmpleoList: tipoempleo[]=[];
 
   ngOnInit(): void {
     this.tempTipoEmpleo=new tipoempleo(0,"");
-    this.tempExperienciaLaboral = new experienciaLaboral(0,"",true,"","","","","",this.tempTipoEmpleo);
+    this.tempExperienciaLaboral = new experienciaLaboral(0,"",true,0,0,"","","",this.tempTipoEmpleo);
     
     this.getExperienciaLaboral();
   
     this.loginok= this.getLogin(); 
   
   }
-
+   
+  valor(id?: number, nombre?: string ){
+    this.tipoid = id;
+    this.tiponame=nombre;
+    this.mostrartipoempleo=nombre;
+   
+  }
+  
   public getExperienciaLaboral():void{  
     this.experienciaLaboralService.getExperienciaLaboral().subscribe( { 
      next: (response: experienciaLaboral[] ) => {
@@ -70,32 +80,30 @@ public getLogin(){
    return this.login.loginok();
 }
 
-edit(id: number ):void{
- console.log("Edit: " + id);
+ 
 
 
- this.checkboxExperiencia = (<HTMLInputElement>document.getElementById("esActualExperiencia")).value
+saveChanges(id: number ):void{ 
 
- console.log("checkbox:" + this.checkboxExperiencia);
-/* 
+ const objetoEmpleo:tipoempleo = new tipoempleo (this.tipoid!, this.tiponame! );
+
+ let checker=(<HTMLInputElement>document.getElementById("myCheckBox")).checked;
+  
  const objeto:experienciaLaboral = new experienciaLaboral (id, 
      (<HTMLInputElement>document.getElementById("nameExperiencia")).value,
-     this.checkboxExperiencia,
-     (<HTMLInputElement>document.getElementById("inicioExperiencia")).value,
-     (<HTMLInputElement>document.getElementById("finExperiencia")).value,
+     checker,
+     parseInt((<HTMLInputElement>document.getElementById("inicioExperiencia")).value),
+     parseInt((<HTMLInputElement>document.getElementById("finExperiencia")).value),
      (<HTMLInputElement>document.getElementById("descripcionExperiencia")).value,            
      (<HTMLInputElement>document.getElementById("urlExperiencia")).value,       
      (<HTMLInputElement>document.getElementById("linkPageExperiencia")).value,
-     (<HTMLInputElement>document.getElementById("tipoempleoExperiencia")).value    
+     objetoEmpleo    
    
-   );
- 
-  
- console.log("Edit Educ: " +  objeto.descripcion) ;
+   ); 
 
  this.updateExperienciaLaboral(objeto);  
  this.reloadComponent(true);
-*/
+ 
 
 }
 

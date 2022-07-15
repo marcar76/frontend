@@ -15,7 +15,7 @@ import { EducacionComponent } from './components/educacion/educacion.component';
 import { LoginComponent } from './components/login/login.component';
 import { ButtonEditComponent } from './components/button-edit-persona/button-edit-persona.component';
 import { ButtonEditSkillsComponent } from './components/button-add-skills/button-add-skills.component';
-import{ObjToArrayPipe} from './objToArray.pipe';
+/* import {ObjToArrayPipe} from './objToArray.pipe'; */
 import { FormsModule } from '@angular/forms';
 import { ButtonAddProyectoComponent } from './components/button-add-proyecto/button-add-proyecto.component';
 
@@ -37,7 +37,7 @@ import { ButtonAddExperienciaComponent } from './components/button-add-experienc
     EducacionComponent,
     LoginComponent, 
     ButtonEditComponent, ButtonEditSkillsComponent,
-    ObjToArrayPipe,
+    /* ObjToArrayPipe, */
     ButtonAddProyectoComponent,     
     ButtonAddEducacionComponent, DatearPipe, FormularioEditComponent, ButtonAddExperienciaComponent,
      

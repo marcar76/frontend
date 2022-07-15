@@ -16,12 +16,9 @@
               <h5 class="card-title">{{educacion.nombreeducacion}} </h5>
              
               <p class="card-text"> {{educacion.descripcion}} </p>
-              <p class="card-text"> Año inicio: 
-              <p class="card-text">{{educacion.fechainicio}} </p>
-              <p class="card-text">hasta: </p>
-              <p class="card-text">{{educacion.fechafin}}</p>
-
-              <a href={{educacion.link}} class="btn btn-primary">Ir</a>
+              <p class="card-text"> Desde/Hasta: {{educacion.fechainicio}} - {{educacion.fechafin}}</p>
+              <a href={{educacion.link}} target="_blanks"><img src="../../../assets/images/url.png" height="35"/></a>
+               
               
               <button type="button" *ngIf=loginok style="background-color:transparent; border-color:transparent;" (click)="tempEducacion = educacion" data-bs-toggle="modal" data-bs-target="#editEducacionModal" >   
                 <img src="../../../assets/images/edit.png" height="35"/>               

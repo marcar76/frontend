@@ -13,18 +13,18 @@
             
             <div class="card-body">
    
-            <!--   <img src={{experiencia.url}} class="card-img-top" alt="..."  *ngIf="experiencia.url">  -->
-              <h5 class="card-title">{{experiencia.nombreempresa}} </h5>
+              <img src={{experiencia.url}} class="card-img-top" alt="..."  *ngIf="experiencia.url">  
+              <h3 class="card-title">{{experiencia.nombreempresa}} </h3>
              
-              <h3><p class="card-text"> {{experiencia.descripcion}} </p></h3>
-              <h5><p class="card-text"> Desde - Hasta: </p> </h5>
-              
+              <h5><p class="card-text"> {{experiencia.descripcion}} </p></h5>
+              <h6><p class="card-text"> Desde - Hasta: </p> </h6>              
               <p class="card-text" *ngIf="!experiencia.estrabajoactual">{{experiencia.fechainicio}} - {{experiencia.fechafin}}</p>
               <p class="card-text" *ngIf="experiencia.estrabajoactual">{{experiencia.fechainicio}} - la actualidad</p>
-               <!-- <h5><p class="card-text"> {{experiencia}} </p> </h5>  -->
-              <a href={{experiencia.link}} class="btn btn-primary" *ngIf="experiencia.link">Ir</a>
+              <h6><p class="card-text" >Modalidad: {{experiencia.tipoempleo?.nombre_tipo}}</p></h6>
+               
+              <a href={{experiencia.link}} target="_blanks" *ngIf="experiencia.link"><img src="../../../assets/images/url.png" height="35"/></a>
               
-              <button type="button" *ngIf=loginok style="background-color:transparent; border-color:transparent;" (click)="tempExperienciaLaboral = experiencia" data-bs-toggle="modal" data-bs-target="#editExperienciaModal" >   
+              <button type="button" *ngIf=loginok style="background-color:transparent; border-color:transparent;" (click)="tempExperienciaLaboral = experiencia; getTipoEmpleo()" data-bs-toggle="modal" data-bs-target="#editExperienciaModal" >   
                 <img src="../../../assets/images/edit.png" height="35"/>                
               </button>
               <button type="submit"  *ngIf=loginok style="background-color:transparent; border-color:transparent;" (click)="tempExperienciaLaboral = experiencia" data-bs-toggle="modal" data-bs-target="#borrarExperienciaModal"> 
@@ -40,41 +40,66 @@
                 </div>
                 <div class="modal-body">
                   <div class="mb-3">
-                    <label for="nombreEducacion" class="form-label">Empresa</label>
+                    <label for="nameExperiencia" class="form-label">Empresa</label>
                     <input type="text" class="form-control" id="nameExperiencia" value={{tempExperienciaLaboral.nombreempresa}}  >          
                   </div>
                   <div class="mb-3">
-                    <label for="descripcionEducacion" class="form-label">Descripcion </label>
+                    <label for="descripcionExperiencia" class="form-label">Descripcion </label>
                     <input type="text" class="form-control" id="descripcionExperiencia" value={{tempExperienciaLaboral.descripcion}}  >          
                   </div>
                   <div class="mb-3">
-                    <label for="inicioEducacion" class="form-label">Año Inicio (yyyy)</label>
-                    <input type="text" class="form-control" id="inicioExperiencia" value={{tempExperienciaLaboral.fechainicio}}  >          
+                    <label for="inicioExperiencia" class="form-label">Año Inicio (yyyy)</label>
+                    <input type="number" class="form-control" id="inicioExperiencia" value={{tempExperienciaLaboral.fechainicio}}  >          
                   </div>    
                   <div class="mb-3">
-                    <label for="finEducacion" class="form-label">Año Fin (yyyy)</label>
-                    <input type="text" class="form-control" id="finExperiencia" value={{tempExperienciaLaboral.fechafin}}  >          
+                    <label for="finExperiencia" class="form-label">Año Fin (yyyy)</label>
+                    <input type="number" class="form-control" id="finExperiencia" value={{tempExperienciaLaboral.fechafin}}  >          
                   </div>   
+
+
+                  <div class="mb-3" *ngIf="tempExperienciaLaboral.estrabajoactual; else NotChecked">
+                    <label for="myCheckBox" class="form-label">Es Trabajo actual?</label>
+                    <input class="form-check-input" type="checkbox" id="myCheckBox"   checked >
+                  </div>     
+                  <ng-template #NotChecked>
+                  <div class="mb-3" >
+                    <label for="myCheckBox" class="form-label">Es Trabajo actual?</label>
+                    <input class="form-check-input" type="checkbox" id="myCheckBox">
+                  </div>     
+                </ng-template>
+
+                  
+                  
+                  <div class="mb-3 row  ">
+                    <div class="col">
+                      <div class="dropdown">
+                        <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown">
+                          Tipo de empleo
+                        </button>
+                        <ul class="dropdown-menu" id="addtipoempleoExperiencia">
+                          <li *ngFor="let tipo of tipoEmpleoList"><a class="dropdown-item"   (click)="valor(tipo.id, tipo.nombre_tipo); tipoNuevo=tipo.nombre_tipo"> {{tipo.nombre_tipo}} </a></li>              
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="col text-dark justify-items-center">
+                          <p><em> Actual:  {{tempExperienciaLaboral?.tipoempleo?.nombre_tipo}}</em></p>
+                          <p><em> Nuevo:  {{tipoNuevo}}</em></p>
+                    </div> 
+                  </div>
+
+
                   <div class="mb-3">
-                    <label for="esActualExperiencia" class="form-label">Es Trabajo actual?</label>
-                    <input class="form-check-input" type="checkbox" id="myCheck"  name={{tempExperienciaLaboral.estrabajoactual}} >                    
-                  </div>                     
-                  <!-- <div class="mb-3">
-                    <label for="tipoempleoExperiencia" class="form-label">Tipo de Empleo</label>
-                    <input type="text" class="form-control" id="tipoempleoExperiencia" value={{tempExperienciaLaboral.tipoempleo.nombre_tipo}}  >          
-                  </div>   -->
-                  <div class="mb-3">
-                    <label for="linkPageEducacion" class="form-label">Link Web</label>
+                    <label for="linkPageExperiencia" class="form-label">Link Web</label>
                     <input type="text" class="form-control" id="linkPageExperiencia" value={{tempExperienciaLaboral.link}}> 
                   </div>      
                   <div class="mb-3">
-                    <label for="urlFotoEducacion" class="form-label">URL Foto</label>
+                    <label for="urlExperiencia" class="form-label">URL Foto</label>
                     <input type="text" class="form-control" id="urlExperiencia" value={{tempExperienciaLaboral.url}}> 
                   </div>       
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                  <button type="submit" (click)="edit(tempExperienciaLaboral.id ?? 0)"   class="btn btn-primary" data-bs-dismiss="modal">Guardar cambios</button>
+                  <button type="submit" (click)="saveChanges(tempExperienciaLaboral.id ?? 0)"   class="btn btn-primary" data-bs-dismiss="modal">Guardar cambios</button>
                 </div>
                 
               </div>

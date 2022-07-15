@@ -16,14 +16,14 @@
             <h5 class="card-title">{{proyecto.nombreproyecto}}  </h5>
            
             <p class="card-text">{{proyecto.descripcion}} </p>
-            <a href={{proyecto.link}} target="_blank" class="btn btn-primary">Ir</a>    
-
+            
+            <a href={{proyecto.link}} target="_blanks" *ngIf="proyecto.link"><img src="../../../assets/images/url.png" height="35"/></a>
             
             <button type="button" *ngIf=loginok style="background-color:transparent; border-color:transparent;" (click)="tempProyecto = proyecto" data-bs-toggle="modal" data-bs-target="#editarProyectoModal" >   
-              <img src="https://drive.google.com/uc?export=view&id=1_Nq57MSqiGI3OWkRIUdxbUQG-cvpDQIp" height="35"/>                
+              <img src="../../../assets/images/edit.png" height="35"/>                
             </button>
             <button type="submit"  *ngIf=loginok style="background-color:transparent; border-color:transparent;" (click)="tempProyecto = proyecto" data-bs-toggle="modal" data-bs-target="#borrarProyectoModal"> 
-              <img src="https://drive.google.com/uc?export=view&id=1xTDp_N5N7ewDwHPgzz_6EvBFfj-Mqhod" height="35"/> 
+              <img src="../../../assets/images/delete.png" height="35"/> 
             </button> 
 
          <div class="modal fade" id="editarProyectoModal" tabindex="-1" aria-labelledby="editarProyectoModal" aria-hidden="true">

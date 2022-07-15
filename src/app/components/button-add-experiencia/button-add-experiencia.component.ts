@@ -31,8 +31,8 @@ export class ButtonAddExperienciaComponent   {
 
     ngOnInit(): void {
       this.tipoemepleo = new tipoempleo(0,"");
-      this.tempObjetoExperiencia = new experienciaLaboral (0, "",true, "",    "",     "","",    "",this.tipoemepleo);
-       
+      this.tempObjetoExperiencia = new experienciaLaboral (0, "",true, 0,    0,     "","",    "",this.tipoemepleo);
+       this.mostrartipoempleo="";
       
       this.getTipoEmpleo();
       
@@ -45,7 +45,7 @@ valor(id?: number, nombre?: string ){
   this.tipoid = id;
   this.tiponame=nombre;
   this.mostrartipoempleo=nombre;
-console.log("id:" + id + "    Name: " +nombre);
+ 
 }
 
 
@@ -63,8 +63,8 @@ console.log("id:" + id + "    Name: " +nombre);
       const objeto:experienciaLaboral = new experienciaLaboral (0,
         (<HTMLInputElement>document.getElementById("addNameExperiencia")).value,
         checker,
-        (<HTMLInputElement>document.getElementById("addfechaInicioExperiencia")).value,
-        (<HTMLInputElement>document.getElementById("addfechaFinExperiencia")).value,
+        parseInt((<HTMLInputElement>document.getElementById("addfechaInicioExperiencia")).value),
+        parseInt((<HTMLInputElement>document.getElementById("addfechaFinExperiencia")).value),
         (<HTMLInputElement>document.getElementById("addDescripcionExperiencia")).value,
         (<HTMLInputElement>document.getElementById("addUrlExperiencia")).value,
         (<HTMLInputElement>document.getElementById("addLinkExperiencia")).value,
@@ -113,6 +113,10 @@ public getTipoEmpleo():void{
  })      
 }
 
+cancelar(){
+  this.tipoid=0; 
+  this.mostrartipoempleo='';
+ }
 
 addTipoEmpleo(){
 
@@ -120,10 +124,10 @@ addTipoEmpleo(){
   const objeto:tipoempleo = new tipoempleo (0,
     (<HTMLInputElement>document.getElementById("addNameTipoEmpleo")).value );
     this.newTipoEmpleo(objeto);
-    const objetoExperiencia:experienciaLaboral = new experienciaLaboral (0, "",true, "",    "",     "","",    "", objeto);
+    const objetoExperiencia:experienciaLaboral = new experienciaLaboral (0, "",true, 0,0,"","","", objeto);
     /* Clear form */
     (<HTMLInputElement>document.getElementById("addNameTipoEmpleo")).value ="";
-    
+     
 }
 
 public newTipoEmpleo(tipoempleo: tipoempleo):void {
