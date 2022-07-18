@@ -108,7 +108,7 @@ public getTipoEmpleo():void{
      this.tipoEmpleoList = response;          
    },
    error: (error: HttpErrorResponse) => {
-     alert("Error" + error.message);
+    /*  alert("Error" + error.message); */
    }
  })      
 }

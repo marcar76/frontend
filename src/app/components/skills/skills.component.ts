@@ -39,9 +39,9 @@ export class SkillsComponent implements OnInit {
         this.skillsList = response;  
          
       },
-      error: (error: HttpErrorResponse) => {
+     /*  error: (error: HttpErrorResponse) => {
         alert("Horror" + error.message);
-      }
+      } */
     })      
   }
   

@@ -24,6 +24,9 @@ import { DatearPipe } from './datear.pipe';
 import { FormularioEditComponent } from './components/formulario-list/formulario-list.component';
 import { ButtonAddExperienciaComponent } from './components/button-add-experiencia/button-add-experiencia.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +50,9 @@ import { ButtonAddExperienciaComponent } from './components/button-add-experienc
   imports: [
     BrowserModule,
     AppRoutingModule,    
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [LoginComponent],
   bootstrap: [AppComponent]

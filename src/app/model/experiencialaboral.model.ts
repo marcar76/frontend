@@ -14,23 +14,23 @@ export class experienciaLaboral {
     link?: string;
     tipoempleo?: tipoempleo;
     
-    /* id: number, this.id= id;*/
-constructor(   id: number,
-    nombreempresa: string,
-    estrabajoactual:boolean,   
-    fechaInicio: number,   
-    fechaFin: number ,    
-    descripcion:string,      
-    url:string,
-    linkpage: string,
-    tipoempleo: tipoempleo
+     
+    constructor(   id: number,
+        nombreempresa: string,
+        estrabajoactual:boolean,   
+        fechaInicio: number,   
+        fechaFin: number ,    
+        descripcion:string,      
+        url:string,
+        linkpage: string,
+        tipoempleo: tipoempleo
     
          )
     {
 
 
 
-        this.id= id;
+    this.id= id;
     this.nombreempresa=nombreempresa;
     this.estrabajoactual=estrabajoactual;
     this.fechainicio=fechaInicio;

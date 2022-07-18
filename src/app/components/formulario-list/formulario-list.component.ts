@@ -31,9 +31,9 @@ public getFormulario():void{
      this.formularioList = response;   
       
    },
-   error: (error: HttpErrorResponse) => {
+ /*   error: (error: HttpErrorResponse) => {
      alert("Horror" + error.message);
-   }
+   } */
  })      
 }
 

@@ -53,9 +53,10 @@ public tipoEmpleoList: tipoempleo[]=[];
      next: (response: experienciaLaboral[] ) => {
        this.experienciaLaboralList = response;          
      },
-     error: (error: HttpErrorResponse) => {
-       alert("Error" + error.message);
-     }
+      error: (error: HttpErrorResponse) => {
+       /* alert("Error" + error.message); */
+       
+     } 
    })      
  }
  
@@ -132,9 +133,9 @@ public getTipoEmpleo():void{
    next: (response: tipoempleo[] ) => {
      this.tipoEmpleoList = response;          
    },
-   error: (error: HttpErrorResponse) => {
+  /*  error: (error: HttpErrorResponse) => {
      alert("Error" + error.message);
-   }
+   } */
  })      
 }
 
