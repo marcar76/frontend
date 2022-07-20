@@ -1,73 +1,73 @@
-<div class="container" >
-<section class="mb-4">    
-    <hr class="bg-info border-2 border-top border-info">
-    <h2 class="col-sm-6 h1-responsive font-weight-bold text-center text-white my-4 bg-info">Contacteme</h2>
- 
-    <p class="text-center w-responsive mx-auto mb-5">Tiene una idea que quiere hacer realidad? Entonces, no dude en contactarse conmigo.</p>
-    <div class="row">
-        <div class="col-md-12 mb-md-0 mb-5">
-            <form id="contact-form" name="contact-form" action="mail.php" method="POST">                
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="md-form mb-0">                            
-                            <label for="name" class="">Nombre</label>
-                            <input type="text" id="name" name="name" class="form-control">
+<div class="container">
+    <section class="mb-4">
+        <hr class="bg-info border-2 border-top border-info" />
+        <h2 class="col-sm-6 h1-responsive font-weight-bold text-center text-white my-4 bg-info">
+            Contacteme
+        </h2>
+
+        <p class="text-center w-responsive mx-auto mb-5">
+            Tiene una idea que quiere hacer realidad? Entonces, no dude en contactarse
+            conmigo.
+        </p>
+        <div class="row">
+            <div class="col-md-12 mb-md-0 mb-5">
+                <form id="contact-form" name="contact-form" action="mail.php" method="POST">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="md-form mb-0 form-floating">
+                                <input type="text" class="form-control" name="name" id="name"
+                                    placeholder="Nombre y Apellido" />
+                                <label for="name">Nombre y Apellido</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="md-form mb-0 form-floating">
+                                <input type="text" class="form-control" name="email" id="email"
+                                    placeholder="Correo electronico" />
+                                <label for="email">Correo electronico</label>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="md-form mb-0">
-                            <label for="email" class="">Correo electrónico</label>
-                            <input type="text" id="email" name="email" class="form-control">                            
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="md-form mt-3 mb-0 form-floating">
+                                <input type="text" class="form-control" name="subject" id="subject"
+                                    placeholder="Asunto" />
+                                <label for="subject">Asunto</label>
+                            </div>
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="md-form form-floating mt-3 mb-0">
+                                <textarea type="text" id="message" name="message" rows="2"
+                                    class="form-control md-textarea" placeholder="Mensaje"></textarea>
+                                <label for="message">Mensaje</label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="text-center text-md-left my-2">
+                    <button type="submit" (click)="addFormulario()" class="btn btn-primary">
+                        Enviar
+                    </button>
+                </div>
+
+
+                <div class="text-center text-md-left my-2">
+                    <div *ngIf="isLogged && isAdmin">
+                        <button type="button" *ngIf="!mostrar" (click)="mostrar = !mostrar" class="btn btn-primary">
+                            Mostrar
+                        </button>
+                        <button type="button" *ngIf="mostrar" (click)="mostrar = !mostrar" class="btn btn-primary">
+                            Ocultar
+                        </button>
                     </div>
                 </div>
-                
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="md-form mb-0">
-                            <label for="subject" class="">Asunto</label>
-                            <input type="text" id="subject" name="subject" class="form-control">                            
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="md-form">
-                            <label for="message">Mensaje</label>
-                            <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea"></textarea>                            
-                        </div>
-                    </div>
-                </div>
-                
-            </form>
-            <div class="text-center text-md-left my-2">                
-                <button type="submit"  (click)="addFormulario()"  class="btn btn-primary">Enviar</button>
-            </div> 
-            <div class="alert alert-success alert-dismissible" *ngIf="FomularioEnviadoOk">
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                <strong>Success!</strong> El formulario se envio correctamente.
+                <app-formulario-list *ngIf="isLogged && isAdmin && mostrar">
+                </app-formulario-list>
             </div>
-
-            
-
-
-
-
-            <div class="alert alert-warning alert-dismissible" *ngIf="FomularioEnviadoBad">
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                <strong>Warning!</strong> El formulario no se pudo enviar.
-            </div>
-
-                <div class="text-center text-md-left my-2">  
-                    <div *ngIf="loginok">
-                        <button type="button"  *ngIf="!mostrar"  (click)="mostrar = !mostrar"  class="btn btn-primary">Mostrar</button>
-                        <button type="button"  *ngIf="mostrar" (click)="mostrar = !mostrar"  class="btn btn-primary">Ocultar</button>
-                    </div>
-                </div>     
-                <app-formulario-list   *ngIf="mostrar">  </app-formulario-list>                
         </div>
-    </div>
-</section>
+    </section>
 </div>
-

@@ -1,6 +1,6 @@
 import { Component, OnInit,Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoginComponent } from '../login/login.component';
+import { LoginComponent } from '../auth/login.component';
 import { proyecto } from 'src/app/model/proyecto.model';
 import { proyectoService } from 'src/app/service/proyecto.service';
 

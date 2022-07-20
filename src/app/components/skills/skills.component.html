@@ -1,87 +1,269 @@
- 
-<div class="container" id="skills-cards" >
-  <hr class="bg-info border-2 border-top border-info">
-    <h2 class="col-sm-6 h1-responsive font-weight-bold text-center text-white my-4 bg-info">Conocimiento</h2>
-    <app-button-add-skills  *ngIf=loginok (newSkillEvent)="reloadComponent($event)" >  </app-button-add-skills> 
- 
-<!-- ......... -->
-<div class="row">      
-      <div class="col-sm-3 my-2" *ngFor="let skill of skillsList  "  > 
-        <div class="card"   >
-          
-          <div class="card-body">
- 
-            <img src={{skill.urlfoto}} class="card-img-top" alt={{skill.conocimiento}} *ngIf="skill.urlfoto">
-            <h5 class="card-title">{{skill.conocimiento}}</h5>
-           
-            <div class="progress">
-              <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" [style.width]="skill.porcentaje +'%'" >{{skill.porcentaje}}%</div>
-            </div>          
+<div class="container" id="skills-cards">
+  <hr class="bg-info border-2 border-top border-info" />
+  <h2 class="col-sm-6 h1-responsive font-weight-bold text-center text-white my-4 bg-info">
+    Conocimiento
+  </h2>
+  <app-button-add-skills *ngIf="isLogged && isAdmin" (newSkillEvent)="reloadComponent($event)">
+  </app-button-add-skills>
 
-            
-            <button type="button" *ngIf=loginok style="background-color:transparent; border-color:transparent;" (click)="tempSkill = skill" data-bs-toggle="modal" data-bs-target="#editSkillModal" >   
-              <img src="../../../assets/images/edit.png" height="35"/>                
-            </button>
-            <button type="submit"  *ngIf=loginok style="background-color:transparent; border-color:transparent;" (click)="tempSkill = skill" data-bs-toggle="modal" data-bs-target="#borrarSkillModal"> 
-              <img src="../../../assets/images/delete.png" height="35"/> 
-            </button> 
+  <!-- ......... -->
+  <div class="row" id="skills-cards">
+    <div class="col-sm-3 my-2" *ngFor="let skill of skillsList">
+      <div class="card">
+        <div class="card-body">
+          <img src="{{ skill.urlfoto }}" class="card-img-top" alt="{{ skill.conocimiento }}" *ngIf="skill.urlfoto" />
+          <h5 class="card-title">{{ skill.conocimiento }}</h5>
 
-         <div class="modal fade" id="editSkillModal" tabindex="-1" aria-labelledby="editarSkillModal" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="editSkillModal">Editar Conocimiento </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <div class="mb-3">
-                  <label for="nombreSkill" class="form-label">Nombre</label>
-                  <input type="text" class="form-control" id="nameSkill" value={{tempSkill.conocimiento}}>          
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75"
+              aria-valuemin="0" aria-valuemax="100" [style.width]="skill.porcentaje + '%'">
+              {{ skill.porcentaje }}%
+            </div>
+          </div>
+
+          <button type="button" *ngIf="isLogged && isAdmin"
+            style="background-color: transparent; border-color: transparent" (click)="tempSkill = skill"
+            data-bs-toggle="modal" data-bs-target="#editSkillModal">
+            <img src="../../../assets/images/edit.png" height="35" />
+          </button>
+          <button type="submit" *ngIf="isLogged && isAdmin"
+            style="background-color: transparent; border-color: transparent" (click)="tempSkill = skill"
+            data-bs-toggle="modal" data-bs-target="#borrarSkillModal">
+            <img src="../../../assets/images/delete.png" height="35" />
+          </button>
+
+          <div class="modal fade" id="editSkillModal" tabindex="-1" aria-labelledby="editarSkillModal"
+            aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="editSkillModal">
+                    Editar Conocimiento
+                  </h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-      
-                <div class="mb-3">
-                  <label for="porcentajeSkill" class="form-label">Porcentaje</label>
-                  <input type="text" class="form-control" id="percentSkill" value={{tempSkill.porcentaje}}> 
+                <div class="modal-body">
+                  <div class="mb-3">
+                    <label for="nombreSkill" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nameSkill" value="{{ tempSkill.conocimiento }}" />
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="porcentajeSkill" class="form-label">Porcentaje</label>
+                    <input type="text" class="form-control" id="percentSkill" value="{{ tempSkill.porcentaje }}" />
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="urlFotoSkill" class="form-label">URL Foto</label>
+                    <input type="text" class="form-control" id="urlFhotoSkill" value="{{ tempSkill.urlfoto }}" />
+                  </div>
                 </div>
-      
-                <div class="mb-3">
-                  <label for="urlFotoSkill" class="form-label">URL Foto</label>
-                  <input type="text" class="form-control" id="urlFhotoSkill" value={{tempSkill.urlfoto}}> 
-                </div>        
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Cerrar
+                  </button>
+                  <button type="submit" (click)="edit(tempSkill.id ?? 0)" class="btn btn-primary"
+                    data-bs-dismiss="modal">
+                    Guardar cambios
+                  </button>
+                </div>
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit" (click)="edit(tempSkill.id ?? 0)"   class="btn btn-primary" data-bs-dismiss="modal" >Guardar cambios</button>
+            </div>
+          </div>
+
+          <div class="modal fade" id="borrarSkillModal" tabindex="-1" aria-labelledby="borrarSkillModal"
+            aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Borrar Conocimiento</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="mb-3">
+                    <label class="form-label">Desea borrar el conocimiento
+                      {{ tempSkill.conocimiento }}?</label>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Cerrar
+                  </button>
+                  <button type="submit" (click)="delete(tempSkill.id)" class="btn btn-danger" data-bs-dismiss="modal">
+                    Borrar
+                  </button>
+                </div>
               </div>
-              
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-        <div class="modal fade" id="borrarSkillModal" tabindex="-1" aria-labelledby="borrarSkillModal" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" >Borrar Conocimiento  </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <div class="mb-3">
-                  <label class="form-label">Desea borrar el conocimiento {{tempSkill.conocimiento}}?</label>             
-                </div>           
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit"   (click)="delete(tempSkill.id)" class="btn btn-danger" data-bs-dismiss="modal">Borrar</button>
-              </div>
+
+
+
+<!-- 
+<div class="container" id="skills-carousel" *ngIf="false">
+  <div id="skills-carousel" class="carousel slide" data-bs-ride="false">
+    <div class="carousel-indicators">
+
+      <button type="button" data-bs-target="#skills-carousel" attr.data-bs-slide-to="{{i}}"
+        class="{{ (i == 0) ? 'active' : '' }}" *ngFor="let skill of skillsList; let i=index" aria-current="true"
+        attr.aria-label="{{'Slide ' + i }}"></button>
+
+    </div>
+    <div class="carousel-inner">
+
+      <div class="carousel-item {{ (i == 0) ? 'active' : '' }}" *ngFor="let skill of skillsList; let i=index">
+        <img src="https://drive.google.com/uc?export=view&id=1nmgGctFxD_Wjaohlb1Z60o_lzcHiHmgZ" class="d-block w-100"
+          alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>First slide label</h5>
+          <p>Some representative placeholder content for the first slide.</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#skills-carousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#skills-carousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+</div> -->
+
+
+
+
+
+
+
+
+<!-- Carousel -->
+
+
+
+<div class="container" id="skills-carousel">
+
+  <div id="skills-carousel" class="carousel slide" data-bs-ride="false">
+    <div class="carousel-indicators">
+
+      <button type="button" data-bs-target="#skills-carousel" attr.data-bs-slide-to="{{i}}"
+        class="{{ (i == 0) ? 'active' : '' }}" *ngFor="let skill of skillsList; let i=index" aria-current="true"
+        attr.aria-label="{{'Slide ' + i }}"></button>
+
+    </div>
+    <div class="carousel-inner">
+
+      <div class="border border-primary carousel-item {{ (i == 0) ? 'active' : '' }}"
+        *ngFor="let skill of skillsList; let i=index">
+        <img src="{{ skill.urlfoto }}" class="d-block w-100" alt="...">
+
+
+        <div class="carousel-caption  ">
+
+          <h3 class="text-dark">{{ skill.conocimiento }}</h3>
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75"
+              aria-valuemin="0" aria-valuemax="100" [style.width]="skill.porcentaje + '%'">
+              {{ skill.porcentaje }}%
             </div>
           </div>
-        </div>  
- 
-          </div>
-        </div>    
 
-      </div> 
+          <!--    <button type="button" *ngIf="isLogged && isAdmin"
+            style="background-color: transparent; border-color: transparent" (click)="tempSkill = skill"
+            data-bs-toggle="modal" data-bs-target="#editSkillModalc">
+            <img src="../../../assets/images/edit.png" height="35" />
+          </button>
+          <button type="submit" *ngIf="isLogged && isAdmin"
+            style="background-color: transparent; border-color: transparent" (click)="tempSkill = skill"
+            data-bs-toggle="modal" data-bs-target="#borrarSkillModalc">
+            <img src="../../../assets/images/delete.png" height="35" />
+          </button>  
+ -->
+        </div>
+      </div>
+
+
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#skills-carousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#skills-carousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+
+  <div class="modal fade" id="editSkillModalc" tabindex="-1" aria-labelledby="editarSkillModalc" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-dark" id="editSkillModalc">
+            Editar Conocimiento
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="nombreSkill" class="form-label text-dark">Nombre</label>
+            <input type="text" class="form-control" id="nameSkill" value="{{ tempSkill.conocimiento }}" />
+          </div>
+
+          <div class="mb-3">
+            <label for="porcentajeSkill" class="form-label text-dark">Porcentaje</label>
+            <input type="text" class="form-control" id="percentSkill" value="{{ tempSkill.porcentaje }}" />
+          </div>
+
+          <div class="mb-3">
+            <label for="urlFotoSkill" class="form-label text-dark">URL Foto</label>
+            <input type="text" class="form-control" id="urlFhotoSkill" value="{{ tempSkill.urlfoto }}" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Cerrar
+          </button>
+          <button type="submit" (click)="edit(tempSkill.id ?? 0)" class="btn btn-primary" data-bs-dismiss="modal">
+            Guardar cambios
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="borrarSkillModalc" tabindex="-1" aria-labelledby="borrarSkillModalc" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-dark">Borrar Conocimiento</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label text-dark">Desea borrar el conocimiento
+              {{ tempSkill.conocimiento }}?</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Cerrar
+          </button>
+          <button type="submit" (click)="delete(tempSkill.id)" class="btn btn-danger" data-bs-dismiss="modal">
+            Borrar
+          </button>
+        </div>
+      </div>
+    </div>
+
+
 
   </div>
- 

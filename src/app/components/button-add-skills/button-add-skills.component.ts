@@ -4,7 +4,7 @@ import {NgForm} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { skills } from 'src/app/model/skills.model';
 import { skillsService } from 'src/app/service/skills.service';
-import { LoginComponent } from '../login/login.component';
+import { LoginComponent } from '../auth/login.component';
 
 @Component({
   selector: 'app-button-add-skills',

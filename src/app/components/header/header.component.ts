@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginComponent } from '../login/login.component';
+import { TokenService } from 'src/app/service/token.service';
+import { LoginComponent } from '../auth/login.component';
 
 @Component({
   selector: 'app-header',
@@ -7,21 +8,30 @@ import { LoginComponent } from '../login/login.component';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  loginok!: boolean;
-  constructor(private login: LoginComponent) { }
+  isLogged = false;
+  constructor(  private tokenService: TokenService) { }
 
-  ngOnInit(): void {
-    this.loginok= this.getLogin();
+  ngOnInit() {
+    if (this.tokenService.getToken()) {
+      this.isLogged = true;
+
+    } else {
+      this.isLogged = false;
+    }
+    console.log("IsLogged in HEADER: " + this.isLogged);
   }
 
-  public getLogin(){
-    return this.login.loginok();
+  onLogOut(): void {
+    this.tokenService.logOut();
+    window.location.reload();
   }
 
-public setlogin(valor:boolean):boolean{
-return this.login.setloginok(valor);
 
-}
+
+
+
+
+
 
 
 }

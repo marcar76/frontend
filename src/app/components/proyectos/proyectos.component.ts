@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ObjectUnsubscribedError, Observable } from 'rxjs';
 import { proyecto } from 'src/app/model/proyecto.model';
 import { proyectoService } from 'src/app/service/proyecto.service';
-import { LoginComponent } from '../login/login.component';
+import { LoginComponent } from '../auth/login.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { TokenService } from 'src/app/service/token.service';
 
 @Component({
   selector: 'app-proyectos',
@@ -17,25 +18,37 @@ export class ProyectosComponent implements OnInit {
 
   proyectoList: proyecto[] = [];
 
-  loginok!: boolean;
+
   proyecto!: proyecto;
   tempProyecto!: proyecto;
 
+  isLogged = false;
+  roles!: string[];
+  isAdmin = false;
 
-
-  constructor(private proyectoService: proyectoService, private login: LoginComponent, private activatedRoute: ActivatedRoute,
+  constructor(private proyectoService: proyectoService, private tokenService: TokenService, private activatedRoute: ActivatedRoute,
     private router: Router, private toastr: ToastrService,) { }
 
   ngOnInit(): void {
+    if (this.tokenService.getToken()) {
+      this.isLogged = true;
+    } else {
+      this.isLogged = false;
+    }
+
+    this.roles = this.tokenService.getAuthorities();
+    this.roles.forEach(rol => {
+      if (rol === 'ROLE_ADMIN') {
+        this.isAdmin = true;
+      }
+    });
+
+
     this.tempProyecto = new proyecto(0, "", "", "", "");
 
     this.getProyecto();
 
-    this.loginok = this.getLogin();
   }
-
-
-
 
   public getProyecto(): void {
     this.proyectoService.getProyectos().subscribe({
@@ -44,12 +57,12 @@ export class ProyectosComponent implements OnInit {
 
       },
       error: (error: HttpErrorResponse) => {
-        /* alert("Error" + error.message); */
-        this.toastr.error(error.error.mensaje, 'Fail', {
-          timeOut: 3000,  positionClass: 'toast-top-center',
-        });
+        /* alert("Error" + error.message);  */
+        /* this.toastr.error("Proyecto" , 'Fail', {
+           timeOut: 10000,  positionClass: 'toast-top-center',
+         });*/
 
-        }
+      }
     })
   }
 
@@ -70,9 +83,6 @@ export class ProyectosComponent implements OnInit {
   }
 
 
-  public getLogin() {
-    return this.login.loginok();
-  }
 
   edit(id: number): void {
 

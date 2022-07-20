@@ -2,7 +2,7 @@
   <hr class="bg-info border-2 border-top border-info">
   <h2 class="col-sm-6 h1-responsive font-weight-bold text-center text-white my-4 bg-info">Educacion</h2>
 
-       <app-button-add-educacion  *ngIf=loginok (newEducacionEvent)="reloadComponent($event)">  </app-button-add-educacion>  
+       <app-button-add-educacion  *ngIf="isLogged && isAdmin" (newEducacionEvent)="reloadComponent($event)">  </app-button-add-educacion>  
    
   <!-- ......... -->
   <div class="row">      
@@ -17,13 +17,13 @@
              
               <p class="card-text"> {{educacion.descripcion}} </p>
               <p class="card-text"> Desde/Hasta: {{educacion.fechainicio}} - {{educacion.fechafin}}</p>
-              <a href={{educacion.link}} target="_blanks"><img src="../../../assets/images/url.png" height="35"/></a>
+              <a href={{educacion.link}} *ngIf=educacion.link target="_blanks"><img src="../../../assets/images/url.png" height="35"/></a>
                
               
-              <button type="button" *ngIf=loginok style="background-color:transparent; border-color:transparent;" (click)="tempEducacion = educacion" data-bs-toggle="modal" data-bs-target="#editEducacionModal" >   
+              <button type="button"  *ngIf="isLogged && isAdmin" style="background-color:transparent; border-color:transparent;" (click)="tempEducacion = educacion" data-bs-toggle="modal" data-bs-target="#editEducacionModal" >   
                 <img src="../../../assets/images/edit.png" height="35"/>               
               </button>
-              <button type="submit"  *ngIf=loginok style="background-color:transparent; border-color:transparent;" (click)="tempEducacion = educacion" data-bs-toggle="modal" data-bs-target="#borrarEducacionModal"> 
+              <button type="submit"  *ngIf="isLogged && isAdmin" style="background-color:transparent; border-color:transparent;" (click)="tempEducacion = educacion" data-bs-toggle="modal" data-bs-target="#borrarEducacionModal"> 
                 <img src="../../../assets/images/delete.png" height="35"/> 
               </button> 
   

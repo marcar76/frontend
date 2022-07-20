@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ObjectUnsubscribedError, Observable } from 'rxjs';
 import { educacion } from 'src/app/model/educacion.model';
 import { educacionService } from 'src/app/service/educacion.service';
-import { LoginComponent } from '../login/login.component';
+
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { TokenService } from 'src/app/service/token.service';
 
 @Component({
   selector: 'app-educacion',
@@ -15,13 +17,14 @@ import { FormsModule } from '@angular/forms';
 export class EducacionComponent implements OnInit {
 
   public educacionList: educacion[] = [];
-  loginok!: boolean;
   educacion!: educacion;
   tempEducacion!: educacion;
 
+  isLogged = false;
+  roles!: string[];
+  isAdmin = false;
 
-  constructor(private educacionService: educacionService, private login: LoginComponent, private activatedRoute: ActivatedRoute,
-    private router: Router) { }
+  constructor(private educacionService: educacionService, private tokenService: TokenService, private toastr: ToastrService) { }
 
   public date: Date = new Date();
 
@@ -29,10 +32,19 @@ export class EducacionComponent implements OnInit {
 
     this.tempEducacion = new educacion(0, "", "", "", "", "", "");
 
-    this.getEducacion();
+    if (this.tokenService.getToken()) {
+      this.isLogged = true;
+    } else {
+      this.isLogged = false;
+    }
 
-    this.loginok = this.getLogin();
-
+    this.roles = this.tokenService.getAuthorities();
+    this.roles.forEach(rol => {
+      if (rol === 'ROLE_ADMIN') {
+        this.isAdmin = true;
+      }
+    });
+    this.getEducacion(); 
   }
 
 
@@ -40,39 +52,43 @@ export class EducacionComponent implements OnInit {
     this.educacionService.getEducacion().subscribe({
       next: (response: educacion[]) => {
         this.educacionList = response;
-
+        
 
       },
-      /*  error: (error: HttpErrorResponse) => {
-         alert("Error" + error.message);
-       } */
+       error: (error: HttpErrorResponse) => {
+        this.toastr.error(error.message , 'Error: ', {
+          timeOut: 3000, positionClass: 'toast-top-center'
+        });
+       } 
     })
   }
 
   public updateEducacion(educacion: educacion): void {
-    this.educacionService.updateEducacion(educacion).subscribe(response => { response = this.educacion; });
+    this.educacionService.updateEducacion(educacion).subscribe(response => { response = this.educacion;
+      this.toastr.success('Educacion actualizada' , '', {
+        timeOut: 3000, positionClass: 'toast-top-center'
+      });
+    });
   }
 
 
 
   public deleteEducacion(id?: number) {
     this.educacionService.borrarEducacion(id).subscribe(data => {
+      this.toastr.info('Educacion borrada' , '', {
+        timeOut: 3000, positionClass: 'toast-top-center'
+      });
+
     },
-      /* err => {
-        alert("Error edu: " + err.error.mensaje);
-      } */
+       err => {
+        this.toastr.error('No pudo eliminar educacion' , 'Error: ', {
+          timeOut: 3000, positionClass: 'toast-top-center'
+        });
+      } 
     );
 
-  }
-
-
-  public getLogin() {
-    return this.login.loginok();
-  }
-
+  } 
   edit(id: number): void {
-    console.log("Edit: " + id);
-
 
     const objeto: educacion = new educacion(id,
       (<HTMLInputElement>document.getElementById("nameEducacion")).value,
@@ -82,11 +98,7 @@ export class EducacionComponent implements OnInit {
       (<HTMLInputElement>document.getElementById("urlFotoEducacion")).value,
       (<HTMLInputElement>document.getElementById("linkPageEducacion")).value
 
-    );
-
-
-    console.log("Edit Educ: " + objeto.descripcion);
-
+    ); 
     this.updateEducacion(objeto);
     this.reloadComponent(true);
   }

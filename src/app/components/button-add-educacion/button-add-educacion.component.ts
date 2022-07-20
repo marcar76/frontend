@@ -1,8 +1,9 @@
 import { Component, OnInit,Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { educacion } from 'src/app/model/educacion.model';
 import { educacionService } from 'src/app/service/educacion.service';
-import { LoginComponent } from '../login/login.component';
+import { LoginComponent } from '../auth/login.component';
 
 @Component({
   selector: 'app-button-add-educacion',
@@ -12,8 +13,7 @@ import { LoginComponent } from '../login/login.component';
 export class ButtonAddEducacionComponent  {
 
   @Output() newEducacionEvent = new EventEmitter<boolean>();
-  constructor(private educacionServ: educacionService, private login: LoginComponent,private activatedRoute: ActivatedRoute,
-    private router: Router) { }
+  constructor(private educacionServ: educacionService, private toastr: ToastrService) { }
 
     public objeto!: educacion;
   
@@ -49,9 +49,14 @@ export class ButtonAddEducacionComponent  {
     public newEducacion(educacion: educacion):void {
         this.educacionServ.createEducacion(educacion).subscribe(
           data => { 
+            this.toastr.success('Educacion agregada.' , '', {
+              timeOut: 3000, positionClass: 'toast-top-center'
+            });
           },
           err => {
-            alert(err.error.mensaje);
+            this.toastr.success(err.error.mensaje , 'Error:', {
+              timeOut: 3000, positionClass: 'toast-top-center'
+            }); 
           }
          );  
     }

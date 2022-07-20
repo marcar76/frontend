@@ -3,7 +3,7 @@
     <h2 class="col-sm-6 h1-responsive font-weight-bold text-center text-white my-4 bg-info">Experiencia Laboral</h2>
     
 
-       <app-button-add-experiencia  *ngIf=loginok (newExperienciaEvent)="reloadComponent($event)">  </app-button-add-experiencia>  
+       <app-button-add-experiencia  *ngIf="isLogged && isAdmin" (newExperienciaEvent)="reloadComponent($event)">  </app-button-add-experiencia>  
    
   <!-- ......... -->
   <div class="row">      
@@ -24,10 +24,10 @@
                
               <a href={{experiencia.link}} target="_blanks" *ngIf="experiencia.link"><img src="../../../assets/images/url.png" height="35"/></a>
               
-              <button type="button" *ngIf=loginok style="background-color:transparent; border-color:transparent;" (click)="tempExperienciaLaboral = experiencia; getTipoEmpleo()" data-bs-toggle="modal" data-bs-target="#editExperienciaModal" >   
+              <button type="button" *ngIf="isLogged && isAdmin"style="background-color:transparent; border-color:transparent;" (click)="tempExperienciaLaboral = experiencia; getTipoEmpleo()" data-bs-toggle="modal" data-bs-target="#editExperienciaModal" >   
                 <img src="../../../assets/images/edit.png" height="35"/>                
               </button>
-              <button type="submit"  *ngIf=loginok style="background-color:transparent; border-color:transparent;" (click)="tempExperienciaLaboral = experiencia" data-bs-toggle="modal" data-bs-target="#borrarExperienciaModal"> 
+              <button type="submit"  *ngIf="isLogged && isAdmin" style="background-color:transparent; border-color:transparent;" (click)="tempExperienciaLaboral = experiencia" data-bs-toggle="modal" data-bs-target="#borrarExperienciaModal"> 
                 <img src="../../../assets/images/delete.png" height="35"/> 
               </button> 
   

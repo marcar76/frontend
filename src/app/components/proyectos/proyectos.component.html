@@ -3,7 +3,7 @@
    
   <h2 class="col-sm-6 h1-responsive font-weight-bold text-center text-white my-4 bg-info">Proyectos</h2>
     <hr class="bg-info border-2 border-top border-info">
-   <app-button-add-proyecto  *ngIf=loginok (newProyectoEvent)="reloadComponent($event)">  </app-button-add-proyecto>  
+   <app-button-add-proyecto  *ngIf="isLogged && isAdmin" (newProyectoEvent)="reloadComponent($event)">  </app-button-add-proyecto>  
  
 <!-- ......... -->
 <div class="row">      
@@ -19,10 +19,10 @@
             
             <a href={{proyecto.link}} target="_blanks" *ngIf="proyecto.link"><img src="../../../assets/images/url.png" height="35"/></a>
             
-            <button type="button" *ngIf=loginok style="background-color:transparent; border-color:transparent;" (click)="tempProyecto = proyecto" data-bs-toggle="modal" data-bs-target="#editarProyectoModal" >   
+            <button type="button" *ngIf="isLogged && isAdmin" style="background-color:transparent; border-color:transparent;" (click)="tempProyecto = proyecto" data-bs-toggle="modal" data-bs-target="#editarProyectoModal" >   
               <img src="../../../assets/images/edit.png" height="35"/>                
             </button>
-            <button type="submit"  *ngIf=loginok style="background-color:transparent; border-color:transparent;" (click)="tempProyecto = proyecto" data-bs-toggle="modal" data-bs-target="#borrarProyectoModal"> 
+            <button type="submit"  *ngIf="isLogged && isAdmin" style="background-color:transparent; border-color:transparent;" (click)="tempProyecto = proyecto" data-bs-toggle="modal" data-bs-target="#borrarProyectoModal"> 
               <img src="../../../assets/images/delete.png" height="35"/> 
             </button> 
 

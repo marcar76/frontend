@@ -1,6 +1,6 @@
 import { Component, OnInit,Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoginComponent } from '../login/login.component';
+import { LoginComponent } from '../auth/login.component';
 import { experienciaLaboral } from 'src/app/model/experiencialaboral.model';
 import { ExperiencialaboralService } from 'src/app/service/experiencialaboral.service';
 import {TipoempleoService} from 'src/app/service/tipoempleo.service';
@@ -23,7 +23,8 @@ export class ButtonAddExperienciaComponent   {
     tipoid!:number | undefined; 
     tiponame!:string | undefined; 
     public objeto!: experienciaLaboral;
-    loginok!:boolean;
+    
+
     public tipoEmpleoList: tipoempleo[]=[];
     public tipoemepleo!: tipoempleo | undefined;
     mostrartipoempleo!:string | undefined;
@@ -36,7 +37,7 @@ export class ButtonAddExperienciaComponent   {
       
       this.getTipoEmpleo();
       
-      this.loginok= this.getLogin(); 
+        
     
     }
 
@@ -49,9 +50,7 @@ valor(id?: number, nombre?: string ){
 }
 
 
-    public getLogin(){
-      return this.login.loginok();
-  }
+  
 
     public addExperiencia( ){
 
