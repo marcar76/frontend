@@ -63,8 +63,8 @@ export class PerfilfotoComponent implements OnInit {
   }
 
   public reloadComponent(evento: boolean) {
-    /*  this.wait(500);
-     this.ngOnInit(); */
+     this.wait(500);
+     this.ngOnInit();
   }
 
 

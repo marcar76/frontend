@@ -7,6 +7,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { TokenService } from 'src/app/service/token.service';
+import { ToastrService } from 'ngx-toastr';
+ 
 
 
 @Component({
@@ -24,14 +26,15 @@ export class SkillsComponent implements OnInit {
   roles!: string[];
   isAdmin = false;
 
+  tempAddSkill!: skills;
+  urlfoto!: string;
 
-
-  constructor(private skillService: skillsService, private tokenService: TokenService) { }
+  constructor(private skillService: skillsService, private tokenService: TokenService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.tempSkill = new skills(0, "", 0, "");
 
-
+    this.tempAddSkill = new skills(0, "", 0, "");
     this.roles = this.tokenService.getAuthorities();
     this.roles.forEach(rol => {
       if (rol === 'ROLE_ADMIN') {
@@ -62,7 +65,16 @@ export class SkillsComponent implements OnInit {
   }
 
   public updateSkill(skill: skills): void {
-    this.skillService.updateSkill(skill).subscribe(response => { response = this.skill; });
+    this.skillService.updateSkill(skill).subscribe(response => {
+      response = this.skill;
+      this.toastr.success('Conocimiento actualizado', '', {
+        timeOut: 3000, positionClass: 'toast-top-center'
+      });
+    }, err => {
+      this.toastr.error('Error al actualizar Conocimiento', '', {
+        timeOut: 3000, positionClass: 'toast-top-center'
+      });
+    });
 
 
   }
@@ -70,9 +82,15 @@ export class SkillsComponent implements OnInit {
 
   public deleteSkill(id?: number) {
     this.skillService.borrarSkill(id).subscribe(data => {
+      this.toastr.success('Conocimiento borrado', '', {
+        timeOut: 3000, positionClass: 'toast-top-center'
+      });
     },
       err => {
-        alert(err.error.mensaje);
+        this.toastr.error('Error al borrar conocimiento', '', {
+          timeOut: 3000, positionClass: 'toast-top-center'
+        });
+
       }
     );
 
@@ -81,10 +99,18 @@ export class SkillsComponent implements OnInit {
 
 
   edit(id: number): void {
+     if (this.tempSkill.urlfoto) {
+      this.urlfoto = this.tempSkill.urlfoto;
+    }
+    else {
+      this.urlfoto = "https://drive.google.com/uc?export=view&id=1chCER2JdSjPDBp_setpoJscXrJ2KLQFF";
+    }
+    const objeto: skills = new skills(this.tempSkill.id!, this.tempSkill.conocimiento!, this.tempSkill.porcentaje!, this.urlfoto);
+  
 
-    const por: number = parseInt((<HTMLInputElement>document.getElementById("percentSkill")).value);
+   /*   const por: number = parseInt((<HTMLInputElement>document.getElementById("percentSkill")).value);
     const objeto: skills = new skills(id, (<HTMLInputElement>document.getElementById("nameSkill")).value, por, (<HTMLInputElement>document.getElementById("urlFhotoSkill")).value);
-
+   */
     this.updateSkill(objeto);
     this.reloadComponent(true);
 
@@ -109,8 +135,40 @@ export class SkillsComponent implements OnInit {
     this.ngOnInit();
   }
 
+  /* Carousel */
 
+  public addSkill() {
+    if (this.tempAddSkill.urlfoto) {
+      this.urlfoto = this.tempAddSkill.urlfoto;
+    }
+    else {
+      this.urlfoto = "https://drive.google.com/uc?export=view&id=1chCER2JdSjPDBp_setpoJscXrJ2KLQFF";
+    }
+    const objetoAdd: skills = new skills(0, this.tempAddSkill.conocimiento!, this.tempAddSkill.porcentaje!, this.urlfoto);
 
+    this.newSkill(objetoAdd);
+    //Clear form modal
+    this.tempAddSkill.conocimiento = "";
+    this.tempAddSkill.porcentaje = 0;
+    this.tempAddSkill.urlfoto = "";
+    this.reloadComponent(true);
+  }
+
+  public newSkill(skill: skills): void {
+    this.skillService.createSkill(skill).subscribe(
+      data => {
+        this.toastr.success('Conocmineto agregado', '', {
+          timeOut: 3000, positionClass: 'toast-top-center'
+        });
+
+      },
+      err => {
+        this.toastr.error('Error al agregar Conocmineto', '', {
+          timeOut: 3000, positionClass: 'toast-top-center'
+        });
+      }
+    );
+  }
 
 
 

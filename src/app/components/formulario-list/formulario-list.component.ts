@@ -23,7 +23,7 @@ export class FormularioEditComponent implements OnInit {
   isAdmin = false;
 
 
-  constructor(private login: LoginComponent, private formularioService: formularioService, private tokenService: TokenService) { }
+  constructor(private login: LoginComponent, private formularioService: formularioService, private tokenService: TokenService,private toastr: ToastrService) { }
 
 
   ngOnInit(): void {
@@ -58,7 +58,13 @@ export class FormularioEditComponent implements OnInit {
   }
 
   public updateFormulario(formulario: formulario): void {
-    this.formularioService.updateFormulario(formulario).subscribe(response => { response = this.formulario; this.ngOnInit(); });
+    this.formularioService.updateFormulario(formulario).subscribe(response => { 
+      response = this.formulario; 
+      this.toastr.success('Mensaje actualizado' , '', {
+        timeOut: 3000, positionClass: 'toast-top-center'
+      });
+      
+      this.ngOnInit(); });
 
   }
 
@@ -66,6 +72,9 @@ export class FormularioEditComponent implements OnInit {
 
   public deleteFormulario(id?: number) {
     this.formularioService.borrarFormulario(id).subscribe(data => {
+      this.toastr.success('Mensaje eliminado' , '', {
+        timeOut: 3000, positionClass: 'toast-top-center'
+      });
       this.ngOnInit();
     },
       err => {
@@ -80,7 +89,7 @@ export class FormularioEditComponent implements OnInit {
 
 
   edit(id: number): void {
-    console.log("Edit: " + id);
+     
 
 
     const objeto: formulario = new formulario(id,
@@ -91,7 +100,7 @@ export class FormularioEditComponent implements OnInit {
       (<HTMLInputElement>document.getElementById("notasFormulario")).value
     );
 
-    console.log("Edit formulario: " + objeto.nombre);
+     
 
     this.updateFormulario(objeto);
 

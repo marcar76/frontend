@@ -1,22 +1,12 @@
- @media (min-width: 768px) {
+  @media (min-width: 768px) {
     #skills-carousel {
       display: none;
     }
-  } 
+  }  
 
  @media (min-width: 0px) and (max-width: 767px) {
    #skills-cards {
      display: none;
    }
 
- }
-  /* 
- .carousel-inner>.item>img {
-  position: absolute;
-   top: 0;
-   left: 0; */
-   /* width: 100% !important;; */
-   /* height: 500px !important;  */
-   /*  max-width:600px !important;  
-   height: 300px !important;
- } */
+ } 

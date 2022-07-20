@@ -12,7 +12,7 @@ import { TokenService } from 'src/app/service/token.service';
   styleUrls: ['./formulario.component.css']
 })
 export class FormularioComponent   {
-  loginok!: boolean;
+   
   formulario!: formulario;
   mostrar:boolean=false;
   FomularioEnviadoOk:boolean=false;
