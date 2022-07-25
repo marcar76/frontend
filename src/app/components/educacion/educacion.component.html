@@ -1,33 +1,95 @@
+<!-- Add Educacion-Cards - START -->
 <div class="container" id="educacion-cards">
   <hr class="bg-info border-2 border-top border-info">
   <h2 class="col-sm-6 h1-responsive font-weight-bold text-center text-white my-4 bg-info">Educacion</h2>
 
-       <app-button-add-educacion  *ngIf="isLogged && isAdmin" (newEducacionEvent)="reloadComponent($event)">  </app-button-add-educacion>  
-   
-  <!-- ......... -->
-  <div class="row">      
-        <div class="col-sm-3 my-2" *ngFor="let educacion of educacionList"  > 
-          
-          <div class="card"  >
-            
-            <div class="card-body">
-   
-              <img src={{educacion.url}} class="card-img-top" alt="..."  *ngIf="educacion.url"> 
-              <h5 class="card-title">{{educacion.nombreeducacion}} </h5>
-             
-              <p class="card-text"> {{educacion.descripcion}} </p>
-              <p class="card-text"> Desde/Hasta: {{educacion.fechainicio}} - {{educacion.fechafin}}</p>
-              <a href={{educacion.link}} *ngIf=educacion.link target="_blanks"><img src="../../../assets/images/url.png" height="35"/></a>
-               
-              
-              <button type="button"  *ngIf="isLogged && isAdmin" style="background-color:transparent; border-color:transparent;" (click)="tempEducacion = educacion" data-bs-toggle="modal" data-bs-target="#editEducacionModal" >   
-                <img src="../../../assets/images/edit.png" height="35"/>               
-              </button>
-              <button type="submit"  *ngIf="isLogged && isAdmin" style="background-color:transparent; border-color:transparent;" (click)="tempEducacion = educacion" data-bs-toggle="modal" data-bs-target="#borrarEducacionModal"> 
-                <img src="../../../assets/images/delete.png" height="35"/> 
-              </button> 
-  
-           <div class="modal fade" id="editEducacionModal" tabindex="-1" aria-labelledby="editEducacionModal" aria-hidden="true">
+
+  <button type="button" style="background-color:transparent; border-color:transparent;" data-bs-toggle="modal"
+    data-bs-target="#addEducacion">
+    <img src="../../../assets/images/add.png" height="35" /> Agregar
+  </button>
+
+  <div class="modal fade" id="addEducacion" tabindex="-1" aria-labelledby="addEducacion" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addEducacion"> Agregar Educacion</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="addNameEducacion" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="addNameEducacion"
+              [(ngModel)]="tempAddEducacion.nombreeducacion">
+          </div>
+
+          <div class="mb-3">
+            <label for="addDescripcionEducacion" class="form-label">Descripcion</label>
+            <input type="text" class="form-control" id="addDescripcionEducacion"
+              [(ngModel)]="tempAddEducacion.descripcion">
+          </div>
+          <div class="mb-3">
+            <label for="addLinkEducacion" class="form-label">Link URL Webpage</label>
+            <input type="text" class="form-control" id="addLinkEducacion" [(ngModel)]="tempAddEducacion.link">
+          </div>
+          <div class="mb-3">
+            <label for="fechaInicioEducacion" class="form-label">Año Inicio (yyyy)</label>
+            <input type="number" class="form-control" id="fechaInicioEducacion"
+              [(ngModel)]="tempAddEducacion.fechainicio">
+          </div>
+          <div class="mb-3">
+            <label for="fechaFinEducacion" class="form-label">Año Fin (yyyy)</label>
+            <input type="number" class="form-control" id="fechaFinEducacion" [(ngModel)]="tempAddEducacion.fechafin">
+          </div>
+
+          <div class="mb-3">
+            <label for="addUrlFotoEducacion" class="form-label">URL Foto</label>
+            <input type="text" class="form-control" id="addUrlFotoEducacion" [(ngModel)]="tempAddEducacion.url">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" (click)="addEducacion()" class="btn btn-primary" data-bs-dismiss="modal">Guardar
+            cambios</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Add Educacion-Cards - END -->
+
+  <!-- Educacion-cards-edit-delete - START -->
+  <div class="row">
+    <div class="col-sm-3 my-2" *ngFor="let educacion of educacionList">
+
+      <div class="card">
+
+        <div class="card-body">
+
+          <img src={{educacion.url}} class="card-img-top" alt="..." *ngIf="educacion.url" height="200" width="250"/>
+          <h5 class="card-title">{{educacion.nombreeducacion}} </h5>
+
+          <p class="card-text"> {{educacion.descripcion}} </p>
+          <p class="card-text"> Desde/Hasta: {{educacion.fechainicio}} - {{educacion.fechafin}}</p>
+          <a href={{educacion.link}} *ngIf=educacion.link target="_blanks"><img src="../../../assets/images/url.png"
+              height="35" /></a>
+
+
+          <button type="button" *ngIf="isLogged && isAdmin"
+            style="background-color:transparent; border-color:transparent;" (click)="tempEducacion = educacion"
+            data-bs-toggle="modal" data-bs-target="#editEducacionModal">
+            <img src="../../../assets/images/edit.png" height="35" />
+          </button>
+          <button type="submit" *ngIf="isLogged && isAdmin"
+            style="background-color:transparent; border-color:transparent;" (click)="tempEducacion = educacion"
+            data-bs-toggle="modal" data-bs-target="#borrarEducacionModal">
+            <img src="../../../assets/images/delete.png" height="35" />
+          </button>
+
+          <div class="modal fade" id="editEducacionModal" tabindex="-1" aria-labelledby="editEducacionModal"
+            aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
@@ -37,63 +99,283 @@
                 <div class="modal-body">
                   <div class="mb-3">
                     <label for="nombreEducacion" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="nameEducacion" value={{tempEducacion.nombreeducacion}}  >          
+                    <input type="text" class="form-control" id="nameEducacion" value={{tempEducacion.nombreeducacion}}
+                      [(ngModel)]="tempEducacion.nombreeducacion">
                   </div>
                   <div class="mb-3">
                     <label for="descripcionEducacion" class="form-label">Descripcion </label>
-                    <input type="text" class="form-control" id="descripcionEducacion" value={{tempEducacion.descripcion}}  >          
+                    <input type="text" class="form-control" id="descripcionEducacion"
+                      value={{tempEducacion.descripcion}} [(ngModel)]="tempEducacion.descripcion">
                   </div>
                   <div class="mb-3">
                     <label for="inicioEducacion" class="form-label">Año Inicio (yyyy)</label>
-                    <input type="text" class="form-control" id="inicioEducacion" value={{tempEducacion.fechainicio}}  >          
-                  </div>    
+                    <input type="text" class="form-control" id="inicioEducacion" value={{tempEducacion.fechainicio}}
+                      [(ngModel)]="tempEducacion.fechainicio">
+                  </div>
                   <div class="mb-3">
                     <label for="finEducacion" class="form-label">Año Fin (yyyy)</label>
-                    <input type="text" class="form-control" id="finEducacion" value={{tempEducacion.fechafin}}  >          
-                  </div>    
+                    <input type="text" class="form-control" id="finEducacion" value={{tempEducacion.fechafin}}
+                      [(ngModel)]="tempEducacion.fechafin">
+                  </div>
                   <div class="mb-3">
                     <label for="linkPageEducacion" class="form-label">Link Web</label>
-                    <input type="text" class="form-control" id="linkPageEducacion" value={{tempEducacion.link}}> 
-                  </div>      
+                    <input type="text" class="form-control" id="linkPageEducacion" value={{tempEducacion.link}}
+                      [(ngModel)]="tempEducacion.link">
+                  </div>
                   <div class="mb-3">
                     <label for="urlFotoEducacion" class="form-label">URL Foto</label>
-                    <input type="text" class="form-control" id="urlFotoEducacion" value={{tempEducacion.url}}> 
-                  </div>       
+                    <input type="text" class="form-control" id="urlFotoEducacion" value={{tempEducacion.url}}
+                      [(ngModel)]="tempEducacion.url">
+                  </div>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                  <button type="submit" (click)="edit(tempEducacion.id ?? 0)"   class="btn btn-primary" data-bs-dismiss="modal">Guardar cambios</button>
+                  <button type="submit" (click)="edit(tempEducacion.id ?? 0)" class="btn btn-primary"
+                    data-bs-dismiss="modal">Guardar cambios</button>
                 </div>
-                
+
               </div>
             </div>
           </div>
-  
-          <div class="modal fade" id="borrarEducacionModal" tabindex="-1" aria-labelledby="borrarEducacionModal" aria-hidden="true">
+
+          <div class="modal fade" id="borrarEducacionModal" tabindex="-1" aria-labelledby="borrarEducacionModal"
+            aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" >Borrar Educacion  </h5>
+                  <h5 class="modal-title">Borrar Educacion </h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                   <div class="mb-3">
-                    <label class="form-label">Desea borrar el conocimiento {{tempEducacion.nombreeducacion}}?</label>             
-                  </div>           
+                    <label class="form-label">Desea borrar el conocimiento {{tempEducacion.nombreeducacion}}?</label>
+                  </div>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                  <button type="button"   (click)="delete(tempEducacion.id)" class="btn btn-danger" data-bs-dismiss="modal"  >Borrar</button>
+                  <button type="button" (click)="delete(tempEducacion.id)" class="btn btn-danger"
+                    data-bs-dismiss="modal">Borrar</button>
                 </div>
               </div>
             </div>
-          </div>  
-   
-            </div>
-          </div>    
-  
-        </div> 
-  
+          </div>
+        </div>
+      </div>
     </div>
-   
-   
+  </div>
+  <!-- Educacion-cards-edit-delete - END -->
+</div>
+
+
+
+
+
+<!-- Educacion-carousel - START -->
+
+
+
+<div class="container" id="educacion-carousel">
+  <hr class="bg-info border-2 border-top border-info" />
+  <h2 class="col-sm-6 h1-responsive font-weight-bold text-center text-white my-4 bg-info">
+    Educacion
+  </h2>
+
+  <button type="button" style="background-color:transparent; border-color:transparent;" data-bs-toggle="modal"
+    data-bs-target="#addEducacionCarousel" *ngIf="isLogged && isAdmin">
+    <img src="../../../assets/images/add.png" height="35" /> Agregar
+  </button>
+
+  <div class="modal fade" id="addEducacionCarousel" tabindex="-1" aria-labelledby="addEducacionCarousel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addEducacionCarousel"> Agregar Educacion</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="nombreEducacion" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombreEducacion" [(ngModel)]="tempEducacion.nombreeducacion">
+          </div>
+
+          <div class="mb-3">
+            <label for="descripcionEducacion" class="form-label">Descripcion</label>
+            <input type="text" class="form-control" id="descripcionEducacion" [(ngModel)]="tempEducacion.descripcion">
+          </div>
+
+          <div class="mb-3">
+            <label for="urlLink" class="form-label">URL Link Web</label>
+            <input type="text" class="form-control" id="urlLink" [(ngModel)]="tempEducacion.link">
+          </div>
+          <div class="mb-3">
+            <label for="urlFotoEducacion" class="form-label">URL Foto</label>
+            <input type="text" class="form-control" id="urlFotoEducacion" [(ngModel)]="tempEducacion.url">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="submit" (click)="addEducacion()" class="btn btn-primary" data-bs-dismiss="modal">Guardar
+            cambios</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div id="educacion-carousel2" class="carousel slide" data-bs-ride="false">
+    <div class="carousel-indicators">
+
+      <button type="button" data-bs-target="#educacion-carousel2" attr.data-bs-slide-to="{{i}}"
+        class="{{ (i == 0) ? 'active' : '' }}" *ngFor="let educacion of educacionList; let i=index" aria-current="true"
+        attr.aria-label="{{'Slide ' + i }}"></button>
+
+    </div>
+    <div class="carousel-inner">
+
+      <div class="border border-primary carousel-item {{ (i == 0) ? 'active' : '' }}"
+        *ngFor="let educacion of educacionList; let i=index">
+
+
+        <img src="{{ educacion.url }}" class="d-block w-100" alt="..." height="300">
+
+
+        <div class="carousel-caption">
+          <div class="row">
+            <h2 class="text-dark">{{ educacion.nombreeducacion }}</h2>
+          </div>
+          <div class="row">
+            <h2 class="text-dark">{{ educacion.descripcion }}</h2>
+          </div>
+
+
+          <div class="row">
+
+            <div class="col">
+              <a href={{educacion.link}} target="_blanks" *ngIf="educacion.link"><img
+                  src="../../../assets/images/url.png" height="35" /></a>
+            </div>
+
+            <div class="col">
+              <button type="button" *ngIf="isLogged && isAdmin"
+                style="background-color: transparent; border-color: transparent" (click)="tempEducacion = educacion"
+                data-bs-toggle="modal" data-bs-target="#editEducacionModalCarousel">
+                <img src="../../../assets/images/edit.png" height="35" />
+              </button>
+            </div>
+            <div class="col">
+              <button type="submit" *ngIf="isLogged && isAdmin"
+                style="background-color: transparent; border-color: transparent" (click)="tempEducacion = educacion"
+                data-bs-toggle="modal" data-bs-target="#borrarEducacionModalCarousel">
+                <img src="../../../assets/images/delete.png" height="35" />
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#educacion-carousel2" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#educacion-carousel2" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <!-- Modals Carousel -- START-->
+
+  <div class="modal fade" id="editEducacionModalCarousel" tabindex="-1" role="dialog"
+    aria-labelledby="editEducacionModalCarousel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-dark" id="editEducacionModalCarousel">
+            Editar Educacion
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="nombreEducacion" class="form-label text-dark">Nombre</label>
+            <input type="text" class="form-control" id="nombreEducacion" value="{{ tempEducacion.nombreeducacion }}"
+              [(ngModel)]="tempEducacion.nombreeducacion" />
+          </div>
+
+          <div class="mb-3">
+            <label for="descripcionEducacion" class="form-label text-dark">Descripcion</label>
+            <input type="text" class="form-control" id="descripcionEducacion" value="{{ tempEducacion.descripcion  }}"
+              [(ngModel)]="tempEducacion.descripcion" />
+          </div>
+
+          <div class="mb-3">
+            <label for="fechaInicioEducacion" class="form-label text-dark">Año Inicio (yyyy)</label>
+            <input type="text" class="form-control" id="fechaInicioEducacion" value="{{ tempEducacion.fechainicio  }}"
+              [(ngModel)]="tempEducacion.fechainicio" />
+          </div>
+
+          <div class="mb-3">
+            <label for="fechaFinEducacion" class="form-label text-dark">Año Fin (yyyy)</label>
+            <input type="text" class="form-control" id="fechaFinEducacion" value="{{ tempEducacion.fechafin  }}"
+              [(ngModel)]="tempEducacion.fechafin" />
+          </div>
+          <div class="mb-3">
+            <label for="linkEducacion" class="form-label text-dark">URL Link Web</label>
+            <input type="text" class="form-control" id="linkEducacion" value="{{ tempEducacion.link }}"
+              [(ngModel)]="tempEducacion.link" />
+          </div>
+
+          <div class="mb-3">
+            <label for="urlFotoEducacion" class="form-label text-dark">URL Foto</label>
+            <input type="text" class="form-control" id="urlFhotoEducacion" value="{{ tempEducacion.url }}"
+              [(ngModel)]="tempEducacion.url" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Cerrar
+          </button>
+          <button type="submit" (click)="edit(tempEducacion.id ?? 0)" class="btn btn-primary" data-bs-dismiss="modal">
+            Guardar cambios
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="borrarEducacionModalCarousel" tabindex="-1" aria-labelledby="borrarEducacionModalCarousel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-dark">Borrar Educacion</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label text-dark">Desea borrar la educacion
+              {{ tempEducacion.nombreeducacion }}?</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Cerrar
+          </button>
+          <button type="submit" (click)="delete(tempEducacion.id)" class="btn btn-danger" data-bs-dismiss="modal">
+            Borrar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal Carousel -- END -->
+
+
+</div>
+
+<!-- educacion-carousel - END -->

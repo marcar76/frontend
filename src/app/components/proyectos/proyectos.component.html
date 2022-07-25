@@ -1,94 +1,350 @@
- 
-<div class="container" id="proyectos-cards">
-   
+<!-- Add Proyectos-Cards - START -->
+<div class="container" id="proyecto-cards">
+
   <h2 class="col-sm-6 h1-responsive font-weight-bold text-center text-white my-4 bg-info">Proyectos</h2>
-    <hr class="bg-info border-2 border-top border-info">
-   <app-button-add-proyecto  *ngIf="isLogged && isAdmin" (newProyectoEvent)="reloadComponent($event)">  </app-button-add-proyecto>  
- 
-<!-- ......... -->
-<div class="row">      
-      <div class="col-sm-3 my-2" *ngFor="let proyecto of proyectoList"> 
-        <div class="card">
-          
-          <div class="card-body">
- 
-            <img src={{proyecto.urlfoto}} class="card-img-top" alt={{proyecto.nombreproyecto}} *ngIf="proyecto.urlfoto"  > 
-            <h5 class="card-title">{{proyecto.nombreproyecto}}  </h5>
-           
-            <p class="card-text">{{proyecto.descripcion}} </p>
-            
-            <a href={{proyecto.link}} target="_blanks" *ngIf="proyecto.link"><img src="../../../assets/images/url.png" height="35"/></a>
-            
-            <button type="button" *ngIf="isLogged && isAdmin" style="background-color:transparent; border-color:transparent;" (click)="tempProyecto = proyecto" data-bs-toggle="modal" data-bs-target="#editarProyectoModal" >   
-              <img src="../../../assets/images/edit.png" height="35"/>                
-            </button>
-            <button type="submit"  *ngIf="isLogged && isAdmin" style="background-color:transparent; border-color:transparent;" (click)="tempProyecto = proyecto" data-bs-toggle="modal" data-bs-target="#borrarProyectoModal"> 
-              <img src="../../../assets/images/delete.png" height="35"/> 
-            </button> 
+  <hr class="bg-info border-2 border-top border-info">
 
-         <div class="modal fade" id="editarProyectoModal" tabindex="-1" aria-labelledby="editarProyectoModal" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="editarProyectoModal">Editar Proyecto </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <div class="mb-3">
-                  <label for="nombreProyecto" class="form-label">Nombre</label>
-                  <input type="text" class="form-control" id="nameProyecto" value={{tempProyecto.nombreproyecto}} >          
+
+
+  <button type="button" style="background-color:transparent; border-color:transparent;" data-bs-toggle="modal"
+    data-bs-target="#addProyecto">
+    <img src="../../../assets/images/add.png" height="35" /> Agregar
+  </button>
+
+  <div class="modal fade" id="addProyecto" tabindex="-1" aria-labelledby="addProyecto" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addProyecto"> Agregar proyecto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="1addNameProyecto" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="addNameProyecto" [(ngModel)]="tempAddProyecto.nombreproyecto">
+          </div>
+
+          <div class="mb-3">
+            <label for="1addDescripcionProyecto" class="form-label">Descripcion</label>
+            <input type="text" class="form-control" id="addDescripcionProyecto"
+              [(ngModel)]="tempAddProyecto.descripcion">
+          </div>
+          <div class="mb-3">
+            <label for="1addUrlFotoProyecto" class="form-label">Link URL Webpage</label>
+            <input type="text" class="form-control" id="addLinkProyecto" [(ngModel)]="tempAddProyecto.link">
+          </div>
+
+          <div class="mb-3">
+            <label for="1addUrlPhotoProyecto" class="form-label">URL Foto</label>
+            <input type="text" class="form-control" id="addUrlFotoProyecto" [(ngModel)]="tempAddProyecto.urlfoto">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="submit" (click)="addProyecto()" class="btn btn-primary" data-bs-dismiss="modal">Guardar
+            cambios</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Proyectos-Cards -END -->
+
+  <!-- Proyectos-cards-edit-delete - START -->
+  <div class="row">
+    <div class="col-sm-3 my-2" *ngFor="let proyecto of proyectoList">
+      <div class="card">
+
+        <div class="card-body">
+
+          <img src={{proyecto.urlfoto}} class="card-img-top" alt={{proyecto.nombreproyecto}} *ngIf="proyecto.urlfoto" height="200" width="250"/>
+          <h5 class="card-title">{{proyecto.nombreproyecto}} </h5>
+
+          <p class="card-text">{{proyecto.descripcion}} </p>
+
+          <a href={{proyecto.link}} target="_blanks" *ngIf="proyecto.link"><img src="../../../assets/images/url.png"
+              height="35" /></a>
+
+          <button type="button" *ngIf="isLogged && isAdmin"
+            style="background-color:transparent; border-color:transparent;" (click)="tempProyecto = proyecto"
+            data-bs-toggle="modal" data-bs-target="#editarProyectoModal">
+            <img src="../../../assets/images/edit.png" height="35" />
+          </button>
+          <button type="submit" *ngIf="isLogged && isAdmin"
+            style="background-color:transparent; border-color:transparent;" (click)="tempProyecto = proyecto"
+            data-bs-toggle="modal" data-bs-target="#borrarProyectoModal">
+            <img src="../../../assets/images/delete.png" height="35" />
+          </button>
+
+          <div class="modal fade" id="editarProyectoModal" tabindex="-1" aria-labelledby="editarProyectoModal"
+            aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="editarProyectoModal">Editar Proyecto </h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                 
-      
-                <div class="mb-3">
-                  <label for="descripcionProyecto" class="form-label">Porcentaje</label>
-                  <input type="text" class="form-control" id="descripcionProyecto" value={{tempProyecto.descripcion}}> 
-                </div> 
-                <div class="mb-3">
-                  <label for="linkProyecto" class="form-label">Link Proyecto</label>
-                  <input type="text" class="form-control" id="linkProyecto" value={{tempProyecto.link}}> 
-                </div>   
-                <div class="mb-3">
-                  <label for="urlFotoProyecto" class="form-label">URL Foto</label>
-                  <input type="text" class="form-control" id="urlFotoProyecto" value={{tempProyecto.urlfoto}}> 
-                </div> 
+                <div class="modal-body">
+                  <div class="mb-3">
+                    <label for="nombreProyecto" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nameProyecto" value={{tempProyecto.nombreproyecto}}
+                      [(ngModel)]="tempProyecto.nombreproyecto">
+                  </div>
+                  <div class="mb-3">
+                    <label for="descripcionProyecto" class="form-label">Descripcion</label>
+                    <input type="text" class="form-control" id="descripcionProyecto" value={{tempProyecto.descripcion}}
+                      [(ngModel)]="tempProyecto.descripcion">
+                  </div>
+                  <div class="mb-3">
+                    <label for="linkProyecto" class="form-label">Link Proyecto</label>
+                    <input type="text" class="form-control" id="linkProyecto" value={{tempProyecto.link}}
+                      [(ngModel)]="tempProyecto.link">
+                  </div>
+                  <div class="mb-3">
+                    <label for="urlFotoProyecto" class="form-label">URL Foto</label>
+                    <input type="text" class="form-control" id="urlFotoProyecto" value={{tempProyecto.urlfoto}}
+                      [(ngModel)]="tempProyecto.urlfoto">
+                  </div>
 
 
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  <button type="submit" (click)="edit(tempProyecto.id ?? 0)" class="btn btn-primary"
+                    data-bs-dismiss="modal">Guardar cambios</button>
+                </div>
+
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit" (click)="edit(tempProyecto.id ?? 0)"   class="btn btn-primary" data-bs-dismiss="modal">Guardar cambios</button>
+            </div>
+          </div>
+
+          <div class="modal fade" id="borrarProyectoModal" tabindex="-1" aria-labelledby="borrarProyectoModal"
+            aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Borrar Proyecto </h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="mb-3">
+                    <label class="form-label">Desea borrar el Proyecto {{tempProyecto.nombreproyecto}}?</label>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  <button type="button" (click)="delete(tempProyecto.id)" class="btn btn-danger"
+                    data-bs-dismiss="modal">Borrar</button>
+                </div>
               </div>
-              
             </div>
           </div>
         </div>
-
-        <div class="modal fade" id="borrarProyectoModal" tabindex="-1" aria-labelledby="borrarProyectoModal" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" >Borrar Proyecto  </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <div class="mb-3">
-                  <label class="form-label">Desea borrar el Proyecto {{tempProyecto.nombreproyecto}}?</label>             
-                </div>           
-              </div>
-              <div class="modal-footer" >
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button"   (click)="delete(tempProyecto.id)" class="btn btn-danger" data-bs-dismiss="modal">Borrar</button>
-              </div>
-            </div>
-          </div>
-        </div>  
- 
-          </div>
-        </div>    
-
-      </div> 
-
+      </div>
+    </div>
   </div>
- 
- 
+  <!-- Proyectos-cards-edit-delete - END -->
+</div>
+
+
+
+
+
+
+<!-- proyecto-carousel - START -->
+
+
+
+<div class="container" id="proyecto-carousel">
+  <hr class="bg-info border-2 border-top border-info" />
+  <h2 class="col-sm-6 h1-responsive font-weight-bold text-center text-white my-4 bg-info">
+    Proyectos
+  </h2>
+
+  <button type="button" style="background-color:transparent; border-color:transparent;" data-bs-toggle="modal"
+    data-bs-target="#addProyectoCarousel" *ngIf="isLogged && isAdmin">
+    <img src="../../../assets/images/add.png" height="35" /> Agregar
+  </button>
+
+  <div class="modal fade" id="addProyectoCarousel" tabindex="-1" aria-labelledby="addProyectoCarousel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addProyectoCarousel"> Agregar Proyecto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="nombreProyecto" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombreProyecto" [(ngModel)]="tempAddProyecto.nombreproyecto">
+          </div>
+
+          <div class="mb-3">
+            <label for="descripcionProyecto" class="form-label">Descripcion</label>
+            <input type="text" class="form-control" id="descripcionProyecto" [(ngModel)]="tempAddProyecto.descripcion">
+          </div>
+
+          <div class="mb-3">
+            <label for="urlLink" class="form-label">URL Link Web</label>
+            <input type="text" class="form-control" id="urlLink" [(ngModel)]="tempAddProyecto.link">
+          </div>
+          <div class="mb-3">
+            <label for="urlFotoProyecto" class="form-label">URL Foto</label>
+            <input type="text" class="form-control" id="urlFotoProyecto" [(ngModel)]="tempAddProyecto.urlfoto">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="submit" (click)="addProyecto()" class="btn btn-primary" data-bs-dismiss="modal">Guardar
+            cambios</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div id="proyecto-carousel2" class="carousel slide" data-bs-ride="false">
+    <div class="carousel-indicators">
+
+      <button type="button" data-bs-target="#proyecto-carousel2" attr.data-bs-slide-to="{{i}}"
+        class="{{ (i == 0) ? 'active' : '' }}" *ngFor="let proyecto of proyectoList; let i=index" aria-current="true"
+        attr.aria-label="{{'Slide ' + i }}"></button>
+
+    </div>
+    <div class="carousel-inner">
+
+      <div class="border border-primary carousel-item {{ (i == 0) ? 'active' : '' }}"
+        *ngFor="let proyecto of proyectoList; let i=index">
+
+         
+          <img src="{{ proyecto.urlfoto }}" class="d-block w-100" alt="..." height="300">
+         
+
+        <div class="carousel-caption">
+          <div class="row">
+            <h2 class="text-dark">{{ proyecto.nombreproyecto }}</h2>
+          </div>
+          <div class="row">
+            <h2 class="text-dark">{{ proyecto.descripcion }}</h2>
+          </div>
+
+
+          <div class="row">
+
+            <div class="col">
+              <a href={{proyecto.link}} target="_blanks" *ngIf="proyecto.link"><img src="../../../assets/images/url.png"
+                  height="35" /></a>
+            </div>
+
+            <div class="col">
+            <button type="button" *ngIf="isLogged && isAdmin"
+              style="background-color: transparent; border-color: transparent" (click)="tempProyecto = proyecto"
+              data-bs-toggle="modal" data-bs-target="#editProyectoModalCarousel">
+              <img src="../../../assets/images/edit.png" height="35" />
+            </button>
+          </div>
+            <div class="col">
+            <button type="submit" *ngIf="isLogged && isAdmin"
+              style="background-color: transparent; border-color: transparent" (click)="tempProyecto = proyecto"
+              data-bs-toggle="modal" data-bs-target="#borrarProyectoModalCarousel">
+              <img src="../../../assets/images/delete.png" height="35" />
+            </button>
+          </div>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#proyecto-carousel2" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#proyecto-carousel2" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <!-- Modals Carousel -- START-->
+
+  <div class="modal fade" id="editProyectoModalCarousel" tabindex="-1" role="dialog"
+    aria-labelledby="editProyectoModalCarousel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-dark" id="editProyectoModalCarousel">
+            Editar Proyecto
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="nombreProyecto" class="form-label text-dark">Nombre</label>
+            <input type="text" class="form-control" id="nombreProyecto" value="{{ tempProyecto.nombreproyecto }}"
+              [(ngModel)]="tempProyecto.nombreproyecto" />
+          </div>
+
+          <div class="mb-3">
+            <label for="descripcionProyecto" class="form-label text-dark">Descripcion</label>
+            <input type="text" class="form-control" id="descripcionProyecto" value="{{ tempProyecto.descripcion  }}"
+              [(ngModel)]="tempProyecto.descripcion" />
+          </div>
+          <div class="mb-3">
+            <label for="linkProyecto" class="form-label text-dark">URL Link Web</label>
+            <input type="text" class="form-control" id="linkProyecto" value="{{ tempProyecto.link }}"
+              [(ngModel)]="tempProyecto.link" />
+          </div>
+
+          <div class="mb-3">
+            <label for="urlFotoProyecto" class="form-label text-dark">URL Foto</label>
+            <input type="text" class="form-control" id="urlFhotoProyecto" value="{{ tempProyecto.urlfoto }}"
+              [(ngModel)]="tempProyecto.urlfoto" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Cerrar
+          </button>
+          <button type="submit" (click)="edit(tempProyecto.id ?? 0)" class="btn btn-primary" data-bs-dismiss="modal">
+            Guardar cambios
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="borrarProyectoModalCarousel" tabindex="-1" aria-labelledby="borrarProyectoModalCarousel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-dark">Borrar Conocimiento</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label text-dark">Desea borrar el proyecto
+              {{ tempProyecto.nombreproyecto }}?</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Cerrar
+          </button>
+          <button type="submit" (click)="delete(tempProyecto.id)" class="btn btn-danger" data-bs-dismiss="modal">
+            Borrar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal Carousel -- END -->
+
+
+</div>
+
+<!-- proyecto-carousel - END -->

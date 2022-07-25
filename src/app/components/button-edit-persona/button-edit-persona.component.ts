@@ -2,8 +2,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { persona } from 'src/app/model/persona.model';
 import { PersonaService } from 'src/app/service/persona.service';
 import { Router } from '@angular/router';
-
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-button-edit-persona',
@@ -22,28 +21,19 @@ export class ButtonEditComponent implements OnInit {
 
   @Output() newPersonaUpdateEvent = new EventEmitter<boolean>();
 
-  constructor(private persoService: PersonaService, private router: Router) {
+  fotoPersona!: string;
+  persona!: persona
+
+  constructor(private persoService: PersonaService, private router: Router, private toastr: ToastrService) {
 
   }
 
   ngOnInit(): void {
-
-    /* Mostrar el contenido anterior en el modal para poder editar*/
-    (<HTMLInputElement>document.getElementById("nombrePasar")).value = this.nombrePersona;
-    (<HTMLInputElement>document.getElementById("apellidoPasar")).value = this.apellidoPersona;
-    (<HTMLInputElement>document.getElementById("domicilioPasar")).value = this.domicilioPersona;
-    (<HTMLInputElement>document.getElementById("telefonoPasar")).value = this.telefonoPersona;
-    (<HTMLInputElement>document.getElementById("correoPasar")).value = this.correoPersona;
-    (<HTMLInputElement>document.getElementById("acercaDeMiPasar")).value = this.acercaDeMiPersona;
-    (<HTMLInputElement>document.getElementById("urlFotoPasar")).value = this.urlFotoPersona;
-
+  
     /* Read this.fechaNacimientoPersona and convert to Date*/
-
-    let splitted = this.fechaNacimientoPersona.toString().split(",");
+    let splitted = this.fechaNacimientoPersona.toString().split("-");
     let fecha: Date = new Date(splitted[0] + "-" + splitted[1] + "-" + splitted[2]);
-
     (<HTMLInputElement>document.getElementById("fechaPasar")).valueAsDate = fecha;
-
 
   }
 
@@ -52,44 +42,70 @@ export class ButtonEditComponent implements OnInit {
     let readDate = (<HTMLInputElement>document.getElementById("fechaPasar")).value.toString();
     let splitted = readDate.toString().split("-");
     const date = new Date(splitted[0] + "-" + splitted[1] + "-" + splitted[2]);
+  
+    if (this.urlFotoPersona) {
+      this.fotoPersona = this.urlFotoPersona;
+    } else {
+      this.fotoPersona = "https://drive.google.com/uc?export=view&id=1chCER2JdSjPDBp_setpoJscXrJ2KLQFF";
+    }
 
-    /* console.log("`Año: " + splitted[0]);
-    console.log("Mes: " + splitted[1]);
-    console.log("Dia: " + splitted[2]); */
-
-    const p: persona = new persona(1,
-      (<HTMLInputElement>document.getElementById("nombrePasar")).value,
-      (<HTMLInputElement>document.getElementById("apellidoPasar")).value,
-      (<HTMLInputElement>document.getElementById("domicilioPasar")).value,
-      date,
-      (<HTMLInputElement>document.getElementById("telefonoPasar")).value,
-      (<HTMLInputElement>document.getElementById("correoPasar")).value,
-      (<HTMLInputElement>document.getElementById("acercaDeMiPasar")).value,
-      (<HTMLInputElement>document.getElementById("urlFotoPasar")).value
-
-    );
-
-
-
-    this.persoService.updatePersona(p).subscribe(
-      data => {
-      },
-      err => {
-        alert(err.error.mensaje);
-      }
-
-    );
-
+    const p: persona = new persona(1, 
+      this.nombrePersona, 
+      this.apellidoPersona, 
+      this.domicilioPersona, 
+      date, 
+      this.telefonoPersona, 
+      this.correoPersona, 
+      this.acercaDeMiPersona,
+      this.fotoPersona);
+      
+    this.updatePersona(p);    
     this.newPersonaUpdateEvent.emit(false);
   }
 
+  public updatePersona(p: persona): void {
+    this.persoService.updatePersona(p).subscribe(response => {
+      response = this.persona;
+      this.toastr.success('Datos actualizados', '', {
+        timeOut: 3000, positionClass: 'toast-top-center'
+      });
+    }, err => {
+      this.toastr.error('Error al actualizar datos', '', {
+        timeOut: 3000, positionClass: 'toast-top-center'
+      });
 
+    });
+  }
+  public deletePersona(p: persona): void {
+    this.persoService.updatePersona(p).subscribe(response => {
+      response = this.persona;
+      this.toastr.success('Datos borrados', '', {
+        timeOut: 3000, positionClass: 'toast-top-center'
+      });
+    }, err => {
+      this.toastr.error('Error al borrar datos', '', {
+        timeOut: 3000, positionClass: 'toast-top-center'
+      });
 
+    });
+  } 
 
 
   delete(): void {
-    alert('delete option');
+    const date = new Date("1900-01-01");
+    this.fotoPersona = "https://drive.google.com/uc?export=view&id=1chCER2JdSjPDBp_setpoJscXrJ2KLQFF";
 
+    const p: persona = new persona(1, 
+      "", 
+      "", 
+      "", 
+      date, 
+      "", 
+      "", 
+      "", 
+      this.fotoPersona);    
+    this.deletePersona(p);
+    this.newPersonaUpdateEvent.emit(false);
   }
 }
 

@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { persona } from 'src/app/model/persona.model';
 import { PersonaService } from 'src/app/service/persona.service';
 import { TokenService } from 'src/app/service/token.service';
@@ -19,7 +20,7 @@ export class PerfilfotoComponent implements OnInit {
   roles!: string[];
   isAdmin = false;
 
-  constructor(private persoService: PersonaService, private tokenService: TokenService) { }
+  constructor(private persoService: PersonaService, private tokenService: TokenService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
 
@@ -38,22 +39,14 @@ export class PerfilfotoComponent implements OnInit {
 
     });
     this.getPersona();
-    console.log("isLogged in Perfil: " + this.isLogged);
-    console.log("isAdmin in Perfil: " + this.isAdmin);
 
   }
-
 
   public getPersona(): void {
     this.persoService.getPersona().subscribe(response => { this.persona = response });
 
-  }
-
-  public updatePersona(p: persona): void {
-    this.persoService.updatePersona(p).subscribe(response => { response = this.persona; });
-
-
-  }
+  } 
+  
   wait(ms: number) {
     let start = new Date().getTime();
     let end = start;
@@ -63,11 +56,7 @@ export class PerfilfotoComponent implements OnInit {
   }
 
   public reloadComponent(evento: boolean) {
-     this.wait(500);
-     this.ngOnInit();
-  }
-
-
-
-
+    this.wait(500);
+    this.ngOnInit();
+  } 
 }

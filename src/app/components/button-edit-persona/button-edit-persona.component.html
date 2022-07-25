@@ -16,9 +16,9 @@
         <div class="modal-body">
           <div class="mb-3">
             <label for="nombrePersona" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="nombrePasar"  >
+            <input type="text" class="form-control" id="nombrePasar" [(ngModel)]="nombrePersona" >
             <label for="apellidoPersona" class="form-label">Apellido</label>
-            <input type="text" class="form-control" id="apellidoPasar" placeholder={{apellidoPersona}}>
+            <input type="text" class="form-control" id="apellidoPasar" [(ngModel)]="apellidoPersona" >
           </div>
           <div class="mb-3">
             <label for="fechaNacimientoPersona" class="form-label">Fecha Nacimiento (mm/dd/yyyy)</label>
@@ -27,24 +27,24 @@
 
           <div class="mb-3">
             <label for="correoElectronicoPersona" class="form-label">Correo electronico</label>
-            <input type="email" class="form-control" id="correoPasar" placeholder={{correoPersona}}>
+            <input type="email" class="form-control" id="correoPasar" [(ngModel)]="correoPersona">
           </div>
           <div class="mb-3">
             <label for="domicilioPersona" class="form-label">Domicilio</label>
-            <input type="text" class="form-control" id="domicilioPasar" placeholder={{domicilioPersona}}>
+            <input type="text" class="form-control" id="domicilioPasar" [(ngModel)]="domicilioPersona">
           </div>
           <div class="mb-3">
             <label for="telefonoPersona" class="form-label">Telefono</label>
-            <input type="text" class="form-control" id="telefonoPasar" placeholder={{telefonoPersona}}>
+            <input type="text" class="form-control" id="telefonoPasar" [(ngModel)]="telefonoPersona">
           </div>
           
           <div class="mb-3">
             <label for="urlFotoPersona" class="form-label">URL Foto</label>
-            <input type="text" class="form-control" id="urlFotoPasar" placeholder={{urlFotoPersona}}>
+            <input type="text" class="form-control" id="urlFotoPasar" [(ngModel)]="urlFotoPersona">
           </div>
           <div class="mb-3">
             <label for="acercaDeMiPersona" class="form-label">Acerca de mi...</label>
-            <textarea class="form-control" id="acercaDeMiPasar" rows="3" placeholder={{acercaDeMiPersona}}></textarea>
+            <textarea class="form-control" id="acercaDeMiPasar" rows="3" [(ngModel)]="acercaDeMiPersona"></textarea>
           </div> 
         </div>
         <div class="modal-footer">
@@ -72,7 +72,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" (click)="delete()" class="btn btn-danger">Borrar</button>
+          <button type="button" (click)="delete()" class="btn btn-danger" data-bs-dismiss="modal">Borrar</button>
         </div>
       </div>
     </div>

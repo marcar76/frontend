@@ -23,7 +23,7 @@ export class FormularioEditComponent implements OnInit {
   isAdmin = false;
 
 
-  constructor(private login: LoginComponent, private formularioService: formularioService, private tokenService: TokenService,private toastr: ToastrService) { }
+  constructor(private login: LoginComponent, private formularioService: formularioService, private tokenService: TokenService, private toastr: ToastrService) { }
 
 
   ngOnInit(): void {
@@ -51,20 +51,22 @@ export class FormularioEditComponent implements OnInit {
         this.formularioList = response;
 
       },
-      /*   error: (error: HttpErrorResponse) => {
-          alert("Horror" + error.message);
-        } */
+
     })
   }
 
   public updateFormulario(formulario: formulario): void {
-    this.formularioService.updateFormulario(formulario).subscribe(response => { 
-      response = this.formulario; 
-      this.toastr.success('Mensaje actualizado' , '', {
+    this.formularioService.updateFormulario(formulario).subscribe(response => {
+      response = this.formulario;
+      this.ngOnInit();
+      this.toastr.success('Mensaje actualizado', '', {
         timeOut: 3000, positionClass: 'toast-top-center'
       });
-      
-      this.ngOnInit(); });
+    }, err => {
+      this.toastr.error('al actualizar mensaje', 'Error', {
+        timeOut: 3000, positionClass: 'toast-top-center'
+      });
+    });
 
   }
 
@@ -72,35 +74,27 @@ export class FormularioEditComponent implements OnInit {
 
   public deleteFormulario(id?: number) {
     this.formularioService.borrarFormulario(id).subscribe(data => {
-      this.toastr.success('Mensaje eliminado' , '', {
+      this.toastr.success('Mensaje eliminado', '', {
         timeOut: 3000, positionClass: 'toast-top-center'
       });
       this.ngOnInit();
-    },
-      err => {
-        alert(err.error.mensaje);
-      }
-
-    );
+    }, err => {
+      this.toastr.error('al eliminar mensaje', 'Error', {
+        timeOut: 3000, positionClass: 'toast-top-center'
+      });
+    });
 
   }
 
-
-
-
   edit(id: number): void {
-     
-
-
     const objeto: formulario = new formulario(id,
-      (<HTMLInputElement>document.getElementById("nameFormulario")).value,
-      (<HTMLInputElement>document.getElementById("correoFormulario")).value,
-      (<HTMLInputElement>document.getElementById("asuntoFormulario")).value,
-      (<HTMLInputElement>document.getElementById("mensajeFormulario")).value,
-      (<HTMLInputElement>document.getElementById("notasFormulario")).value
+      this.tempFormulario.nombre!,
+      this.tempFormulario.correo!,
+      this.tempFormulario.asunto!,
+      this.tempFormulario.mensaje!,
+      this.tempFormulario.notas!
     );
 
-     
 
     this.updateFormulario(objeto);
 
@@ -110,9 +104,5 @@ export class FormularioEditComponent implements OnInit {
     this.deleteFormulario(id);
 
   }
-
-
-
-
 
 }

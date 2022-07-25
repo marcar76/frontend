@@ -20,6 +20,11 @@ export class EducacionComponent implements OnInit {
   educacion!: educacion;
   tempEducacion!: educacion;
 
+  url!: string;
+
+  urlfoto!: string;
+  tempAddEducacion!: educacion;
+
   isLogged = false;
   roles!: string[];
   isAdmin = false;
@@ -31,6 +36,7 @@ export class EducacionComponent implements OnInit {
   ngOnInit(): void {
 
     this.tempEducacion = new educacion(0, "", "", "", "", "", "");
+    this.tempAddEducacion = new educacion(0, "", "", "", "", "", "");
 
     if (this.tokenService.getToken()) {
       this.isLogged = true;
@@ -44,7 +50,7 @@ export class EducacionComponent implements OnInit {
         this.isAdmin = true;
       }
     });
-    this.getEducacion(); 
+    this.getEducacion();
   }
 
 
@@ -52,55 +58,59 @@ export class EducacionComponent implements OnInit {
     this.educacionService.getEducacion().subscribe({
       next: (response: educacion[]) => {
         this.educacionList = response;
-        
 
       },
-       error: (error: HttpErrorResponse) => {
-        this.toastr.error(error.message , 'Error: ', {
+      error: (error: HttpErrorResponse) => {
+        this.toastr.error(error.message, 'Error: ', {
           timeOut: 3000, positionClass: 'toast-top-center'
         });
-       } 
+      }
     })
   }
 
   public updateEducacion(educacion: educacion): void {
-    this.educacionService.updateEducacion(educacion).subscribe(response => { response = this.educacion;
-      this.toastr.success('Educacion actualizada' , '', {
+    this.educacionService.updateEducacion(educacion).subscribe(response => {
+      response = this.educacion;
+      this.toastr.success('Educacion actualizada', '', {
         timeOut: 3000, positionClass: 'toast-top-center'
       });
-    });
+    },
+      err => {
+        this.toastr.error('No pudo actualizar educacion', 'Error: ', {
+          timeOut: 3000, positionClass: 'toast-top-center'
+        });
+      });
   }
 
 
 
   public deleteEducacion(id?: number) {
     this.educacionService.borrarEducacion(id).subscribe(data => {
-      this.toastr.info('Educacion borrada' , '', {
+      this.toastr.info('Educacion borrada', '', {
         timeOut: 3000, positionClass: 'toast-top-center'
       });
 
     },
-       err => {
-        this.toastr.error('No pudo eliminar educacion' , 'Error: ', {
+      err => {
+        this.toastr.error('No pudo eliminar educacion', 'Error: ', {
           timeOut: 3000, positionClass: 'toast-top-center'
         });
-      } 
+      }
     );
 
-  } 
-  edit(id: number): void {
+  }
+  edit(id: number): void { 
+    if (this.tempEducacion.url) {
+      this.url = this.tempEducacion.url;
+    }
+    else {
+      this.url = "https://drive.google.com/uc?export=view&id=1chCER2JdSjPDBp_setpoJscXrJ2KLQFF";
+    }
+    const objeto: educacion = new educacion(this.tempEducacion.id!, this.tempEducacion.nombreeducacion!, this.tempEducacion.fechainicio!, this.tempEducacion.fechafin!, this.tempEducacion.descripcion!, this.url!, this.tempEducacion.link!);
 
-    const objeto: educacion = new educacion(id,
-      (<HTMLInputElement>document.getElementById("nameEducacion")).value,
-      (<HTMLInputElement>document.getElementById("inicioEducacion")).value,
-      (<HTMLInputElement>document.getElementById("finEducacion")).value,
-      (<HTMLInputElement>document.getElementById("descripcionEducacion")).value,
-      (<HTMLInputElement>document.getElementById("urlFotoEducacion")).value,
-      (<HTMLInputElement>document.getElementById("linkPageEducacion")).value
-
-    ); 
     this.updateEducacion(objeto);
     this.reloadComponent(true);
+
   }
 
   delete(id?: number) {
@@ -121,5 +131,46 @@ export class EducacionComponent implements OnInit {
     this.ngOnInit();
   }
 
+
+
+
+  public addEducacion() { 
+
+    if (this.tempAddEducacion.url) {
+      this.url = this.tempAddEducacion.url;
+    }
+    else {
+      this.url = "https://drive.google.com/uc?export=view&id=1chCER2JdSjPDBp_setpoJscXrJ2KLQFF";
+    }
+    const objetoAdd: educacion = new educacion(this.tempEducacion.id!, this.tempEducacion.nombreeducacion!, this.tempEducacion.fechainicio!, this.tempEducacion.fechafin!, this.tempEducacion.descripcion!, this.url!, this.tempEducacion.link!);
+
+
+    this.newEducacion(objetoAdd);
+    //Clear form modal
+    this.tempEducacion.nombreeducacion = "";
+    this.tempEducacion.fechainicio = "";
+    this.tempEducacion.fechafin = "";
+    this.tempEducacion.descripcion = "";
+    this.url = "";
+    this.tempEducacion.link = "";
+
+    this.reloadComponent(true);
+      
+  }
+
+  public newEducacion(educacion: educacion): void {
+    this.educacionService.createEducacion(educacion).subscribe(
+      data => {
+        this.toastr.success('Educacion agregada.', '', {
+          timeOut: 3000, positionClass: 'toast-top-center'
+        });
+      },
+      err => {
+        this.toastr.error("No se pudo agregar Educacion", 'Error:', {
+          timeOut: 3000, positionClass: 'toast-top-center'
+        });
+      }
+    );
+  }
 
 }

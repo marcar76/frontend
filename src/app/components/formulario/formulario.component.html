@@ -16,14 +16,14 @@
                         <div class="col-md-6">
                             <div class="md-form mt-3 mb-0 form-floating">
                                 <input type="text" class="form-control" name="name" id="name"
-                                    placeholder="Nombre y Apellido" />
+                                    placeholder="Nombre y Apellido" [(ngModel)]="tempFormulario.nombre" /> 
                                 <label for="name">Nombre y Apellido</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="md-form mt-3 mb-0 form-floating">
                                 <input type="text" class="form-control" name="email" id="email"
-                                    placeholder="Correo electronico" />
+                                    placeholder="Correo electronico" [(ngModel)]="tempFormulario.correo" />
                                 <label for="email">Correo electronico</label>
                             </div>
                         </div>
@@ -33,7 +33,7 @@
                         <div class="col-md-12">
                             <div class="md-form mt-3 mb-0 form-floating">
                                 <input type="text" class="form-control" name="subject" id="subject"
-                                    placeholder="Asunto" />
+                                    placeholder="Asunto" [(ngModel)]="tempFormulario.asunto" />
                                 <label for="subject">Asunto</label>
                             </div>
                         </div>
@@ -42,7 +42,7 @@
                         <div class="col-md-12">
                             <div class="md-form form-floating mt-3 mb-0">
                                 <textarea type="text" id="message" name="message" rows="2"
-                                    class="form-control md-textarea" placeholder="Mensaje"></textarea>
+                                    class="form-control md-textarea" placeholder="Mensaje" [(ngModel)]="tempFormulario.mensaje" > </textarea>
                                 <label for="message">Mensaje</label>
                             </div>
                         </div>

@@ -2,16 +2,57 @@
   <hr class="bg-info border-2 border-top border-info" />
   <h2 class="col-sm-6 h1-responsive font-weight-bold text-center text-white my-4 bg-info">
     Conocimiento
-  </h2>
-  <app-button-add-skills *ngIf="isLogged && isAdmin" (newSkillEvent)="reloadComponent($event)">
-  </app-button-add-skills>
+  </h2> 
 
-  <!-- skills-cards - START -->
+  <!-- Add Skill-Cards-- START -->
+
+  <button type="button" style="background-color:transparent; border-color:transparent;" data-bs-toggle="modal"
+    data-bs-target="#addSkill" *ngIf="isLogged && isAdmin">
+    <img src="../../../assets/images/add.png" height="35" /> Agregar
+  </button>
+
+  <div class="modal fade" id="addSkill" tabindex="-1" aria-labelledby="addSkill" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addSkill"> Agregar conocimiento</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="nombreSkill" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="addNameSkill" [(ngModel)]="tempAddSkill.conocimiento">
+          </div>
+
+          <div class="mb-3">
+            <label for="porcentajeSkill" class="form-label">Porcentaje</label>
+            <input type="text" class="form-control" id="addPercentSkill" [(ngModel)]="tempAddSkill.porcentaje">
+          </div>
+
+          <div class="mb-3">
+            <label for="urlFotoSkill" class="form-label">URL Foto</label>
+            <input type="text" class="form-control" id="addUrlPhotoSkill" [(ngModel)]="tempAddSkill.urlfoto">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="submit" (click)="addSkill()" class="btn btn-primary" data-bs-dismiss="modal">Guardar
+            cambios</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Add Skill-Cards-- END -->
+
+
+
+
+  <!-- skills-cards-edit-delete - START -->
   <div class="row" id="skills-cards">
     <div class="col-sm-3 my-2" *ngFor="let skill of skillsList">
       <div class="card">
         <div class="card-body">
-          <img src="{{ skill.urlfoto }}" class="card-img-top" alt="{{ skill.conocimiento }}" *ngIf="skill.urlfoto" />
+          <img src="{{ skill.urlfoto }}" class="card-img-top" alt="{{ skill.conocimiento }}" *ngIf="skill.urlfoto" height="200" width="250"/>
           <h5 class="card-title">{{ skill.conocimiento }}</h5>
 
           <div class="progress">
@@ -45,17 +86,20 @@
                 <div class="modal-body">
                   <div class="mb-3">
                     <label for="nombreSkill" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="nameSkill" value="{{ tempSkill.conocimiento }}" />
+                    <input type="text" class="form-control" id="nameSkill" value="{{ tempSkill.conocimiento }}"
+                      value="{{ tempSkill.conocimiento }}" [(ngModel)]="tempSkill.conocimiento" />
                   </div>
 
                   <div class="mb-3">
                     <label for="porcentajeSkill" class="form-label">Porcentaje</label>
-                    <input type="text" class="form-control" id="percentSkill" value="{{ tempSkill.porcentaje }}" />
+                    <input type="text" class="form-control" id="percentSkill" value="{{ tempSkill.porcentaje }}"
+                      value="{{ tempSkill.porcentaje }}" [(ngModel)]="tempSkill.porcentaje" />
                   </div>
 
                   <div class="mb-3">
                     <label for="urlFotoSkill" class="form-label">URL Foto</label>
-                    <input type="text" class="form-control" id="urlFhotoSkill" value="{{ tempSkill.urlfoto }}" />
+                    <input type="text" class="form-control" id="urlFhotoSkill" value="{{ tempSkill.urlfoto }}"
+                      value="{{ tempSkill.urlfoto }}" [(ngModel)]="tempSkill.urlfoto" />
                   </div>
                 </div>
                 <div class="modal-footer">
@@ -101,7 +145,7 @@
     </div>
   </div>
 </div>
-<!-- skills-cards - END -->
+<!-- skills-cards-edit-delete - END -->
 
 
 
@@ -120,7 +164,7 @@
   </h2>
 
   <button type="button" style="background-color:transparent; border-color:transparent;" data-bs-toggle="modal"
-    data-bs-target="#addSkillCarousel">
+    data-bs-target="#addSkillCarousel" *ngIf="isLogged && isAdmin">
     <img src="../../../assets/images/add.png" height="35" /> Agregar
   </button>
 
@@ -134,12 +178,12 @@
         <div class="modal-body">
           <div class="mb-3">
             <label for="nombreSkill" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="addNameSkill" [(ngModel)]="tempAddSkill.conocimiento" >
+            <input type="text" class="form-control" id="addNameSkill" [(ngModel)]="tempAddSkill.conocimiento">
           </div>
 
           <div class="mb-3">
             <label for="porcentajeSkill" class="form-label">Porcentaje</label>
-            <input type="text" class="form-control" id="addPercentSkill" [(ngModel)]="tempAddSkill.porcentaje" >
+            <input type="text" class="form-control" id="addPercentSkill" [(ngModel)]="tempAddSkill.porcentaje">
           </div>
 
           <div class="mb-3">
@@ -156,7 +200,7 @@
     </div>
   </div>
 
- 
+
 
   <div id="skills-carousel2" class="carousel slide" data-bs-ride="false">
     <div class="carousel-indicators">
@@ -170,12 +214,10 @@
 
       <div class="border border-primary carousel-item {{ (i == 0) ? 'active' : '' }}"
         *ngFor="let skill of skillsList; let i=index">
-        <img src="{{ skill.urlfoto }}" class="d-block w-100" alt="...">
+        <img src="{{ skill.urlfoto }}" class="d-block w-100" alt="..." height="300">
 
 
         <div class="carousel-caption">
-           
-
 
           <h2 class="text-dark">{{ skill.conocimiento }}</h2>
           <div class="progress">
@@ -195,8 +237,6 @@
             data-bs-toggle="modal" data-bs-target="#borrarSkillModalCarousel">
             <img src="../../../assets/images/delete.png" height="35" />
           </button>
-
-
         </div>
       </div>
 

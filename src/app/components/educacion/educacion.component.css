@@ -1,5 +1,13 @@
 
-@media  (min-width: 0px) and (max-width: 767px) {
-    #educacion-cards{ display: none; }   
+@media (min-width: 768px) {
+  #educacion-carousel {
+    display: none;
   }
-  
+}
+
+@media (min-width: 0px) and (max-width: 767px) {
+  #educacion-cards {
+    display: none;
+  }
+
+}

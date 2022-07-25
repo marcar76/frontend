@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 const TOKEN_KEY = 'AuthToken';
 const USERNAME_KEY = 'AuthUserName';
@@ -14,19 +15,44 @@ export class TokenService {
 
   roles: Array<string> = [];
 
-  constructor() { }
+  constructor(private toastr: ToastrService) { }
 
   public setToken(token: string): void {
     window.sessionStorage.removeItem(TOKEN_KEY);
     window.sessionStorage.setItem(TOKEN_KEY, token);
   }
 
+  wait(ms: number) {
+    let start = new Date().getTime();
+    let end = start;
+    while (end < start + ms) {
+      end = new Date().getTime();
+    }
+  }
+
   public getToken(): string {
-    console.log("Toke;: " + sessionStorage.getItem(TOKEN_KEY));
+
     const valor = sessionStorage.getItem(TOKEN_KEY);
+
     if (valor) {
+
+      /* Token expiration */
+   
+      const decode = JSON.parse(atob(valor!.split('.')[1]));
+     
+      if (decode.exp * 1000 < new Date().getTime()) {
+
+        console.log('Time Expired');
+        this.logOut();
+        window.location.reload();
+        
+      }
+      /* token expiration */
+
+
       return valor;
     } else {
+
       return "";
     }
   }
@@ -61,7 +87,7 @@ export class TokenService {
         JSON.parse(valor).forEach((authority: { authority: string; }) => {
           this.roles.push(authority.authority);
         });
-       
+
       }
 
     }

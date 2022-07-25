@@ -13,30 +13,13 @@ import { ProdGuardService as guard } from './components/guards/prod-guard.servic
 
 const routes: Routes = [
 
-  { path: '', component: HeaderComponent },
-  { path: 'login', component: LoginComponent },
+  { path: '', component: HeaderComponent }, 
+  { path: 'login', component: LoginComponent }, 
 
   { path: '**', redirectTo: '/', pathMatch: 'full' }
 
 ];
-
-/* , canActivate: [guard], data: { expectedRol: ['admin', 'user'] } },
-
- { path: 'perfil', component: PerfilfotoComponent, canActivate: [guard], data: { expectedRol: ['admin', 'user'] } },
-  { path: 'conocimiento', component: SkillsComponent, canActivate: [guard], data: { expectedRol: ['admin', 'user'] } },
-  { path: 'educacion', component: EducacionComponent, canActivate: [guard], data: { expectedRol: ['admin', 'user'] } },
-  { path: 'proyectos', component: ProyectosComponent, canActivate: [guard], data: { expectedRol: ['admin', 'user'] } },
-  { path: 'experiencia', component: ExperienciaComponent, canActivate: [guard], data: { expectedRol: ['admin', 'user'] } },
-  { path: 'contacto', component: FormularioComponent },
-
-
-  { path: 'perfil', component: PerfilfotoComponent, canActivate: [guard], data: { expectedRol: ['admin', 'user'] } },
-  { path: 'proyectos', component: ProyectosComponent, canActivate: [guard], data: { expectedRol: ['admin', 'user'] } },
-
-
-
-
-*/
+ 
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

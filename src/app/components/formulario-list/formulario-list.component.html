@@ -41,26 +41,26 @@
                 <div class="modal-body">
                   <div class="mb-3">
                     <label for="nombreFormulario" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="nameFormulario" value="{{ tempFormulario.nombre }}" />
+                    <input type="text" class="form-control" id="nameFormulario" value="{{ tempFormulario.nombre }}" [(ngModel)]="tempFormulario.nombre"  />
                   </div>
                   <div class="mb-3">
                     <label for="asuntoFormulario" class="form-label">Asunto
                     </label>
-                    <input type="text" class="form-control" id="asuntoFormulario" value="{{ tempFormulario.asunto }}" />
+                    <input type="text" class="form-control" id="asuntoFormulario" value="{{ tempFormulario.asunto }}" [(ngModel)]="tempFormulario.asunto" />
                   </div>
                   <div class="mb-3">
                     <label for="mensajeFormulario" class="form-label">Mensaje
                     </label>
                     <input type="text" class="form-control" id="mensajeFormulario"
-                      value="{{ tempFormulario.mensaje }}" />
+                      value="{{ tempFormulario.mensaje }}" [(ngModel)]="tempFormulario.mensaje" />
                   </div>
                   <div class="mb-3">
                     <label for="correoFormulario" class="form-label">Correo</label>
-                    <input type="text" class="form-control" id="correoFormulario" value="{{ tempFormulario.correo }}" />
+                    <input type="text" class="form-control" id="correoFormulario" value="{{ tempFormulario.correo }}" [(ngModel)]="tempFormulario.correo"  />
                   </div>
                   <div class="mb-3">
                     <label for="notasFormulario" class="form-label">Notas</label>
-                    <input type="text" class="form-control" id="notasFormulario" value="{{ tempFormulario.notas }}" />
+                    <input type="text" class="form-control" id="notasFormulario" value="{{ tempFormulario.notas }}" [(ngModel)]="tempFormulario.notas" />
                   </div>
                 </div>
                 <div class="modal-footer">

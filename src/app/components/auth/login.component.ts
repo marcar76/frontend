@@ -21,6 +21,8 @@ export class LoginComponent implements OnInit {
   roles: string[] =[];
   errMsj!: string;
 
+  showLoading=false;
+
   constructor(
     private tokenService: TokenService,
     private authService: AuthService,
@@ -49,7 +51,7 @@ export class LoginComponent implements OnInit {
         this.tokenService.setAuthorities(data.authorities);
         this.roles = data.authorities;
         this.toastr.success('Bienvenido a mi portfolio' , '', {
-          timeOut: 3000, positionClass: 'toast-top-center'
+          timeOut: 5000, positionClass: 'toast-top-center'
         });
          this.router.navigate(['/']); 
       },

@@ -157,13 +157,13 @@ export class SkillsComponent implements OnInit {
   public newSkill(skill: skills): void {
     this.skillService.createSkill(skill).subscribe(
       data => {
-        this.toastr.success('Conocmineto agregado', '', {
+        this.toastr.success('conocimiento agregado', '', {
           timeOut: 3000, positionClass: 'toast-top-center'
         });
 
       },
       err => {
-        this.toastr.error('Error al agregar Conocmineto', '', {
+        this.toastr.error('Error al agregar conocimiento', '', {
           timeOut: 3000, positionClass: 'toast-top-center'
         });
       }

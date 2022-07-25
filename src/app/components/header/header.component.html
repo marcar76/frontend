@@ -1,75 +1,43 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container-fluid">
     <a class="navbar-brand text-light" href="/">
-      <img
-        src="https://drive.google.com/uc?export=view&id=1pd4scd3cfcsqyY51gC3KypropzytoAE8"
-        style="width: 120px"
-        class="rounded-pill"
-      />
+      <img src="https://drive.google.com/uc?export=view&id=1pd4scd3cfcsqyY51gC3KypropzytoAE8" style="width: 120px"
+        class="rounded-pill" />
     </a>
     <a class="navbar-brand" href="javascript:void(0)">ARGENTINA PROGRAMA</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#mynavbar"
-    >
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="mynavbar">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a
-            class="nav-link waves-effect waves-light"
-            href="https://www.facebook.com/mario.h.carera"
-            target="_blank"
-          >
+          <a class="nav-link waves-effect waves-light" href="https://www.facebook.com/mario.h.carera" target="_blank">
             <i class="grey-text fab fa-facebook-square fa-2x"></i>
           </a>
         </li>
         <li class="nav-item">
-          <a
-            class="nav-link waves-effect waves-light"
-            href="https://www.instagram.com/mario.carera/"
-            target="_blank"
-          >
+          <a class="nav-link waves-effect waves-light" href="https://www.instagram.com/mario.carera/" target="_blank">
             <i class="grey-text fab fa-instagram fa-2x"></i>
+
           </a>
         </li>
         <li class="nav-item">
-          <a
-            class="nav-link waves-effect waves-light"
-            href="https://twitter.com/marcar1976"
-            target="_blank"
-          >
+          <a class="nav-link waves-effect waves-light" href="https://twitter.com/marcar1976" target="_blank">
             <i class="grey-text fab fa-twitter fa-2x"></i>
           </a>
         </li>
         <li class="nav-item">
-          <a
-            class="nav-link waves-effect waves-light"
-            href="https://www.linkedin.com/in/mario-carera-16a71a98/"
-            target="_blank"
-          >
+          <a class="nav-link waves-effect waves-light" href="https://www.linkedin.com/in/mario-carera-16a71a98/"
+            target="_blank">
             <i class="grey-text fab fa-linkedin fa-2x"></i>
           </a>
         </li>
       </ul>
       <form class="d-flex">
-        <button
-          class="btn btn-outline-light"
-          type="button"
-          routerLink="/login"
-          *ngIf="!isLogged"
-        >
+        <button class="btn btn-outline-light" type="button" routerLink="/login" *ngIf="!isLogged">
           Login
         </button>
-        <button
-          class="btn btn-outline-light"
-          type="button"
-          (click)="onLogOut()"
-          *ngIf="isLogged"
-        >
+        <button class="btn btn-outline-light" type="button" (click)="onLogOut()" *ngIf="isLogged">
           Logout
         </button>
       </form>
