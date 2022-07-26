@@ -2,13 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ObjectUnsubscribedError, Observable } from 'rxjs';
 import { skills } from 'src/app/model/skills.model';
 import { skillsService } from 'src/app/service/skills.service';
-import { LoginComponent } from '../auth/login.component';
+ 
 import { HttpErrorResponse } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+ import { FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { TokenService } from 'src/app/service/token.service';
 import { ToastrService } from 'ngx-toastr';
- 
+
 
 
 @Component({
@@ -42,6 +41,9 @@ export class SkillsComponent implements OnInit {
       }
     });
 
+
+
+
     if (this.tokenService.getToken()) {
       this.isLogged = true;
     } else {
@@ -51,6 +53,9 @@ export class SkillsComponent implements OnInit {
     this.getSkills();
 
   }
+
+
+
 
   public getSkills(): void {
     this.skillService.getSkill().subscribe({
@@ -95,80 +100,76 @@ export class SkillsComponent implements OnInit {
     );
 
   }
+ 
 
-
-
-  edit(id: number): void {
-     if (this.tempSkill.urlfoto) {
-      this.urlfoto = this.tempSkill.urlfoto;
-    }
+edit(id: number): void {
+  if(this.tempSkill.urlfoto) {
+  this.urlfoto = this.tempSkill.urlfoto;
+}
     else {
-      this.urlfoto = "https://drive.google.com/uc?export=view&id=1chCER2JdSjPDBp_setpoJscXrJ2KLQFF";
-    }
-    const objeto: skills = new skills(this.tempSkill.id!, this.tempSkill.conocimiento!, this.tempSkill.porcentaje!, this.urlfoto);
-  
+  this.urlfoto = "https://drive.google.com/uc?export=view&id=1chCER2JdSjPDBp_setpoJscXrJ2KLQFF";
+}
+const objeto: skills = new skills(this.tempSkill.id!, this.tempSkill.conocimiento!, this.tempSkill.porcentaje!, this.urlfoto);
 
-   /*   const por: number = parseInt((<HTMLInputElement>document.getElementById("percentSkill")).value);
-    const objeto: skills = new skills(id, (<HTMLInputElement>document.getElementById("nameSkill")).value, por, (<HTMLInputElement>document.getElementById("urlFhotoSkill")).value);
-   */
-    this.updateSkill(objeto);
-    this.reloadComponent(true);
+
+this.updateSkill(objeto);
+this.reloadComponent(true);
 
   }
 
-  delete(id?: number) {
-    this.deleteSkill(id);
-    this.reloadComponent(true);
+delete (id ?: number) {
+  this.deleteSkill(id);
+  this.reloadComponent(true);
 
-  }
+}
 
-  wait(ms: number) {
-    let start = new Date().getTime();
-    let end = start;
-    while (end < start + ms) {
-      end = new Date().getTime();
-    }
+wait(ms: number) {
+  let start = new Date().getTime();
+  let end = start;
+  while (end < start + ms) {
+    end = new Date().getTime();
   }
+}
 
   public reloadComponent(evento: boolean) {
-    this.wait(1000);
-    this.ngOnInit();
-  }
+  this.wait(1000);
+  this.ngOnInit();
+}
 
   /* Carousel */
 
   public addSkill() {
-    if (this.tempAddSkill.urlfoto) {
-      this.urlfoto = this.tempAddSkill.urlfoto;
-    }
-    else {
-      this.urlfoto = "https://drive.google.com/uc?export=view&id=1chCER2JdSjPDBp_setpoJscXrJ2KLQFF";
-    }
-    const objetoAdd: skills = new skills(0, this.tempAddSkill.conocimiento!, this.tempAddSkill.porcentaje!, this.urlfoto);
-
-    this.newSkill(objetoAdd);
-    //Clear form modal
-    this.tempAddSkill.conocimiento = "";
-    this.tempAddSkill.porcentaje = 0;
-    this.tempAddSkill.urlfoto = "";
-    this.reloadComponent(true);
+  if (this.tempAddSkill.urlfoto) {
+    this.urlfoto = this.tempAddSkill.urlfoto;
   }
+  else {
+    this.urlfoto = "https://drive.google.com/uc?export=view&id=1chCER2JdSjPDBp_setpoJscXrJ2KLQFF";
+  }
+  const objetoAdd: skills = new skills(0, this.tempAddSkill.conocimiento!, this.tempAddSkill.porcentaje!, this.urlfoto);
+
+  this.newSkill(objetoAdd);
+  //Clear form modal
+  this.tempAddSkill.conocimiento = "";
+  this.tempAddSkill.porcentaje = 0;
+  this.tempAddSkill.urlfoto = "";
+  this.reloadComponent(true);
+}
 
   public newSkill(skill: skills): void {
-    this.skillService.createSkill(skill).subscribe(
-      data => {
-        this.toastr.success('conocimiento agregado', '', {
-          timeOut: 3000, positionClass: 'toast-top-center'
-        });
+  this.skillService.createSkill(skill).subscribe(
+    data => {
+      this.toastr.success('conocimiento agregado', '', {
+        timeOut: 3000, positionClass: 'toast-top-center'
+      });
 
-      },
-      err => {
-        this.toastr.error('Error al agregar conocimiento', '', {
-          timeOut: 3000, positionClass: 'toast-top-center'
-        });
-      }
-    );
-  }
+    },
+    err => {
+      this.toastr.error('Error al agregar conocimiento', '', {
+        timeOut: 3000, positionClass: 'toast-top-center'
+      });
+    }
+  );
+}
 
 
 

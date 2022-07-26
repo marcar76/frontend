@@ -21,6 +21,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { MenuComponent } from './components/menu/menu.component';
 import { ProdInterceptorService } from './components/interceptors/prod-interceptor.service';
 import { DerComponent } from './components/der/der.component';
+ 
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { DerComponent } from './components/der/der.component';
     FormsModule,
   ],
   providers: [
+   
     LoginComponent,
     {
       provide: HTTP_INTERCEPTORS,

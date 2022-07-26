@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ObjectUnsubscribedError, Observable } from 'rxjs';
 import { proyecto } from 'src/app/model/proyecto.model';
 import { proyectoService } from 'src/app/service/proyecto.service';
-import { LoginComponent } from '../auth/login.component';
+ 
 import { HttpErrorResponse } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';
+ 
 import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { TokenService } from 'src/app/service/token.service';

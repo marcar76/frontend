@@ -11,19 +11,19 @@
         </p>
         <div class="row">
             <div class="col-md-12 mb-md-0 mb-5">
-                <form id="contact-form" name="contact-form" action="mail.php" method="POST">
+                <form id="contact-form" name="contact-form" action="mail.php" method="POST"  #formulario="ngForm" novalidate>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="md-form mt-3 mb-0 form-floating">
                                 <input type="text" class="form-control" name="name" id="name"
-                                    placeholder="Nombre y Apellido" [(ngModel)]="tempFormulario.nombre" /> 
+                                    placeholder="Nombre y Apellido" [(ngModel)]="tempFormulario.nombre" required/> 
                                 <label for="name">Nombre y Apellido</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="md-form mt-3 mb-0 form-floating">
-                                <input type="text" class="form-control" name="email" id="email"
-                                    placeholder="Correo electronico" [(ngModel)]="tempFormulario.correo" />
+                                <input type="email" class="form-control" name="email" id="email" ngModel email="true"
+                                    placeholder="Correo electronico" [(ngModel)]="tempFormulario.correo" required/>
                                 <label for="email">Correo electronico</label>
                             </div>
                         </div>
@@ -33,7 +33,7 @@
                         <div class="col-md-12">
                             <div class="md-form mt-3 mb-0 form-floating">
                                 <input type="text" class="form-control" name="subject" id="subject"
-                                    placeholder="Asunto" [(ngModel)]="tempFormulario.asunto" />
+                                    placeholder="Asunto" [(ngModel)]="tempFormulario.asunto" required/>
                                 <label for="subject">Asunto</label>
                             </div>
                         </div>
@@ -42,14 +42,14 @@
                         <div class="col-md-12">
                             <div class="md-form form-floating mt-3 mb-0">
                                 <textarea type="text" id="message" name="message" rows="2"
-                                    class="form-control md-textarea" placeholder="Mensaje" [(ngModel)]="tempFormulario.mensaje" > </textarea>
+                                    class="form-control md-textarea" placeholder="Mensaje" [(ngModel)]="tempFormulario.mensaje" required> </textarea>
                                 <label for="message">Mensaje</label>
                             </div>
                         </div>
                     </div>
                 </form>
                 <div class="text-center text-md-left my-2">
-                    <button type="submit" (click)="addFormulario()" class="btn btn-primary">
+                    <button type="submit" (click)="addFormulario()" class="btn btn-primary" [disabled]="!formulario.valid">
                         Enviar
                     </button>
                 </div>

@@ -2,7 +2,7 @@
   <hr class="bg-info border-2 border-top border-info" />
   <h2 class="col-sm-6 h1-responsive font-weight-bold text-center text-white my-4 bg-info">
     Conocimiento
-  </h2> 
+  </h2>
 
   <!-- Add Skill-Cards-- START -->
 
@@ -23,12 +23,10 @@
             <label for="nombreSkill" class="form-label">Nombre</label>
             <input type="text" class="form-control" id="addNameSkill" [(ngModel)]="tempAddSkill.conocimiento">
           </div>
-
           <div class="mb-3">
             <label for="porcentajeSkill" class="form-label">Porcentaje</label>
             <input type="text" class="form-control" id="addPercentSkill" [(ngModel)]="tempAddSkill.porcentaje">
           </div>
-
           <div class="mb-3">
             <label for="urlFotoSkill" class="form-label">URL Foto</label>
             <input type="text" class="form-control" id="addUrlPhotoSkill" [(ngModel)]="tempAddSkill.urlfoto">
@@ -52,7 +50,8 @@
     <div class="col-sm-3 my-2" *ngFor="let skill of skillsList">
       <div class="card">
         <div class="card-body">
-          <img src="{{ skill.urlfoto }}" class="card-img-top" alt="{{ skill.conocimiento }}" *ngIf="skill.urlfoto" height="200" width="250"/>
+          <img src="{{ skill.urlfoto }}" class="card-img-top" alt="{{ skill.conocimiento }}" *ngIf="skill.urlfoto"
+            height="200" width="250" />
           <h5 class="card-title">{{ skill.conocimiento }}</h5>
 
           <div class="progress">
@@ -93,7 +92,7 @@
                   <div class="mb-3">
                     <label for="porcentajeSkill" class="form-label">Porcentaje</label>
                     <input type="text" class="form-control" id="percentSkill" value="{{ tempSkill.porcentaje }}"
-                      value="{{ tempSkill.porcentaje }}" [(ngModel)]="tempSkill.porcentaje" />
+                      value="{{ tempSkill.porcentaje }}" [(ngModel)]="tempSkill.porcentaje" min="1" max="100" />
                   </div>
 
                   <div class="mb-3">

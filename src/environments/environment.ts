@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   //apiUrlBackend: 'http://127.0.0.1:8080/',
-  apiUrlBackend: 'http://10.42.0.45:8080/',
-  //apiUrlBackend: 'https://whispering-citadel-06208.herokuapp.com/'
+  //apiUrlBackend: 'http://10.42.0.45:8080/',
+  apiUrlBackend: 'https://whispering-citadel-06208.herokuapp.com/'
 };
 
 /*

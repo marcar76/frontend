@@ -22,12 +22,12 @@
             </div>
 
             <div class="form-group mt-3">
-              <button class="btn btn-primary btn-block" [disabled]="!f.valid" (click)="showLoading=true">
+              <button class="btn btn-primary btn-block"  [disabled]="!f.valid" (click)="showLoading=true">
                 Iniciar Sesión
               </button>
             </div>
-            <div *ngIf="showLoading">
-              <p>Loading...</p>
+            <div clss="mt-3" *ngIf="showLoading">
+              <p>Iniciando sesion...</p>
               <div class="spinner-border text-primary mt-2" role="status" *ngIf="showLoading">
                 <span class="visually-hidden">Loading...</span>
               </div>

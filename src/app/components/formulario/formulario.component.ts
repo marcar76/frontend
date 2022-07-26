@@ -6,6 +6,7 @@ import { formularioService } from '../../service/formulario.service';
 import { ToastrService } from 'ngx-toastr';
 import { TokenService } from 'src/app/service/token.service';
 
+
 @Component({
   selector: 'app-formulario',
   templateUrl: './formulario.component.html',
@@ -16,8 +17,7 @@ export class FormularioComponent {
   formulario!: formulario;
   tempFormulario!: formulario;
   mostrar: boolean = false;
-  FomularioEnviadoOk: boolean = false;
-  FomularioEnviadoBad: boolean = false;
+
   isLogged = false;
   roles!: string[];
   isAdmin = false;
@@ -25,8 +25,6 @@ export class FormularioComponent {
   constructor(private formularioServ: formularioService, private toastr: ToastrService, private tokenService: TokenService) { }
 
   ngOnInit() {
-
-
     this.tempFormulario = new formulario(0, "", "", "", "", "");
 
     if (this.tokenService.getToken()) {
@@ -41,39 +39,23 @@ export class FormularioComponent {
         this.isAdmin = true;
       }
     });
-
   }
 
-
   addFormulario() {
-
-    /* const objeto:formulario = new formulario (0,
-      (<HTMLInputElement>document.getElementById("name")).value,
-      (<HTMLInputElement>document.getElementById("email")).value,
-      (<HTMLInputElement>document.getElementById("subject")).value,
-      (<HTMLInputElement>document.getElementById("message")).value,
-      ""
-      ); */
     const objeto: formulario = new formulario(0, this.tempFormulario.nombre!, this.tempFormulario.correo!, this.tempFormulario.asunto!, this.tempFormulario.mensaje!, "");
-
-
     this.newFormulario(objeto);
-
-    /* (<HTMLInputElement>document.getElementById("name")).value="";
-    (<HTMLInputElement>document.getElementById("email")).value="";
-    (<HTMLInputElement>document.getElementById("subject")).value="";
-    (<HTMLInputElement>document.getElementById("message")).value="";
-   */
-
     this.tempFormulario.nombre = "";
     this.tempFormulario.correo = "";
     this.tempFormulario.asunto = "";
     this.tempFormulario.mensaje = "";
+
+   
+
   }
   public newFormulario(formulario: formulario): void {
     this.formularioServ.createFormulario(formulario).subscribe(
       data => {
-        this.FomularioEnviadoOk = true;
+
         this.toastr.success('Formulario enviado', '', {
           timeOut: 3000, positionClass: 'toast-top-center'
         });
