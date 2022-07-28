@@ -1,1 +1,12 @@
- 
+@media (min-width: 768px) {
+    #form-responsive {
+      display: none;
+    }
+  }
+  
+  @media (min-width: 0px) and (max-width: 767px) {
+    #form-common {
+      display: none;
+    }
+  
+  }

@@ -218,18 +218,18 @@
       <div class="border border-primary carousel-item {{ (i == 0) ? 'active' : '' }}"
         *ngFor="let proyecto of proyectoList; let i=index">
 
-         
+        <div class="row">
+          <h2 class="text-dark">{{ proyecto.nombreproyecto }}</h2>
+        </div>
+        <div class="row">
+          <h2 class="text-dark">{{ proyecto.descripcion }}</h2>
+        </div>
+
           <img src="{{ proyecto.urlfoto }}" class="d-block w-100" alt="..." height="300">
          
 
         <div class="carousel-caption">
-          <div class="row">
-            <h2 class="text-dark">{{ proyecto.nombreproyecto }}</h2>
-          </div>
-          <div class="row">
-            <h2 class="text-dark">{{ proyecto.descripcion }}</h2>
-          </div>
-
+       
 
           <div class="row">
 

@@ -203,6 +203,15 @@
             <label for="descripcionEducacion" class="form-label">Descripcion</label>
             <input type="text" class="form-control" id="descripcionEducacion" [(ngModel)]="tempEducacion.descripcion">
           </div>
+          <div class="mb-3">
+            <label for="fechaInicioEducacion" class="form-label">Año Inicio (yyyy)</label>
+            <input type="number" class="form-control" id="fechaInicioEducacion"
+              [(ngModel)]="tempEducacion.fechainicio">
+          </div>
+          <div class="mb-3">
+            <label for="fechaFinEducacion" class="form-label">Año Fin (yyyy)</label>
+            <input type="number" class="form-control" id="fechaFinEducacion" [(ngModel)]="tempEducacion.fechafin">
+          </div>
 
           <div class="mb-3">
             <label for="urlLink" class="form-label">URL Link Web</label>
@@ -236,18 +245,23 @@
 
       <div class="border border-primary carousel-item {{ (i == 0) ? 'active' : '' }}"
         *ngFor="let educacion of educacionList; let i=index">
-
+        <div class="row">
+          <h2 class="text-dark">{{ educacion.nombreeducacion }}</h2>
+        </div>
+        <div class="row">
+          <h2 class="text-dark">{{ educacion.descripcion }}</h2>
+        </div>
 
         <img src="{{ educacion.url }}" class="d-block w-100" alt="..." height="300">
 
 
         <div class="carousel-caption">
-          <div class="row">
+          <!-- <div class="row">
             <h2 class="text-dark">{{ educacion.nombreeducacion }}</h2>
           </div>
           <div class="row">
             <h2 class="text-dark">{{ educacion.descripcion }}</h2>
-          </div>
+          </div> -->
 
 
           <div class="row">

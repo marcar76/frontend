@@ -452,26 +452,29 @@
       <div class="border border-primary carousel-item {{ (i == 0) ? 'active' : '' }}"
         *ngFor="let experiencia of experienciaLaboralList; let i=index">
 
-
+        <div class="row">
+          <h2 class="text-dark">{{ experiencia.nombreempresa }}</h2>
+        </div>
+        <div class="row">
+          <h2 class="text-dark">{{ experiencia.descripcion }}</h2>
+        </div>
+        <h6>
+          <p class="card-text"> Desde - Hasta: </p>
+        </h6>
+        <p class="card-text" *ngIf="!experiencia.estrabajoactual">{{experiencia.fechainicio}} -
+          {{experiencia.fechafin}}</p>
+        <p class="card-text" *ngIf="experiencia.estrabajoactual">{{experiencia.fechainicio}} - la actualidad</p>
+        <h6>
+          <p class="card-text">Modalidad: {{experiencia.tipoempleo?.nombre_tipo}}</p>
+        </h6>
         <img src="{{ experiencia.url }}" class="d-block w-100" alt="..." height="300">
-
 
         <div class="carousel-caption">
           <div class="row">
-            <h2 class="text-dark">{{ experiencia.nombreempresa }}</h2>
-          </div>
-          <div class="row">
-            <h2 class="text-dark">{{ experiencia.descripcion }}</h2>
-          </div>
-
-
-          <div class="row">
-
             <div class="col">
               <a href={{experiencia.link}} target="_blanks" *ngIf="experiencia.link"><img
                   src="../../../assets/images/url.png" height="35" /></a>
             </div>
-
             <div class="col">
               <button type="button" *ngIf="isLogged && isAdmin"
                 style="background-color: transparent; border-color: transparent"
@@ -488,12 +491,9 @@
                 <img src="../../../assets/images/delete.png" height="35" />
               </button>
             </div>
-
           </div>
         </div>
       </div>
-
-
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#experiencia-carousel2" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -504,121 +504,122 @@
       <span class="visually-hidden">Next</span>
     </button>
   </div>
+</div>
 
-  <!-- Modals Carousel -- START-->
+<!-- Modals Carousel -- START-->
 
-  <div class="modal fade" id="editExperienciaModalCarousel" tabindex="-1" aria-labelledby="editExperienciaModalCarousel"
-    aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="editExperienciaModalCarousel">Editar Experiencia Laboral </h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div class="modal fade" id="editExperienciaModalCarousel" tabindex="-1" aria-labelledby="editExperienciaModalCarousel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editExperienciaModalCarousel">Editar Experiencia Laboral </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="nameExperiencia" class="form-label">Empresa</label>
+          <input type="text" class="form-control" id="nameExperiencia" value={{tempExperienciaLaboral.nombreempresa}}
+            [(ngModel)]="tempAddExperiencia.nombreempresa">
         </div>
-        <div class="modal-body">
-          <div class="mb-3">
-            <label for="nameExperiencia" class="form-label">Empresa</label>
-            <input type="text" class="form-control" id="nameExperiencia" value={{tempExperienciaLaboral.nombreempresa}}
-              [(ngModel)]="tempAddExperiencia.nombreempresa">
-          </div>
-          <div class="mb-3">
-            <label for="descripcionExperiencia" class="form-label">Descripcion </label>
-            <input type="text" class="form-control" id="descripcionExperiencia"
-              value={{tempExperienciaLaboral.descripcion}} [(ngModel)]="tempAddExperiencia.descripcion">
-          </div>
-          <div class="mb-3">
-            <label for="inicioExperiencia" class="form-label">Año Inicio (yyyy)</label>
-            <input type="number" class="form-control" id="inicioExperiencia"
-              value={{tempExperienciaLaboral.fechainicio}} [(ngModel)]="tempAddExperiencia.fechainicio">
-          </div>
-          <div class="mb-3">
-            <label for="finExperiencia" class="form-label">Año Fin (yyyy)</label>
-            <input type="number" class="form-control" id="finExperiencia" value={{tempExperienciaLaboral.fechafin}}
-              [(ngModel)]="tempAddExperiencia.fechafin">
-          </div>
+        <div class="mb-3">
+          <label for="descripcionExperiencia" class="form-label">Descripcion </label>
+          <input type="text" class="form-control" id="descripcionExperiencia"
+            value={{tempExperienciaLaboral.descripcion}} [(ngModel)]="tempAddExperiencia.descripcion">
+        </div>
+        <div class="mb-3">
+          <label for="inicioExperiencia" class="form-label">Año Inicio (yyyy)</label>
+          <input type="number" class="form-control" id="inicioExperiencia" value={{tempExperienciaLaboral.fechainicio}}
+            [(ngModel)]="tempAddExperiencia.fechainicio">
+        </div>
+        <div class="mb-3">
+          <label for="finExperiencia" class="form-label">Año Fin (yyyy)</label>
+          <input type="number" class="form-control" id="finExperiencia" value={{tempExperienciaLaboral.fechafin}}
+            [(ngModel)]="tempAddExperiencia.fechafin">
+        </div>
 
 
-          <div class="mb-3" *ngIf="tempExperienciaLaboral.estrabajoactual; else NotChecked">
+        <div class="mb-3" *ngIf="tempExperienciaLaboral.estrabajoactual; else NotChecked">
+          <label for="myCheckBox" class="form-label">Es Trabajo actual?</label>
+          <input class="form-check-input" type="checkbox" id="myCheckBox" checked>
+        </div>
+        <ng-template #NotChecked>
+          <div class="mb-3">
             <label for="myCheckBox" class="form-label">Es Trabajo actual?</label>
-            <input class="form-check-input" type="checkbox" id="myCheckBox" checked>
+            <input class="form-check-input" type="checkbox" id="myCheckBox">
           </div>
-          <ng-template #NotChecked>
-            <div class="mb-3">
-              <label for="myCheckBox" class="form-label">Es Trabajo actual?</label>
-              <input class="form-check-input" type="checkbox" id="myCheckBox">
-            </div>
-          </ng-template>
+        </ng-template>
 
-          <div class="mb-3 row  ">
-            <div class="col">
-              <div class="dropdown">
-                <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown">
-                  Tipo de empleo
-                </button>
-                <ul class="dropdown-menu" id="addtipoempleoExperiencia">
-                  <li *ngFor="let tipo of tipoEmpleoList"><a class="dropdown-item"
-                      (click)="valor(tipo.id, tipo.nombre_tipo); tipoNuevo=tipo.nombre_tipo">
-                      {{tipo.nombre_tipo}} </a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="col text-dark justify-items-center">
-              <p id="tipoAnteriorId">ActualId:<em> {{tempExperienciaLaboral?.tipoempleo?.id}}</em></p>
-              <p id="tipoAnterior">Actual:<em> {{tempExperienciaLaboral?.tipoempleo?.nombre_tipo}}</em></p>
-              <p id="tipoNuevo">Nuevo: <em> {{tipoNuevo}}</em></p>
- 
+        <div class="mb-3 row  ">
+          <div class="col">
+            <div class="dropdown">
+              <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown">
+                Tipo de empleo
+              </button>
+              <ul class="dropdown-menu" id="addtipoempleoExperiencia">
+                <li *ngFor="let tipo of tipoEmpleoList"><a class="dropdown-item"
+                    (click)="valor(tipo.id, tipo.nombre_tipo); tipoNuevo=tipo.nombre_tipo">
+                    {{tipo.nombre_tipo}} </a></li>
+              </ul>
             </div>
           </div>
+          <div class="col text-dark justify-items-center">
+            <p id="tipoAnteriorId">ActualId:<em> {{tempExperienciaLaboral?.tipoempleo?.id}}</em></p>
+            <p id="tipoAnterior">Actual:<em> {{tempExperienciaLaboral?.tipoempleo?.nombre_tipo}}</em></p>
+            <p id="tipoNuevo">Nuevo: <em> {{tipoNuevo}}</em></p>
 
-          <div class="mb-3">
-            <label for="linkPageExperiencia" class="form-label">Link Web</label>
-            <input type="text" class="form-control" id="linkPageExperiencia" value={{tempExperienciaLaboral.link}}
-              [(ngModel)]="tempAddExperiencia.link">
-          </div>
-          <div class="mb-3">
-            <label for="urlExperiencia" class="form-label">URL Foto</label>
-            <input type="text" class="form-control" id="urlExperiencia" value={{tempExperienciaLaboral.url}}
-              [(ngModel)]="tempAddExperiencia.url">
           </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="submit" (click)="saveChanges(tempExperienciaLaboral.id ?? 0  )" class="btn btn-primary"
-            data-bs-dismiss="modal">Guardar cambios</button>
-        </div>
 
+        <div class="mb-3">
+          <label for="linkPageExperiencia" class="form-label">Link Web</label>
+          <input type="text" class="form-control" id="linkPageExperiencia" value={{tempExperienciaLaboral.link}}
+            [(ngModel)]="tempAddExperiencia.link">
+        </div>
+        <div class="mb-3">
+          <label for="urlExperiencia" class="form-label">URL Foto</label>
+          <input type="text" class="form-control" id="urlExperiencia" value={{tempExperienciaLaboral.url}}
+            [(ngModel)]="tempAddExperiencia.url">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="submit" (click)="saveChanges(tempExperienciaLaboral.id ?? 0  )" class="btn btn-primary"
+          data-bs-dismiss="modal">Guardar cambios</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="borrarExperienciaModalCarousel" tabindex="-1"
+  aria-labelledby="borrarExperienciaModalCarousel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-dark">Borrar Educacion</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label class="form-label text-dark">Desea borrar la experiencia
+            {{ tempExperienciaLaboral.nombreempresa }}?</label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cerrar
+        </button>
+        <button type="submit" (click)="delete(tempExperienciaLaboral.id)" class="btn btn-danger"
+          data-bs-dismiss="modal">
+          Borrar
+        </button>
       </div>
     </div>
   </div>
 
-
-
-  <div class="modal fade" id="borrarExperienciaModalCarousel" tabindex="-1"
-    aria-labelledby="borrarExperienciaModalCarousel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title text-dark">Borrar Educacion</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="mb-3">
-            <label class="form-label text-dark">Desea borrar la experiencia
-              {{ tempExperienciaLaboral.nombreempresa }}?</label>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-            Cerrar
-          </button>
-          <button type="submit" (click)="delete(tempExperienciaLaboral.id)" class="btn btn-danger"
-            data-bs-dismiss="modal">
-            Borrar
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
   <!-- Modal Carousel -- END -->
 </div>
 
