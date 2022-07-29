@@ -142,17 +142,17 @@ export class EducacionComponent implements OnInit {
     else {
       this.url = "https://drive.google.com/uc?export=view&id=1chCER2JdSjPDBp_setpoJscXrJ2KLQFF";
     }
-    const objetoAdd: educacion = new educacion(this.tempEducacion.id!, this.tempEducacion.nombreeducacion!, this.tempEducacion.fechainicio!, this.tempEducacion.fechafin!, this.tempEducacion.descripcion!, this.url!, this.tempEducacion.link!);
+    const objetoAdd: educacion = new educacion(this.tempAddEducacion.id!, this.tempAddEducacion.nombreeducacion!, this.tempAddEducacion.fechainicio!, this.tempAddEducacion.fechafin!, this.tempAddEducacion.descripcion!, this.url!, this.tempAddEducacion.link!);
 
 
     this.newEducacion(objetoAdd);
     //Clear form modal
-    this.tempEducacion.nombreeducacion = "";
-    this.tempEducacion.fechainicio = "";
-    this.tempEducacion.fechafin = "";
-    this.tempEducacion.descripcion = "";
+    this.tempAddEducacion.nombreeducacion = "";
+    this.tempAddEducacion.fechainicio = "";
+    this.tempAddEducacion.fechafin = "";
+    this.tempAddEducacion.descripcion = "";
     this.url = "";
-    this.tempEducacion.link = "";
+    this.tempAddEducacion.link = "";
 
     this.reloadComponent(true);
       

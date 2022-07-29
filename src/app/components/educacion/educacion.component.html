@@ -5,7 +5,7 @@
 
 
   <button type="button" style="background-color:transparent; border-color:transparent;" data-bs-toggle="modal"
-    data-bs-target="#addEducacion">
+    data-bs-target="#addEducacion" *ngIf="isLogged && isAdmin">
     <img src="../../../assets/images/add.png" height="35" /> Agregar
   </button>
 
