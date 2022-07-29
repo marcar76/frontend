@@ -302,7 +302,7 @@
 
 
   <button type="button" style="background-color:transparent; border-color:transparent;" data-bs-toggle="modal"
-    data-bs-target="#addExperienciaCarousel">
+    data-bs-target="#addExperienciaCarousel" *ngIf="isLogged && isAdmin">
     <img src="../../../assets/images/add.png" height="35" /> Experiencia
   </button>
   <div class="modal fade" id="addExperienciaCarousel" tabindex="-1" aria-labelledby="addExperienciaCarousel"
@@ -384,7 +384,7 @@
   <!-- T I P O   D E   E M P L E O -- C A R O U S E L-->
 
   <button type="button" style="background-color:transparent; border-color:transparent;" data-bs-toggle="modal"
-    data-bs-target="#addTipoEmpleoCarousel">
+    data-bs-target="#addTipoEmpleoCarousel" *ngIf="isLogged && isAdmin">
     <img src="../../../assets/images/add.png" height="35" /> Tipo Empleo
   </button>
   <div class="modal fade" id="addTipoEmpleoCarousel" tabindex="-1" aria-labelledby="addTipoEmpleoCarousel"
